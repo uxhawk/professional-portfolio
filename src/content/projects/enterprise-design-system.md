@@ -3,7 +3,7 @@ order: 5
 title: "Enterprise Design System"
 subtitle: "A unified navigation, IA, and UX framework adopted across enterprise applications"
 date: 2025-12-19
-tags: ["Design Systems", "UI"]
+tags: ["Design Systems", "UI", "UX"]
 thumbnail: "/images/2025/12/global-design-system.png"
 ---
 
