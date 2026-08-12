@@ -24,7 +24,7 @@ I use high-fidelity prototyping as a risk mitigation strategy. By simulating com
 - **Logic Validation:** We catch “dead ends” in the user flow during the design phase (where fixing it takes 10 minutes) rather than the build phase (where fixing it might take 2 days of refactoring).
 - **Stakeholder Alignment:** Engineers don’t have to wait for Product changes mid-sprint because the requirements were visualized and approved upfront.
 
-> Portfolio Example: In my work on this [AI Law Firm Ecosystem](/ux-projects/law-firm-ai-ecosystem/), I modeled complex workflows for product and engineering teams.
+> Portfolio Example: In my work on this [AI Law Firm Ecosystem](/projects/law-firm-ai-ecosystem/), I modeled complex workflows for product and engineering teams.
 
 ---
 

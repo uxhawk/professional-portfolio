@@ -29,8 +29,8 @@ const heroSrc = heroImage ?? thumbnail;
   description={subtitle || `${title} — a product design case study by David Hawkins.`}
   ogImage={thumbnail ?? heroSrc}
 >
-  <!-- Hero -->
-  <section class="relative flex min-h-[320px] items-center overflow-hidden bg-neutral-900 md:min-h-[420px]">
+  <!-- Hero: fills the viewport below the sticky header (4rem mobile / 5rem desktop) -->
+  <section class="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-neutral-900 md:min-h-[calc(100svh-5rem)]">
     {
       heroSrc && (
         <img
@@ -41,39 +41,44 @@ const heroSrc = heroImage ?? thumbnail;
         />
       )
     }
-    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20" aria-hidden="true"></div>
-    <div class="relative mx-auto w-full max-w-6xl px-5 py-16 md:px-8">
-      <h1 class="max-w-3xl text-4xl font-extrabold tracking-tight text-white md:text-5xl">{title}</h1>
-      {subtitle && <p class="mt-3 max-w-2xl text-lg text-white/85">{subtitle}</p>}
-      <div class="mt-6">
-        <Breadcrumbs current={title} parent={{ label: "Projects", href: "/projects/" }} light />
-      </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/35" aria-hidden="true"></div>
+    <div class="relative mx-auto w-full max-w-6xl px-5 py-16 text-center md:px-8">
+      <h1 class="font-display mx-auto max-w-3xl text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+        {title}
+      </h1>
+      {subtitle && <p class="mx-auto mt-3 max-w-2xl text-lg text-white/85">{subtitle}</p>}
+      {
+        tags.length > 0 && (
+          <div class="mt-6 flex flex-col items-center gap-2.5">
+            <span class="font-sans text-sm font-bold text-white/85">Categories:</span>
+            <div class="flex flex-wrap justify-center gap-2">
+              {tags.map((tag) => (
+                <a href={`/projects/#${tag.toLowerCase().replace(/\s+/g, "-")}`}>
+                  <Badge className="rounded-full border-transparent bg-white font-sans text-neutral-900 hover:bg-white/85">
+                    {tag}
+                  </Badge>
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
     </div>
   </section>
 
-  <!-- Meta -->
-  {
-    tags.length > 0 && (
-      <div class="mx-auto flex max-w-4xl flex-wrap gap-2 px-5 pt-8 md:px-8">
-        {tags.map((tag) => (
-          <a href={`/projects/#${tag.toLowerCase().replace(/\s+/g, "-")}`}>
-            <Badge variant="outline" className="text-body hover:border-brand hover:text-brand">
-              {tag}
-            </Badge>
-          </a>
-        ))}
-      </div>
-    )
-  }
+  <!-- Breadcrumbs (same padding geometry as the case study body below) -->
+  <div class="px-6 pt-8 md:px-16 lg:px-32 xl:px-80">
+    <Breadcrumbs current={title} parent={{ label: "Projects", href: "/projects/" }} />
+  </div>
 
   <!-- Case study body -->
-  <article class="prose-uxhawk mx-auto max-w-4xl px-5 py-10 md:px-8 md:py-14">
+  <article class="prose-uxhawk px-6 py-10 md:px-16 md:py-14 lg:px-32 xl:px-80">
     <Content />
   </article>
 
   <!-- Next project -->
   <a
-    href={`/ux-projects/${next.id}/`}
+    href={`/projects/${next.id}/`}
     class="group relative mt-8 flex min-h-[220px] items-center justify-center overflow-hidden bg-neutral-900 md:min-h-[280px]"
   >
     {

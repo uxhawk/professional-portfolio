@@ -43,7 +43,7 @@ public/
 
 ## Adding content
 
-**New project:** create `src/content/projects/<slug>.md` with the frontmatter used by existing files. `order` controls listing position; the page publishes at `/ux-projects/<slug>/`.
+**New project:** create `src/content/projects/<slug>.md` with the frontmatter used by existing files. `order` controls listing position; the page publishes at `/projects/<slug>/`.
 
 **New article:** create `src/content/articles/<slug>.md`. `categoryPath` sets the URL prefix — the page publishes at `/<categoryPath>/<slug>/`.
 

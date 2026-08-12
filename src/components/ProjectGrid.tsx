@@ -76,7 +76,7 @@ export default function ProjectGrid({ projects, filters = false, pageSize }: Pro
         {shown.map((p, i) => (
           <a
             key={p.slug}
-            href={`/ux-projects/${p.slug}/`}
+            href={`/projects/${p.slug}/`}
             className={`group relative block overflow-hidden bg-neutral-200 ${
               isFullWidth(i) ? "h-72 md:col-span-2 md:h-[480px]" : "h-64 md:h-60"
             }`}

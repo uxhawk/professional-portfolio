@@ -7,7 +7,7 @@ tags: ["AI"]
 thumbnail: "/images/2026/03/human-in-the-loop.png"
 ---
 
-This is one of four Precedent case studies — the AI-review interaction model. For the system-level view, see [Law Firm AI Ecosystem](/ux-projects/law-firm-ai-ecosystem/); for the onboarding flow, see [AI Ecosystem Onboarding](/ux-projects/ai-ecosystem-onboarding/); for the editor’s process story, see [AI Document Authoring](/ux-projects/ai-document-authoring/).
+This is one of four Precedent case studies — the AI-review interaction model. For the system-level view, see [Law Firm AI Ecosystem](/projects/law-firm-ai-ecosystem/); for the onboarding flow, see [AI Ecosystem Onboarding](/projects/ai-ecosystem-onboarding/); for the editor’s process story, see [AI Document Authoring](/projects/ai-document-authoring/).
 
 ## Overview
 

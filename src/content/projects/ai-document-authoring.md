@@ -7,7 +7,7 @@ tags: ["AI"]
 thumbnail: "/images/2026/02/doc-editor-1.png"
 ---
 
-This is one of four Precedent case studies — the AI Document Authoring. For the system-level view, see [Law Firm AI Ecosystem](/ux-projects/law-firm-ai-ecosystem/); for the onboarding flow, see [AI Ecosystem Onboarding](/ux-projects/ai-ecosystem-onboarding/); for data review flow, see [Human-in-the-loop AI Review](/ux-projects/human-in-the-loop-ai-review/).
+This is one of four Precedent case studies — the AI Document Authoring. For the system-level view, see [Law Firm AI Ecosystem](/projects/law-firm-ai-ecosystem/); for the onboarding flow, see [AI Ecosystem Onboarding](/projects/ai-ecosystem-onboarding/); for data review flow, see [Human-in-the-loop AI Review](/projects/human-in-the-loop-ai-review/).
 
 ## Overview
 

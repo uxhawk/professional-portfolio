@@ -7,7 +7,7 @@ tags: ["AI", "Onboarding", "UX"]
 thumbnail: "/images/2026/08/ai-ecosystem-onboarding.png"
 ---
 
-This is one of four Precedent case studies — the adoption and growth story. For the system-level view, see [Law Firm AI Ecosystem](/ux-projects/law-firm-ai-ecosystem/); for the AI-review interaction model, see [Human-in-the-Loop AI Review](/ux-projects/human-in-the-loop-ai-review/); for the editor’s process story, see [AI Document Authoring](/ux-projects/ai-document-authoring/).
+This is one of four Precedent case studies — the adoption and growth story. For the system-level view, see [Law Firm AI Ecosystem](/projects/law-firm-ai-ecosystem/); for the AI-review interaction model, see [Human-in-the-Loop AI Review](/projects/human-in-the-loop-ai-review/); for the editor’s process story, see [AI Document Authoring](/projects/ai-document-authoring/).
 
 ## Context & Team
 
