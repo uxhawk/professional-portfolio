@@ -7,6 +7,8 @@
 @import "@fontsource/open-sans/600.css";
 @import "@fontsource/open-sans/700.css";
 @import "@fontsource/open-sans/800.css";
+@import "@fontsource/source-sans-3/700.css";
+@import "@fontsource/source-sans-3/800.css";
 
 @plugin "@tailwindcss/typography";
 
@@ -15,6 +17,8 @@
 @theme inline {
     --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
     --font-heading: var(--font-sans);
+    /* Source Sans Pro was renamed Source Sans 3 by Adobe/Google Fonts */
+    --font-display: "Source Sans 3", "Source Sans Pro", var(--font-sans);
     --color-brand: var(--brand);
     --color-brand-dark: var(--brand-dark);
     --color-body: var(--body-text);

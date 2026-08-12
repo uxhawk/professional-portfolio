@@ -59,25 +59,29 @@ const experience = [
 ---
 
 <Base>
-  <!-- Hero -->
-  <section class="mx-auto grid max-w-6xl items-center gap-10 px-5 pt-12 pb-16 md:grid-cols-2 md:px-8 md:pt-16 md:pb-20">
-    <div>
-      <h1 class="text-5xl font-extrabold tracking-tight text-brand md:text-6xl">David Hawkins</h1>
+  <!-- Hero: full-viewport height below the sticky header (4rem mobile / 5rem desktop),
+       with the phone mockups as a full-bleed background behind the intro text -->
+  <section class="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden md:min-h-[calc(100svh-5rem)]">
+    <img
+      src="/images/2026/02/iphones.png"
+      alt=""
+      class="absolute inset-0 hidden h-full w-full object-contain object-right md:block"
+      width="1728"
+      height="807"
+      loading="eager"
+    />
+    <div
+      class="absolute inset-0 hidden bg-gradient-to-r from-white via-white/80 to-white/20 md:block"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative mx-auto w-full max-w-6xl px-5 py-12 md:px-8">
+      <h1 class="font-display text-5xl font-extrabold tracking-tight text-brand md:text-6xl">David Hawkins</h1>
       <p class="mt-4 text-lg font-bold text-neutral-900">Principal Product Designer</p>
       <p class="mt-2 max-w-md text-body">I create end-to-end workflows and build design systems</p>
       <div class="mt-8">
         <PillButton href="#main-projects">Explore portfolio</PillButton>
       </div>
-    </div>
-    <div class="flex justify-center md:justify-end">
-      <img
-        src="/images/2026/02/iphones.png"
-        alt="Mobile app design mockups on two iPhones"
-        class="w-full max-w-md"
-        width="1024"
-        height="768"
-        loading="eager"
-      />
     </div>
   </section>
 
