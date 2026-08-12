@@ -62,16 +62,19 @@ const experience = [
   <!-- Hero: full-viewport height below the sticky header (4rem mobile / 5rem desktop),
        with the phone mockups as a full-bleed background behind the intro text -->
   <section class="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden md:min-h-[calc(100svh-5rem)]">
-    <img
-      src="/images/2026/02/iphones.png"
-      alt=""
-      class="absolute inset-0 hidden h-full w-full object-contain object-right md:block"
-      width="1728"
-      height="807"
-      loading="eager"
-    />
+    <picture>
+      <source media="(max-width: 767px)" srcset="/images/2026/08/iphones-centered.png" />
+      <img
+        src="/images/2026/02/iphones.png"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover object-center md:object-contain md:object-right"
+        width="1728"
+        height="807"
+        loading="eager"
+      />
+    </picture>
     <div
-      class="absolute inset-0 hidden bg-gradient-to-r from-white via-white/80 to-white/20 md:block"
+      class="absolute inset-0 bg-white/90 md:bg-transparent md:bg-gradient-to-r md:from-white md:via-white/80 md:to-white/20"
       aria-hidden="true"
     >
     </div>
