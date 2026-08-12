@@ -2,6 +2,7 @@
 order: 9
 title: "Blueprint Design System"
 subtitle: "Optimizing forms for mobile devices"
+company: "insightsoftware"
 date: 2022-11-27
 tags: ["UI", "UX"]
 thumbnail: "/images/2022/02/design-system.png"

@@ -2,6 +2,7 @@
 order: 5
 title: "Enterprise Design System"
 subtitle: "A unified navigation, IA, and UX framework adopted across enterprise applications"
+company: "insightsoftware"
 date: 2025-12-19
 tags: ["Design Systems", "UI", "UX"]
 thumbnail: "/images/2025/12/global-design-system.png"

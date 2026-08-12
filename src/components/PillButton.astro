@@ -7,22 +7,28 @@
 interface Props {
   href: string;
   icon?: "right" | "down";
+  /** "solid" navy pill (default) or "outline" secondary style */
+  variant?: "solid" | "outline";
   class?: string;
 }
-const { href, icon = "right", class: className = "" } = Astro.props;
+const { href, icon = "right", variant = "solid", class: className = "" } = Astro.props;
 ---
 
 <a
   href={href}
   class:list={[
-    "group inline-flex items-center gap-3 rounded-full bg-brand py-2.5 pr-2.5 pl-6 text-sm font-bold text-white transition-colors hover:bg-brand-dark",
+    "group inline-flex items-center gap-3 rounded-full py-2.5 pr-2.5 pl-6 text-sm font-bold transition-colors",
+    variant === "solid"
+      ? "bg-brand text-white hover:bg-brand-dark"
+      : "border border-brand bg-transparent text-brand hover:bg-brand hover:text-white",
     className,
   ]}
 >
   <slot />
   <span
     class:list={[
-      "flex size-7 items-center justify-center rounded-full bg-white/15 transition-transform",
+      "flex size-7 items-center justify-center rounded-full transition-[transform,background-color]",
+      variant === "solid" ? "bg-white/15" : "bg-brand/10 group-hover:bg-white/15",
       icon === "down" ? "group-hover:translate-y-0.5" : "group-hover:translate-x-0.5",
     ]}
     aria-hidden="true"

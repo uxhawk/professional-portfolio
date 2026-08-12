@@ -2,6 +2,7 @@
 order: 12
 title: "Eye Tracking"
 subtitle: "Capturing and assessing attention patterns"
+company: "Fors Marsh Group"
 date: 2022-01-10
 tags: ["Usability Testing", "UX", "UX Research"]
 thumbnail: "/images/2022/01/eye-tracking-featured.png"

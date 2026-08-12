@@ -2,6 +2,7 @@
 order: 7
 title: "Law Firm AI Ecosystem"
 subtitle: "Ecosystem design of AI tools"
+company: "Precedent"
 date: 2025-11-19
 tags: ["UI", "UX"]
 thumbnail: "/images/2025/11/law-firm-ai-ecosystem-1.png"

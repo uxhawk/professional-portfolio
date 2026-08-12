@@ -9,6 +9,8 @@ const projects = defineCollection({
     subtitle: z.string().default(""),
     /** Display position in project listings (mirrors the original site's order) */
     order: z.number(),
+    /** Employer/client the project was done for (omit for personal projects) */
+    company: z.string().optional(),
     date: z.coerce.date(),
     tags: z.array(z.string()).default([]),
     heroImage: z.string().optional(),

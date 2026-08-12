@@ -2,6 +2,7 @@
 order: 2
 title: "AI Document Authoring"
 subtitle: "Enhancing workflow efficiency with AI"
+company: "Precedent"
 date: 2026-02-20
 tags: ["AI", "UX"]
 thumbnail: "/images/2026/02/doc-editor-1.png"

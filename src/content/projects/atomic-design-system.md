@@ -2,6 +2,7 @@
 order: 8
 title: "Atomic Design System"
 subtitle: "Creating and maintaining robust design systems"
+company: "Precedent"
 date: 2025-11-19
 tags: ["Design Systems", "UI", "UX"]
 thumbnail: "/images/2025/11/Macbook-Pro-Dark-Background-1.png"

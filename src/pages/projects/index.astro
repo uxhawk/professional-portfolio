@@ -10,6 +10,8 @@ const projects = (await getCollection("projects")).sort(
 const gridProjects = projects.map((p) => ({
   slug: p.id,
   title: p.data.title,
+  subtitle: p.data.subtitle,
+  company: p.data.company,
   thumbnail: p.data.thumbnail,
   tags: p.data.tags,
   date: p.data.date.toISOString(),

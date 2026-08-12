@@ -2,6 +2,7 @@
 order: 4
 title: "AI Ecosystem Onboarding"
 subtitle: "Securing engagement with novel workflows"
+company: "Precedent"
 date: 2025-12-19
 tags: ["AI", "Onboarding", "UX"]
 thumbnail: "/images/2026/08/ai-ecosystem-onboarding.png"

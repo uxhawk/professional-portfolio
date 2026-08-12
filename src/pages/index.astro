@@ -13,6 +13,8 @@ const projects = (await getCollection("projects")).sort(
 const gridProjects = projects.map((p) => ({
   slug: p.id,
   title: p.data.title,
+  subtitle: p.data.subtitle,
+  company: p.data.company,
   thumbnail: p.data.thumbnail,
   tags: p.data.tags,
   date: p.data.date.toISOString(),
@@ -149,19 +151,36 @@ const experience = [
                   r.tags.length > 0 && (
                     <div class="flex flex-wrap gap-2">
                       {r.tags.map((tag) => (
-                        <a href={`/projects/#${tag.toLowerCase().replace(/\s+/g, "-")}`}>
+                        <a
+                          href={`/projects/#${tag.toLowerCase().replace(/\s+/g, "-")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${tag} projects (opens in a new tab)`}
+                        >
                           <Badge
                             variant="outline"
                             className="rounded-full text-body hover:border-brand hover:text-brand"
                           >
                             {tag}
+                            <svg
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                              <path d="M15 3h6v6M10 14 21 3" />
+                            </svg>
                           </Badge>
                         </a>
                       ))}
                     </div>
                   )
                 }
-                <PillButton href={r.href}>View project</PillButton>
+                <PillButton href={r.href} variant="outline">View project</PillButton>
               </div>
               <a href={r.href} class="group block overflow-hidden rounded-lg md:col-span-2">
                 <img
@@ -193,7 +212,6 @@ const experience = [
         />
         <h2 class="text-3xl font-extrabold tracking-tight text-neutral-900 md:text-4xl">About Me</h2>
       </div>
-      <p class="mt-6 font-semibold text-neutral-800">I'm a product designer who ships code.</p>
       <p class="mt-4 text-body">
         Over the last 13 years I've led end-to-end product design, architected robust design
         systems, and driven UX strategy across complex, data-rich enterprise products.

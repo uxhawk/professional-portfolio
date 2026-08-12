@@ -2,6 +2,7 @@
 order: 3
 title: "Mobile App Onboarding"
 subtitle: "Optimized UX for overwhelmed and confused customers"
+company: "GEICO"
 date: 2025-12-19
 tags: ["Mobile", "Usability Testing", "UX", "UX Research"]
 thumbnail: "/images/2021/12/nco-hero.png"

@@ -2,6 +2,7 @@
 order: 6
 title: "Android App Design"
 subtitle: "Designing new engagement models"
+company: "GEICO"
 date: 2025-12-18
 tags: ["Mobile", "Usability Testing", "UX", "UX Research"]
 thumbnail: "/images/2021/12/Frame-29.png"

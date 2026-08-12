@@ -2,6 +2,7 @@
 order: 1
 title: "Human-in-the-loop AI review"
 subtitle: "Optimizing AI interactions with human judgement"
+company: "Precedent"
 date: 2026-03-25
 tags: ["AI", "UX"]
 thumbnail: "/images/2026/03/human-in-the-loop.png"

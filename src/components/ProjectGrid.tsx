@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from "react";
 export interface ProjectCard {
   slug: string;
   title: string;
+  subtitle?: string;
+  company?: string;
   thumbnail?: string;
   tags: string[];
   date: string;
@@ -90,10 +92,15 @@ export default function ProjectGrid({ projects, filters = false, pageSize }: Pro
               />
             )}
             <div
-              className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+              className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10"
               aria-hidden="true"
             />
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
+              {p.company && (
+                <p className="mb-1 text-xs font-bold tracking-wide text-white/70 uppercase">
+                  {p.company}
+                </p>
+              )}
               <h3
                 className={`font-bold text-white ${
                   isFullWidth(i) ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
@@ -101,9 +108,19 @@ export default function ProjectGrid({ projects, filters = false, pageSize }: Pro
               >
                 {p.title}
               </h3>
-              <p className="mt-1 max-h-0 overflow-hidden text-sm text-white/80 opacity-0 transition-all duration-300 group-hover:max-h-8 group-hover:opacity-100">
-                {p.tags.join(" · ")}
-              </p>
+              {p.subtitle && <p className="mt-1 text-sm text-white/85">{p.subtitle}</p>}
+              {p.tags.length > 0 && (
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {p.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-white/15 px-2.5 py-0.5 text-xs font-semibold text-white"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </a>
         ))}
