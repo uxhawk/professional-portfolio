@@ -5,6 +5,7 @@ import PillButton from "@/components/PillButton.astro";
 import SectionHeading from "@/components/SectionHeading.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
 import ProjectGrid from "@/components/ProjectGrid";
+import { Badge } from "@/components/ui/badge";
 
 const projects = (await getCollection("projects")).sort(
   (a, b) => a.data.order - b.data.order,
@@ -21,32 +22,48 @@ const articles = (await getCollection("articles"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
 
-const results = [
+const resultRows = [
   {
-    title: "55% faster delivery time",
-    text: "Improved workflow efficiency measured by end-to-end task completion time.",
+    slug: "human-in-the-loop-ai-review",
+    metric: "55% faster delivery time",
+    company: "Precedent",
+    logo: "/images/companies/precedent.png",
     image: "/images/2026/03/human-in-the-loop.png",
-    href: "/projects/human-in-the-loop-ai-review/",
   },
   {
-    title: "Shipped in under 100 days",
-    text: "Designed and delivered an Android application to the Google Play Store from concept to code.",
+    slug: "android-app-design",
+    metric: "Shipped in under 100 days",
+    company: "GEICO",
+    logo: "/images/companies/geico.png",
     image: "/images/2021/12/hero-img.png",
-    href: "/projects/android-app-design/",
   },
   {
-    title: "22% fewer support tickets",
-    text: "Improved usability for document authoring workflows.",
+    slug: "ai-document-authoring",
+    metric: "22% fewer support tickets",
+    company: "Precedent",
+    logo: "/images/companies/precedent.png",
     image: "/images/2026/02/doc-editor.png",
-    href: "/projects/ai-document-authoring/",
   },
   {
-    title: "20-app ecosystem",
-    text: "Global experience platform for 20 reporting and analytic applications.",
+    slug: "enterprise-design-system",
+    metric: "20-app ecosystem",
+    company: "insightsoftware",
+    logo: "/images/companies/insightsoftware.png",
     image: "/images/2025/12/global-design-system.png",
-    href: "/projects/enterprise-design-system/",
   },
 ];
+
+const results = resultRows.map((row) => {
+  const project = projects.find((p) => p.id === row.slug);
+  if (!project) throw new Error(`Proven Results references unknown project: ${row.slug}`);
+  return {
+    ...row,
+    href: `/projects/${row.slug}/`,
+    title: project.data.title,
+    subtitle: project.data.subtitle,
+    tags: project.data.tags,
+  };
+});
 
 const experience = [
   { years: "2023 - 2026", role: "Principal Product Designer - Precedent" },
@@ -61,7 +78,7 @@ const experience = [
 <Base>
   <!-- Hero: full-viewport height below the sticky header (4rem mobile / 5rem desktop),
        with the phone mockups as a full-bleed background behind the intro text -->
-  <section class="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden md:min-h-[calc(100svh-5rem)]">
+  <section class="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden shadow-[0_1px_0_rgba(0,0,0,0.06)] md:min-h-[calc(100svh-5rem)]">
     <picture>
       <source media="(max-width: 767px)" srcset="/images/2026/08/iphones-centered.png" />
       <img
@@ -80,40 +97,81 @@ const experience = [
     </div>
     <div class="relative mx-auto w-full max-w-6xl px-5 py-12 md:px-8">
       <h1 class="font-display text-5xl font-extrabold tracking-tight text-brand md:text-6xl">David Hawkins</h1>
-      <p class="mt-4 text-lg font-bold text-neutral-900">Principal Product Designer</p>
-      <p class="mt-2 max-w-md text-body">I create end-to-end workflows and build design systems</p>
+    
+      <p class="mt-2 max-w-md text-body">Principal Product Designer</p>
       <div class="mt-8">
-        <PillButton href="#main-projects">Explore portfolio</PillButton>
+        <PillButton href="#proven-results" icon="down">Explore portfolio</PillButton>
       </div>
     </div>
   </section>
 
   <!-- Proven Results -->
-  <section class="bg-band">
+  <section class="scroll-mt-16 bg-white md:scroll-mt-20" id="proven-results">
     <div class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
       <SectionHeading icon="badge">Proven Results</SectionHeading>
-      <div class="grid gap-5 md:grid-cols-2">
+      <div class="flex flex-col divide-y divide-neutral-200">
         {
           results.map((r) => (
-            <a
-              href={r.href}
-              class="group relative flex min-h-[280px] flex-col items-center justify-center overflow-hidden rounded-[5px] p-8 text-center md:min-h-[320px]"
-            >
-              <img
-                src={r.image}
-                alt=""
-                loading="lazy"
-                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              />
-              <div class="absolute inset-0 bg-black/60" aria-hidden="true" />
-              <div class="relative">
-                <h3 class="text-2xl font-bold text-white md:text-3xl">{r.title}</h3>
-                <p class="mx-auto mt-3 max-w-sm text-sm text-white/85">{r.text}</p>
-                <span class="mt-5 inline-block border-b border-white/60 pb-0.5 text-sm font-bold text-white transition-colors group-hover:border-white">
-                  Learn more
-                </span>
+            <div class="grid items-center gap-6 py-10 first:pt-0 last:pb-0 md:grid-cols-3 md:gap-10 md:py-12">
+              <div class="flex flex-col items-start gap-4">
+                <div class="flex items-center gap-3">
+                  <img
+                    src={r.logo}
+                    alt={`${r.company} logo`}
+                    class="size-12 rounded-lg object-contain"
+                    loading="lazy"
+                  />
+                  <span class="text-sm font-bold text-neutral-900">{r.company}</span>
+                </div>
+                <p class="flex items-start gap-2 font-bold text-neutral-900">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    class="mt-0.5 shrink-0 text-green-600"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" fill="currentColor" />
+                    <path
+                      d="M7.5 12.5 10.5 15.5 16.5 9"
+                      stroke="white"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  {r.metric}
+                </p>
+                <h3 class="text-2xl font-bold text-neutral-900">{r.title}</h3>
+                {r.subtitle && <p class="text-body">{r.subtitle}</p>}
+                {
+                  r.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2">
+                      {r.tags.map((tag) => (
+                        <a href={`/projects/#${tag.toLowerCase().replace(/\s+/g, "-")}`}>
+                          <Badge
+                            variant="outline"
+                            className="rounded-full text-body hover:border-brand hover:text-brand"
+                          >
+                            {tag}
+                          </Badge>
+                        </a>
+                      ))}
+                    </div>
+                  )
+                }
+                <PillButton href={r.href}>View project</PillButton>
               </div>
-            </a>
+              <a href={r.href} class="group block overflow-hidden rounded-lg md:col-span-2">
+                <img
+                  src={r.image}
+                  alt={`${r.title} preview`}
+                  loading="lazy"
+                  class="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </a>
+            </div>
           ))
         }
       </div>
@@ -121,7 +179,8 @@ const experience = [
   </section>
 
   <!-- About Me -->
-  <section class="mx-auto grid max-w-6xl gap-14 px-5 py-16 md:grid-cols-2 md:px-8 md:py-24">
+  <section class="bg-band">
+    <div class="mx-auto grid max-w-6xl gap-14 px-5 py-16 md:grid-cols-2 md:px-8 md:py-24">
     <div>
       <div class="flex items-center gap-5">
         <img
@@ -159,37 +218,40 @@ const experience = [
           ))
         }
       </ul>
+      </div>
     </div>
   </section>
 
   <!-- All Projects -->
-  <section class="bg-band" id="main-projects">
+  <section class="scroll-mt-16 bg-white md:scroll-mt-20" id="main-projects">
     <div class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
       <SectionHeading icon="grid">All Projects</SectionHeading>
-      <ProjectGrid client:load projects={gridProjects} filters pageSize={6} />
+      <ProjectGrid client:load projects={gridProjects} filters />
     </div>
   </section>
 
   <!-- Articles -->
-  <section class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <SectionHeading icon="doc">Articles</SectionHeading>
-      <div class="mb-10">
-        <PillButton href="/blog/">View All</PillButton>
+  <section class="bg-band">
+    <div class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <SectionHeading icon="doc">Articles</SectionHeading>
+        <div class="mb-10">
+          <PillButton href="/blog/">View All</PillButton>
+        </div>
       </div>
-    </div>
-    <div class="grid gap-5 md:grid-cols-2">
-      {
-        articles.map((a) => (
-          <ArticleCard
-            href={`/${a.data.categoryPath}/${a.id}/`}
-            title={a.data.title}
-            excerpt={a.data.description}
-            image={a.data.heroImage}
-            categories={a.data.categories}
-          />
-        ))
-      }
+      <div class="grid gap-5 md:grid-cols-2">
+        {
+          articles.map((a) => (
+            <ArticleCard
+              href={`/${a.data.categoryPath}/${a.id}/`}
+              title={a.data.title}
+              excerpt={a.data.description}
+              image={a.data.heroImage}
+              categories={a.data.categories}
+            />
+          ))
+        }
+      </div>
     </div>
   </section>
 </Base>

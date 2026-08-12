@@ -2,12 +2,14 @@
 /**
  * Brand pill button used across the site ("Explore portfolio", "Contact", "View All").
  * Matches the Salient nectar-button look: navy pill, white text, arrow circle.
+ * `icon="down"` suits in-page scroll targets; the default right arrow suits navigation.
  */
 interface Props {
   href: string;
+  icon?: "right" | "down";
   class?: string;
 }
-const { href, class: className = "" } = Astro.props;
+const { href, icon = "right", class: className = "" } = Astro.props;
 ---
 
 <a
@@ -19,10 +21,13 @@ const { href, class: className = "" } = Astro.props;
 >
   <slot />
   <span
-    class="flex size-7 items-center justify-center rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5"
+    class:list={[
+      "flex size-7 items-center justify-center rounded-full bg-white/15 transition-transform",
+      icon === "down" ? "group-hover:translate-y-0.5" : "group-hover:translate-x-0.5",
+    ]}
     aria-hidden="true"
   >
-    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class:list={[icon === "down" && "rotate-90"]}>
       <path
         d="M3 8h10M9 4l4 4-4 4"
         stroke="currentColor"
