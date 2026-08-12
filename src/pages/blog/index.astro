@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const articles = (await getCollection("articles")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Base
+  title="Articles - David Hawkins | Product Design"
+  description="Articles on design leadership, design systems, and UX practice by David Hawkins."
+>
+  <div class="mx-auto max-w-6xl px-5 pt-8 md:px-8">
+    <Breadcrumbs current="Articles" />
+    <h1 class="mt-6 text-4xl font-extrabold tracking-tight text-neutral-900 md:text-5xl">
+      Articles
+    </h1>
+  </div>
+  <div class="mx-auto max-w-6xl px-5 py-10 md:px-8 md:pb-24">
+    <div class="grid gap-5 md:grid-cols-2">
+      {
+        articles.map((a, i) => (
+          <ArticleCard
+            href={`/${a.data.categoryPath}/${a.id}/`}
+            title={a.data.title}
+            excerpt={a.data.description}
+            image={a.data.heroImage}
+            categories={a.data.categories}
+            eager={i < 2}
+          />
+        ))
+      }
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  current: string;
+  /** Optional intermediate crumb, e.g. { label: "Projects", href: "/projects/" } */
+  parent?: { label: string; href: string };
+  /** Light variant for use over dark hero images */
+  light?: boolean;
+}
+const { current, parent, light = false } = Astro.props;
+---
+
+<nav
+  aria-label="Breadcrumb"
+  class:list={["text-sm", light ? "text-white/70" : "text-body"]}
+>
+  <ol class="flex flex-wrap items-center gap-1.5">
+    <li>
+      <a href="/" class:list={[light ? "text-white hover:underline" : "text-brand hover:underline"]}>
+        Home
+      </a>
+    </li>
+    {
+      parent && (
+        <li class="flex items-center gap-1.5">
+          <span aria-hidden="true">/</span>
+          <a
+            href={parent.href}
+            class:list={[light ? "text-white hover:underline" : "text-brand hover:underline"]}
+          >
+            {parent.label}
+          </a>
+        </li>
+      )
+    }
+    <li class="flex items-center gap-1.5">
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{current}</span>
+    </li>
+  </ol>
+</nav>

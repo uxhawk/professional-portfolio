@@ -1,0 +1,94 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { Badge } from "@/components/ui/badge";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("projects")).sort(
+    (a, b) => a.data.order - b.data.order,
+  );
+  return projects.map((project, i) => ({
+    params: { slug: project.id },
+    props: {
+      project,
+      // wrap around so the last project points back to the first
+      next: projects[(i + 1) % projects.length],
+    },
+  }));
+}
+
+const { project, next } = Astro.props;
+const { Content } = await render(project);
+const { title, subtitle, tags, heroImage, thumbnail } = project.data;
+const heroSrc = heroImage ?? thumbnail;
+---
+
+<Base
+  title={`${title} - David Hawkins | Product Design`}
+  description={subtitle || `${title} — a product design case study by David Hawkins.`}
+  ogImage={thumbnail ?? heroSrc}
+>
+  <!-- Hero -->
+  <section class="relative flex min-h-[320px] items-center overflow-hidden bg-neutral-900 md:min-h-[420px]">
+    {
+      heroSrc && (
+        <img
+          src={heroSrc}
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover opacity-60"
+          loading="eager"
+        />
+      )
+    }
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20" aria-hidden="true"></div>
+    <div class="relative mx-auto w-full max-w-6xl px-5 py-16 md:px-8">
+      <h1 class="max-w-3xl text-4xl font-extrabold tracking-tight text-white md:text-5xl">{title}</h1>
+      {subtitle && <p class="mt-3 max-w-2xl text-lg text-white/85">{subtitle}</p>}
+      <div class="mt-6">
+        <Breadcrumbs current={title} parent={{ label: "Projects", href: "/projects/" }} light />
+      </div>
+    </div>
+  </section>
+
+  <!-- Meta -->
+  {
+    tags.length > 0 && (
+      <div class="mx-auto flex max-w-4xl flex-wrap gap-2 px-5 pt-8 md:px-8">
+        {tags.map((tag) => (
+          <a href={`/projects/#${tag.toLowerCase().replace(/\s+/g, "-")}`}>
+            <Badge variant="outline" className="text-body hover:border-brand hover:text-brand">
+              {tag}
+            </Badge>
+          </a>
+        ))}
+      </div>
+    )
+  }
+
+  <!-- Case study body -->
+  <article class="prose-uxhawk mx-auto max-w-4xl px-5 py-10 md:px-8 md:py-14">
+    <Content />
+  </article>
+
+  <!-- Next project -->
+  <a
+    href={`/ux-projects/${next.id}/`}
+    class="group relative mt-8 flex min-h-[220px] items-center justify-center overflow-hidden bg-neutral-900 md:min-h-[280px]"
+  >
+    {
+      next.data.thumbnail && (
+        <img
+          src={next.data.thumbnail}
+          alt=""
+          loading="lazy"
+          class="absolute inset-0 h-full w-full object-cover opacity-50 transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+      )
+    }
+    <div class="relative text-center">
+      <p class="text-xs font-bold tracking-widest text-white/70 uppercase">Next Project</p>
+      <p class="mt-2 text-2xl font-bold text-white md:text-3xl">{next.data.title}</p>
+    </div>
+  </a>
+</Base>

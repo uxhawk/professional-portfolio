@@ -1,0 +1,24 @@
+---
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ContactForm from "@/components/ContactForm";
+import { SITE } from "@/site.config";
+---
+
+<Base
+  title="Contact - David Hawkins | Product Design"
+  description="Get in touch with David Hawkins to talk design, AI, and product strategy."
+  hideCta
+>
+  <div class="mx-auto max-w-6xl px-5 pt-8 md:px-8">
+    <Breadcrumbs current="Contact" />
+  </div>
+  <div class="mx-auto max-w-xl px-5 py-12 md:py-16">
+    <h1 class="text-center text-4xl font-extrabold tracking-tight text-neutral-900 md:text-5xl">
+      Let&rsquo;s Connect
+    </h1>
+    <div class="mt-10">
+      <ContactForm client:load endpoint={SITE.formspreeEndpoint} />
+    </div>
+  </div>
+</Base>

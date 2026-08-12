@@ -1,0 +1,34 @@
+---
+/**
+ * Brand pill button used across the site ("Explore portfolio", "Contact", "View All").
+ * Matches the Salient nectar-button look: navy pill, white text, arrow circle.
+ */
+interface Props {
+  href: string;
+  class?: string;
+}
+const { href, class: className = "" } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "group inline-flex items-center gap-3 rounded-full bg-brand py-2.5 pr-2.5 pl-6 text-sm font-bold text-white transition-colors hover:bg-brand-dark",
+    className,
+  ]}
+>
+  <slot />
+  <span
+    class="flex size-7 items-center justify-center rounded-full bg-white/15 transition-transform group-hover:translate-x-0.5"
+    aria-hidden="true"
+  >
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+      <path
+        d="M3 8h10M9 4l4 4-4 4"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </span>
+</a>

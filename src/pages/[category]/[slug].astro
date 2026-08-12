@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  return articles.map((article) => ({
+    params: { category: article.data.categoryPath, slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const { title, description, date, categories, heroImage } = article.data;
+const formatted = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Base
+  title={`${title} - David Hawkins | Product Design`}
+  description={description}
+  ogImage={heroImage}
+>
+  <!-- Article hero -->
+  <section class="relative flex min-h-[320px] items-end overflow-hidden bg-neutral-900 md:min-h-[400px]">
+    {
+      heroImage && (
+        <img
+          src={heroImage}
+          alt=""
+          class="absolute inset-0 h-full w-full object-cover opacity-60"
+          loading="eager"
+        />
+      )
+    }
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" aria-hidden="true"></div>
+    <div class="relative mx-auto w-full max-w-4xl px-5 py-12 md:px-8">
+      {
+        categories.length > 0 && (
+          <p class="mb-3 text-xs font-bold tracking-wide text-white/70 uppercase">
+            {categories.join(" · ")}
+          </p>
+        )
+      }
+      <h1 class="max-w-3xl text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+        {title}
+      </h1>
+      <p class="mt-4 text-sm text-white/70">
+        By David Hawkins · <time datetime={date.toISOString()}>{formatted}</time>
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-4xl px-5 pt-8 md:px-8">
+    <Breadcrumbs current={title} parent={{ label: "Articles", href: "/blog/" }} />
+  </div>
+
+  <article class="prose-uxhawk mx-auto max-w-3xl px-5 py-10 md:px-8 md:py-14">
+    <Content />
+  </article>
+</Base>

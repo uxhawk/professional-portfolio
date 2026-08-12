@@ -1,0 +1,19 @@
+---
+import MenuOverlay from "@/components/MenuOverlay";
+import { NAV, SITE } from "@/site.config";
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.06)]">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-20 md:px-8">
+    <a href="/" class="flex items-center" aria-label="David Hawkins | Product Design — home">
+      <img
+        src="/images/2022/01/logo.png"
+        alt="David Hawkins | Product Design"
+        class="h-6 w-auto md:h-7"
+        width="2030"
+        height="405"
+      />
+    </a>
+    <MenuOverlay client:load nav={[...NAV]} linkedin={SITE.linkedin} />
+  </div>
+</header>

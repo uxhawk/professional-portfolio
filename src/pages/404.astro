@@ -1,0 +1,17 @@
+---
+import Base from "@/layouts/Base.astro";
+import PillButton from "@/components/PillButton.astro";
+---
+
+<Base title="Page not found - David Hawkins | Product Design" hideCta>
+  <div class="mx-auto flex max-w-2xl flex-col items-center px-5 py-24 text-center md:py-32">
+    <p class="text-6xl font-extrabold text-brand">404</p>
+    <h1 class="mt-4 text-3xl font-extrabold text-neutral-900">Page not found</h1>
+    <p class="mt-3 text-body">
+      The page you're looking for doesn't exist or may have moved.
+    </p>
+    <div class="mt-8">
+      <PillButton href="/">Back to home</PillButton>
+    </div>
+  </div>
+</Base>

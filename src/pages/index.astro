@@ -1,0 +1,188 @@
+---
+import { getCollection } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PillButton from "@/components/PillButton.astro";
+import SectionHeading from "@/components/SectionHeading.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import ProjectGrid from "@/components/ProjectGrid";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const gridProjects = projects.map((p) => ({
+  slug: p.id,
+  title: p.data.title,
+  thumbnail: p.data.thumbnail,
+  tags: p.data.tags,
+  date: p.data.date.toISOString(),
+}));
+
+const articles = (await getCollection("articles"))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+
+const results = [
+  {
+    title: "55% faster delivery time",
+    text: "Improved workflow efficiency measured by end-to-end task completion time.",
+    image: "/images/2026/03/human-in-the-loop.png",
+    href: "/ux-projects/human-in-the-loop-ai-review/",
+  },
+  {
+    title: "Shipped in under 100 days",
+    text: "Designed and delivered an Android application to the Google Play Store from concept to code.",
+    image: "/images/2021/12/hero-img.png",
+    href: "/ux-projects/android-app-design/",
+  },
+  {
+    title: "22% fewer support tickets",
+    text: "Improved usability for document authoring workflows.",
+    image: "/images/2026/02/doc-editor.png",
+    href: "/ux-projects/ai-document-authoring/",
+  },
+  {
+    title: "20-app ecosystem",
+    text: "Global experience platform for 20 reporting and analytic applications.",
+    image: "/images/2025/12/global-design-system.png",
+    href: "/ux-projects/enterprise-design-system/",
+  },
+];
+
+const experience = [
+  { years: "2023 - 2026", role: "Principal Product Designer - Precedent" },
+  { years: "2020 - 2023", role: "Senior Product Designer - insightsoftware" },
+  { years: "2019 - 2020", role: "Product Designer - Booz Allen Hamilton (NSF)" },
+  { years: "2015 - 2019", role: "Senior User Experience Designer - GEICO" },
+  { years: "2013 - 2015", role: "User Experience Researcher - Fors Marsh Group" },
+  { years: "2011 - 2013", role: "MA Human Factors and Applied Cognition - George Mason University" },
+];
+---
+
+<Base>
+  <!-- Hero -->
+  <section class="mx-auto grid max-w-6xl items-center gap-10 px-5 pt-12 pb-16 md:grid-cols-2 md:px-8 md:pt-16 md:pb-20">
+    <div>
+      <h1 class="text-5xl font-extrabold tracking-tight text-brand md:text-6xl">David Hawkins</h1>
+      <p class="mt-4 text-lg font-bold text-neutral-900">Principal Product Designer</p>
+      <p class="mt-2 max-w-md text-body">I create end-to-end workflows and build design systems</p>
+      <div class="mt-8">
+        <PillButton href="#main-projects">Explore portfolio</PillButton>
+      </div>
+    </div>
+    <div class="flex justify-center md:justify-end">
+      <img
+        src="/images/2026/02/iphones.png"
+        alt="Mobile app design mockups on two iPhones"
+        class="w-full max-w-md"
+        width="1024"
+        height="768"
+        loading="eager"
+      />
+    </div>
+  </section>
+
+  <!-- Proven Results -->
+  <section class="bg-band">
+    <div class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+      <SectionHeading icon="badge">Proven Results</SectionHeading>
+      <div class="grid gap-5 md:grid-cols-2">
+        {
+          results.map((r) => (
+            <a
+              href={r.href}
+              class="group relative flex min-h-[280px] flex-col items-center justify-center overflow-hidden rounded-[5px] p-8 text-center md:min-h-[320px]"
+            >
+              <img
+                src={r.image}
+                alt=""
+                loading="lazy"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <div class="absolute inset-0 bg-black/60" aria-hidden="true" />
+              <div class="relative">
+                <h3 class="text-2xl font-bold text-white md:text-3xl">{r.title}</h3>
+                <p class="mx-auto mt-3 max-w-sm text-sm text-white/85">{r.text}</p>
+                <span class="mt-5 inline-block border-b border-white/60 pb-0.5 text-sm font-bold text-white transition-colors group-hover:border-white">
+                  Learn more
+                </span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me -->
+  <section class="mx-auto grid max-w-6xl gap-14 px-5 py-16 md:grid-cols-2 md:px-8 md:py-24">
+    <div>
+      <div class="flex items-center gap-5">
+        <img
+          src="/images/2026/07/RIZ03278-3-1.png"
+          alt="Portrait of David Hawkins"
+          class="size-16 rounded-full object-cover"
+          width="300"
+          height="300"
+          loading="lazy"
+        />
+        <h2 class="text-3xl font-extrabold tracking-tight text-neutral-900 md:text-4xl">About Me</h2>
+      </div>
+      <p class="mt-6 font-semibold text-neutral-800">I'm a product designer who ships code.</p>
+      <p class="mt-4 text-body">
+        Over the last 13 years I've led end-to-end product design, architected robust design
+        systems, and driven UX strategy across complex, data-rich enterprise products.
+      </p>
+      <h3 class="mt-10 text-xl font-bold text-neutral-900">Certifications</h3>
+      <img
+        src="/images/2026/02/Frame-3.png"
+        alt="NN/g UX Certified and HFI Certified Usability Analyst badges"
+        class="mt-4 max-w-xs"
+        loading="lazy"
+      />
+    </div>
+    <div>
+      <h3 class="text-xl font-bold text-neutral-900">Work Experience</h3>
+      <ul class="mt-4 divide-y divide-neutral-200">
+        {
+          experience.map((e) => (
+            <li class="grid grid-cols-[110px_1fr] gap-4 py-4">
+              <span class="text-sm text-muted-foreground">{e.years}</span>
+              <span class="text-sm font-bold text-neutral-900">{e.role}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- All Projects -->
+  <section class="bg-band" id="main-projects">
+    <div class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+      <SectionHeading icon="grid">All Projects</SectionHeading>
+      <ProjectGrid client:load projects={gridProjects} filters pageSize={6} />
+    </div>
+  </section>
+
+  <!-- Articles -->
+  <section class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <SectionHeading icon="doc">Articles</SectionHeading>
+      <div class="mb-10">
+        <PillButton href="/blog/">View All</PillButton>
+      </div>
+    </div>
+    <div class="grid gap-5 md:grid-cols-2">
+      {
+        articles.map((a) => (
+          <ArticleCard
+            href={`/${a.data.categoryPath}/${a.id}/`}
+            title={a.data.title}
+            excerpt={a.data.description}
+            image={a.data.heroImage}
+            categories={a.data.categories}
+          />
+        ))
+      }
+    </div>
+  </section>
+</Base>

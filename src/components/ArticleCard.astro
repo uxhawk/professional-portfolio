@@ -1,0 +1,47 @@
+---
+/**
+ * Article card: featured image background with dark overlay,
+ * category labels, bold white title, and short excerpt.
+ */
+interface Props {
+  href: string;
+  title: string;
+  excerpt?: string;
+  image?: string;
+  categories?: string[];
+  eager?: boolean;
+}
+const { href, title, excerpt, image, categories = [], eager = false } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group relative flex min-h-[320px] flex-col justify-end overflow-hidden rounded-none bg-neutral-900 p-7 md:min-h-[420px] md:p-8"
+>
+  {
+    image && (
+      <img
+        src={image}
+        alt=""
+        loading={eager ? "eager" : "lazy"}
+        class="absolute inset-0 h-full w-full object-cover opacity-80 transition-transform duration-500 group-hover:scale-[1.03]"
+      />
+    )
+  }
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/10"
+    aria-hidden="true"
+  >
+  </div>
+  <div class="relative">
+    {
+      categories.length > 0 && (
+        <p class="mb-2 text-xs font-bold tracking-wide text-white/70 uppercase">
+          {categories.join(" · ")}
+        </p>
+      )
+    }
+    <h3 class="text-xl leading-snug font-bold text-white md:text-2xl">{title}</h3>
+    {excerpt && <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-white/80">{excerpt}</p>}
+  </div>
+</a>
