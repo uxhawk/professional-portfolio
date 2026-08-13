@@ -8,6 +8,10 @@ tags: ["Mobile", "Usability Testing", "UX", "UX Research"]
 thumbnail: "/images/2021/12/nco-hero.png"
 ---
 
+import Carousel from "../../components/Carousel.astro";
+import StatGrid from "../../components/StatGrid.astro";
+import Stat from "../../components/Stat.astro";
+
 ## Overview
 
 #### Project Directive
@@ -74,29 +78,20 @@ I distributed a survey to existing customers (Power Users) to compile data on th
 
 #### Survey Results
 
-2.9
-
-I was confident in my knowledge about insurance.
-
-Even tenured customers sat below neutral on insurance literacy — and new customers would start lower still. Education couldn’t be an optional extra.
-
-3
-
-I had everything I needed as a policy holder.
-
-A dead-neutral score from power users meant the app wasn’t fully serving its best customers, let alone newcomers.
-
-3.8
-
-I needed the help of technical person to use the app.
-
-The most alarming result in the study: our most active users agreed they needed help to operate the app. This became the project’s clearest mandate — if power users need assistance, new customers don’t stand a chance alone.
-
-3.5
-
-I would like to use this app frequently.
-
-The appetite existed. The confidence didn’t. That gap — willing but unequipped — is precisely what onboarding exists to close.
+<StatGrid>
+  <Stat value="2.9" label="I was confident in my knowledge about insurance.">
+    Even tenured customers sat below neutral on insurance literacy — and new customers would start lower still. Education couldn’t be an optional extra.
+  </Stat>
+  <Stat value="3" label="I had everything I needed as a policy holder.">
+    A dead-neutral score from power users meant the app wasn’t fully serving its best customers, let alone newcomers.
+  </Stat>
+  <Stat value="3.8" label="I needed the help of technical person to use the app.">
+    The most alarming result in the study: our most active users agreed they needed help to operate the app. This became the project’s clearest mandate — if power users need assistance, new customers don’t stand a chance alone.
+  </Stat>
+  <Stat value="3.5" label="I would like to use this app frequently.">
+    The appetite existed. The confidence didn’t. That gap — willing but unequipped — is precisely what onboarding exists to close.
+  </Stat>
+</StatGrid>
 
 ## Phase 4
 
@@ -116,17 +111,16 @@ I created context for Sue by designing templates that explained why permissions 
 
 ### Design Templates
 
-![](/images/2021/12/Android-Small-1.jpg)
-
-![](/images/2021/12/Android-Small-2.jpg)
-
-![](/images/2021/12/Android-Small-3.jpg)
-
-![](/images/2021/12/Android-Small-4.jpg)
-
-![](/images/2021/12/Android-Small-5.jpg)
-
-![](/images/2021/12/Android-Small-6.jpg)
+<Carousel
+  images={[
+    { src: "/images/2021/12/Android-Small-1.jpg", alt: "Design template — screen 1" },
+    { src: "/images/2021/12/Android-Small-2.jpg", alt: "Design template — screen 2" },
+    { src: "/images/2021/12/Android-Small-3.jpg", alt: "Design template — screen 3" },
+    { src: "/images/2021/12/Android-Small-4.jpg", alt: "Design template — screen 4" },
+    { src: "/images/2021/12/Android-Small-5.jpg", alt: "Design template — screen 5" },
+    { src: "/images/2021/12/Android-Small-6.jpg", alt: "Design template — screen 6" },
+  ]}
+/>
 
 ## Phase 6
 
@@ -141,6 +135,8 @@ With templates in hand, I collected feedback from users about account activation
 ### Comparing Registration Flows
 
 Results from a satisfaction questionnaire suggested the new registration process with added context (orange) out performed the old registration process (red).
+
+![Bar chart of benchmark comparisons: New Design Users outscored Power Users on confidence, having everything they needed, and needing less technical help.](/images/2026/08/benchmark-comparisons.png)
 
 ### Business Impact & Final Designs
 

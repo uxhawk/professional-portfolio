@@ -1,0 +1,35 @@
+---
+/**
+ * Responsive grid of survey Stat blocks: two columns on desktop, one on
+ * small screens.
+ *
+ * Usage (MDX):
+ *   import StatGrid from "../../components/StatGrid.astro";
+ *   import Stat from "../../components/Stat.astro";
+ *
+ *   <StatGrid>
+ *     <Stat value="2.9" label="Survey statement.">
+ *       …interpretation markdown…
+ *     </Stat>
+ *   </StatGrid>
+ */
+---
+
+<div class="stat-grid">
+  <slot />
+</div>
+
+<style>
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem 4rem;
+    margin-block: 2.5rem;
+  }
+  @media (min-width: 48rem) {
+    .stat-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+</style>

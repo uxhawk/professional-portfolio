@@ -105,13 +105,21 @@ const { images } = Astro.props;
 
   .slide {
     flex: 0 0 auto;
-    width: min(700px, 86vw);
+    /* Shrink-wrap to the image so height-capped portrait shots don't leave
+       wide empty gutters between neighboring slides */
+    width: auto;
+    max-width: min(700px, 86vw);
     scroll-snap-align: center;
     margin: 0;
   }
   .slide img {
-    width: 100%;
+    display: block;
+    width: auto;
+    max-width: 100%;
     height: auto;
+    /* Keep tall portrait shots (e.g. phone mockups) from towering over the page */
+    max-height: 700px;
+    margin-inline: auto;
     border-radius: var(--radius, 0.5rem);
     transition: box-shadow 300ms ease;
   }
@@ -280,7 +288,9 @@ const { images } = Astro.props;
       const real = count > 1 ? realIndex(i) : i;
       dots.forEach((dot, j) => dot.setAttribute("aria-current", j === real ? "true" : "false"));
     };
+    let interacted = false;
     const scrollToSlide = (i: number, smooth = true) => {
+      if (smooth) interacted = true;
       track.scrollTo({
         left: center(slides[i]) - track.clientWidth / 2,
         behavior: smooth && !reduceMotion ? "smooth" : "auto",
@@ -290,6 +300,20 @@ const { images } = Astro.props;
     // Start on the real first slide (index 1; index 0 is the leading clone)
     if (count > 1) scrollToSlide(1, false);
     setActive(count > 1 ? 1 : 0);
+
+    // Slides shrink-wrap their images, so offsets shift as lazy images load;
+    // keep the starting slide centered through those shifts until the user
+    // first interacts with the carousel.
+    for (const type of ["wheel", "touchstart", "pointerdown", "keydown"]) {
+      track.addEventListener(type, () => (interacted = true), { passive: true });
+    }
+    for (const img of track.querySelectorAll<HTMLImageElement>("img")) {
+      if (!img.complete) {
+        img.addEventListener("load", () => {
+          if (!interacted) scrollToSlide(count > 1 ? 1 : 0, false);
+        });
+      }
+    }
 
     let settleTimer: ReturnType<typeof setTimeout>;
     track.addEventListener(
