@@ -40,33 +40,38 @@ The system needed to do two things at once: prevent fragmentation, and preserve 
 
 ## My Design Work
 
-### 1. The Global Application Shell
+### 1. Foundational Styles
 
-A persistent shell that wrapped every application in the portfolio: header, primary navigation rail, secondary navigation, breadcrumbs, account menu, notifications, and help center. The shell was the same regardless of which product was loaded inside it.
+The foundations gave every application the same visual and verbal baseline before any product-specific design began. Typography is Inter (with a documented fallback stack), with a defined scale for headings, body, subtitles, and labels — each level specified down to weight, size, and line-height. A vocabulary guide set the platform's voice through do/don't examples: descriptive titles, action verbs, precise diction, short labels, and sentence-style capitalization.
 
-This is what made the portfolio scannable. A user who knew where the account menu lived in one product knew where it lived in every product. The shell carried identity context, application context, and notification state across the entire portfolio.
+The color architecture spans brand, primary, secondary, and neutral palettes, plus utility colors for error, success, warning, and focus states — every swatch documented with its hex value and intended usage. Dedicated palettes cover chart tones, monoline icon colors, and avatar colors, so even data visualization and identity surfaces stayed consistent across products.
 
-<Carousel
-  fit="cover"
-  images={[
-    { src: "/images/2026/04/09_Navigation.png", alt: "Global application shell — navigation standards" },
-  ]}
-/>
-
-### 2. The Application Switcher
-
-A dedicated launcher surface (accessible from the persistent rail in every product) that served as a key way-finding utility. From the switcher, users could see which products they had access to, see at-a-glance status indicators (notifications, license state), and move between applications without losing session context.
-
-The switcher was deliberately the only “global” surface that broke into individual application chrome. Everywhere else, the user stayed inside the shell of the product they had launched. This kept orientation predictable: there was always exactly one way to leave an application and one way to enter another.
+The button system rounds out the foundations: primary, secondary, ghost, and destructive variants, each specified across normal, hover, pressed, disabled, and focused states in two sizes, with icon placements, padding and min-width rules, and dark-background treatments. All button styles meet WCAG AA contrast except disabled states.
 
 <Carousel
   fit="cover"
   images={[
-    { src: "/images/2026/04/05_Logos.png", alt: "Application switcher — product logos and brand hierarchy" },
+    { src: "/images/2026/08/foundations-typography-headings.png", alt: "Foundational styles — Inter typeface, fallbacks, and heading scale" },
+    { src: "/images/2026/08/foundations-typography-body.png", alt: "Foundational styles — body, subtitle, and label type specs" },
+    { src: "/images/2026/08/foundations-vocabulary.png", alt: "Foundational styles — vocabulary do/don't guidance for titles, labels, and actions" },
+    { src: "/images/2026/08/foundations-read-only-text.png", alt: "Foundational styles — read-only text in inline and stacked displays" },
+    { src: "/images/2026/08/foundations-colors-brand-primary-secondary.png", alt: "Foundational styles — brand, primary, and secondary color palettes" },
+    { src: "/images/2026/08/foundations-colors-neutrals.png", alt: "Foundational styles — neutral palette with documented usages" },
+    { src: "/images/2026/08/foundations-colors-utility.png", alt: "Foundational styles — utility colors for error, success, warning, and focus states" },
+    { src: "/images/2026/08/foundations-colors-charts.png", alt: "Foundational styles — chart color tones" },
+    { src: "/images/2026/08/foundations-icon-colors.png", alt: "Foundational styles — monoline office icon colors" },
+    { src: "/images/2026/08/foundations-avatar-colors.png", alt: "Foundational styles — avatar color palette" },
+    { src: "/images/2026/08/foundations-buttons-primary.png", alt: "Foundational styles — primary button states and sizes" },
+    { src: "/images/2026/08/foundations-buttons-secondary.png", alt: "Foundational styles — secondary button states and sizes" },
+    { src: "/images/2026/08/foundations-buttons-ghost.png", alt: "Foundational styles — ghost button states and sizes" },
+    { src: "/images/2026/08/foundations-buttons-destructive-primary.png", alt: "Foundational styles — destructive primary button states" },
+    { src: "/images/2026/08/foundations-buttons-destructive-secondary.png", alt: "Foundational styles — destructive secondary button states" },
+    { src: "/images/2026/08/foundations-buttons-destructive-ghost.png", alt: "Foundational styles — destructive ghost button states" },
+    { src: "/images/2026/08/foundations-buttons-sizing-dark.png", alt: "Foundational styles — button paddings, sizes, and dark-background treatments" },
   ]}
 />
 
-### 3. Information Architecture & Way-Finding
+### 2. Information Architecture & Way-Finding
 
 I defined the IA standards every application had to honor:
 
@@ -81,61 +86,67 @@ These were not suggestions. They were contracts. Application teams had latitude 
 <Carousel
   fit="cover"
   images={[
-    { src: "/images/2026/04/08_Layout.png", alt: "Information architecture — layout and page structure standards" },
+    { src: "/images/2026/08/ia-menu-items.png", alt: "Way-finding — menu item component states, from default through selected and focused" },
+    { src: "/images/2026/08/ia-switch-applications-menu.png", alt: "Way-finding — switch applications menu specification" },
+    { src: "/images/2026/08/ia-primary-navigation.png", alt: "Way-finding — primary navigation and application menu specification" },
+    { src: "/images/2026/08/ia-expand-collapse.png", alt: "Way-finding — application menu expand and collapse behavior" },
+    { src: "/images/2026/08/ia-user-menu.png", alt: "Way-finding — user menu with settings, invite guest, switch account, and log out" },
+    { src: "/images/2026/08/ia-secondary-navigation-static.png", alt: "Way-finding — secondary navigation with static sub-application menus" },
+    { src: "/images/2026/08/ia-secondary-navigation-dropdown.png", alt: "Way-finding — secondary navigation with floating dropdown menus" },
+    { src: "/images/2026/08/ia-oversized-menu.png", alt: "Way-finding — oversized menu recommendations for long navigation lists" },
+    { src: "/images/2026/08/ia-secondary-navigation-density.png", alt: "Way-finding — secondary navigation in regular and cozy densities" },
+    { src: "/images/2026/08/ia-breadcrumbs.png", alt: "Way-finding — breadcrumb rules with truncation for deep hierarchies" },
   ]}
 />
 
-### 4. Cross-Application UX Contracts
+### 3. Announcements & Notifications
 
-I codified reusable patterns for the journeys that crossed application boundaries:
+Keeping users informed was a contract, not a per-product decision. I designed a coordinated notification architecture with a distinct surface for each level of urgency, used identically in every application:
 
-- **Onboarding** — tooltip-driven first-run guidance with progress checklists, consistent across products.
-- **Notifications** — a coordinated architecture spanning toast notifications, the global notification menu, badges on the navigation rail, and email — so a user in one product would see the same notification model when they switched to another.
-- **Form validation & states** — defined defaults, hover, focused, filled, disabled, and error states across every input type, plus form layout and section conventions.
-- **Identity & role context** — how the avatar, account menu, role indicators, and permission states are surfaced consistently across applications.
-- **Status & state indicators** — color-coded tags and pills (Active, Pending, In progress, Complete, Error) used identically in every data table, side panel, and detail view across the portfolio.
+- **Announcements** — a dismissible platform-level banner for system-wide messages.
+- **Toast notifications** — transient responses from the server (informational, error, warning, success) with optional actions.
+- **Content information** — persistent inline messages that surface state inside forms and information areas.
+- **Badges** — numeric counters on the navigation rail that direct attention to where work is required (up to 99, then a dot).
+- **Notification menu** — a persistent inbox on the rail, grouped by recency, with unread indicators and mark-as-read.
+
+Because the surfaces and their meanings never changed between products, users always knew where to look for what mattered — and application teams never had to re-invent messaging patterns.
 
 <Carousel
   fit="cover"
   images={[
-    { src: "/images/2026/04/022_Notifications.png", alt: "Cross-application UX contracts — notification architecture" },
+    { src: "/images/2026/08/notifications-announcements.png", alt: "Announcements — dismissible platform-level banner" },
+    { src: "/images/2026/08/notifications-toasts.png", alt: "Toast notifications — informational, error, warning, and success variants with actions" },
+    { src: "/images/2026/08/notifications-content-information.png", alt: "Content information — inline state messages for forms and information areas" },
+    { src: "/images/2026/08/notifications-badges.png", alt: "Badges — numeric counters on the navigation rail" },
+    { src: "/images/2026/08/notifications-menu.png", alt: "Notification menu — inbox grouped by recency with unread states" },
   ]}
 />
 
-### 5. Workflow Context Presentation
+### 4. Data Tables
 
-Many of the applications were task-driven: users worked queues, processed records, and moved items through states. I designed the workflow context standards that surfaced state, progress, and ownership consistently:
+Data tables were the workhorse of the portfolio — nearly every application presents records in a grid, so the table had to be the most thoroughly specified component in the system. I designed a single table component with three density modes (default, short, and compact) and documented every behavior application teams needed:
 
-- **Operational dashboards** that surfaced workflow metrics at a glance.
-- **Status indicators embedded in data grids** — so claim, demand, or task state was readable without drilling in.
-- **Side-panel detail views** with tabbed Overview / Files / Activity log structure used across products.
-- **Coordinated in-app and email notification patterns** so users always knew what required attention and what had changed, regardless of which application they were currently working in.
+- **Sorting** on any column, with clear directional indicators.
+- **Row hover actions** — edit, delete, and overflow actions revealed in context.
+- **Row selection** — checkboxes with an indeterminate select-all state for bulk operations.
+- **Truncation** — long text and overflowing tag sets collapse gracefully, with tooltips revealing the full content.
+- **Search & filters** — a filter builder (column, condition, value) with result counts and stackable criteria.
+- **Horizontal scrolling** for wide datasets, and **pagination** with configurable rows per page.
+- **Nested rows** — expandable records that reveal detail panels or subtasks inline, without leaving the grid.
 
 <Carousel
   fit="cover"
   images={[
-    { src: "/images/2026/04/015_Data-tables.png", alt: "Workflow context — data tables with embedded status indicators" },
-    { src: "/images/2026/04/023_Tags.png", alt: "Workflow context — status tags and pills" },
-  ]}
-/>
-
-### 6. The Foundation Layer
-
-Underneath the platform-level work, I owned the foundational decisions every application inherited:
-
-- **Typography & vocabulary** — Inter as the primary face, with a documented type scale, plus a “vocabulary” guide defining the *voice* of the platform (descriptive titles, action verbs, sentence-style capitalization, precise diction over vague labels).
-- **Color system** — brand, primary, secondary, neutral, and utility palettes with documented WCAG AA contrast pairings for every combination (do/don’t reference matrix).
-- **Logos & brand hierarchy** — how product logos relate to the parent brand, including favicon, taskbar, splash screen, and header treatments.
-- **Layout & grid** — responsive breakpoints from tablet through 1920×1080 and beyond, with documented templates for messaging, page-with-tiles, and Excel-secondary-navigation layouts.
-- **Shadows, loaders, modals, side panels, accordions, cards, tooltips, avatars, tags, controls, text fields, menus, buttons, data tables, data grids, icons** — full component inventory, every state documented.
-
-<Carousel
-  fit="cover"
-  images={[
-    { src: "/images/2026/04/02_Typography-Vocabulary.png", alt: "Foundation layer — typography and vocabulary" },
-    { src: "/images/2026/04/03_Colors_-General.png", alt: "Foundation layer — color system" },
-    { src: "/images/2026/04/018_Buttons.png", alt: "Foundation layer — button states" },
-    { src: "/images/2026/04/017_Forms.png", alt: "Foundation layer — form fields and states" },
+    { src: "/images/2026/08/tables-default.png", alt: "Data tables — default table with roles, connections, and pagination" },
+    { src: "/images/2026/08/tables-sorting.png", alt: "Data tables — column sorting" },
+    { src: "/images/2026/08/tables-row-hover.png", alt: "Data tables — row hover actions" },
+    { src: "/images/2026/08/tables-checkbox-truncation.png", alt: "Data tables — row selection checkboxes and cell truncation with tooltips" },
+    { src: "/images/2026/08/tables-filters.png", alt: "Data tables — search and filter builder" },
+    { src: "/images/2026/08/tables-short.png", alt: "Data tables — short density mode" },
+    { src: "/images/2026/08/tables-compact.png", alt: "Data tables — compact density mode" },
+    { src: "/images/2026/08/tables-horizontal-scrolling.png", alt: "Data tables — horizontal scrolling for wide datasets" },
+    { src: "/images/2026/08/tables-nested.png", alt: "Data tables — nested expandable row with record details and activity log" },
+    { src: "/images/2026/08/tables-nested-v2.png", alt: "Data tables — nested rows with subtasks and collaborators" },
   ]}
 />
 
