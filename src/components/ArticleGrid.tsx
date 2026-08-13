@@ -25,7 +25,7 @@ export default function ArticleGrid({ articles, filters = false }: Props) {
     return [...set.entries()].sort((a, b) => a[1].localeCompare(b[1]));
   }, [articles]);
 
-  // Sync filter with URL hash (e.g. /blog/#ux) so filtered views are shareable.
+  // Sync filter with URL hash (e.g. /articles/#ux) so filtered views are shareable.
   useEffect(() => {
     const fromHash = () => {
       const h = window.location.hash.replace("#", "");

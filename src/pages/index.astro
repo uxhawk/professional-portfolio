@@ -254,14 +254,14 @@ const experience = [
       <div class="flex flex-wrap items-center justify-between gap-4">
         <SectionHeading icon="doc">Articles</SectionHeading>
         <div class="mb-10">
-          <PillButton href="/blog/">View All</PillButton>
+          <PillButton href="/articles/">View All</PillButton>
         </div>
       </div>
       <div class="grid gap-5 md:grid-cols-2">
         {
           articles.map((a) => (
             <ArticleCard
-              href={`/${a.data.categoryPath}/${a.id}/`}
+              href={`/articles/${a.id}/`}
               title={a.data.title}
               excerpt={a.data.description}
               image={a.data.heroImage}

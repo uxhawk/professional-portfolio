@@ -5,14 +5,21 @@ import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { Badge } from "@/components/ui/badge";
 
 export async function getStaticPaths() {
-  const articles = await getCollection("articles");
-  return articles.map((article) => ({
-    params: { category: article.data.categoryPath, slug: article.id },
-    props: { article },
+  const articles = (await getCollection("articles")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
+  return articles.map((article, i) => ({
+    params: { slug: article.id },
+    props: {
+      article,
+      // wrap around so the last article points back to the first
+      next: articles[(i + 1) % articles.length],
+      prev: i > 0 ? articles[i - 1] : null,
+    },
   }));
 }
 
-const { article } = Astro.props;
+const { article, next, prev } = Astro.props;
 const { Content } = await render(article);
 const { title, description, categories, heroImage } = article.data;
 ---
@@ -46,7 +53,7 @@ const { title, description, categories, heroImage } = article.data;
             <div class="flex flex-wrap justify-center gap-2">
               {categories.map((category) => (
                 <a
-                  href={`/blog/#${category.toLowerCase().replace(/\s+/g, "-")}`}
+                  href={`/articles/#${category.toLowerCase().replace(/\s+/g, "-")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${category} articles (opens in a new tab)`}
@@ -77,11 +84,58 @@ const { title, description, categories, heroImage } = article.data;
 
   <!-- Breadcrumbs (same padding geometry as the article body below) -->
   <div class="px-6 pt-8 md:px-16 lg:px-32 xl:px-80">
-    <Breadcrumbs current={title} parent={{ label: "Articles", href: "/blog/" }} />
+    <Breadcrumbs current={title} parent={{ label: "Articles", href: "/articles/" }} />
   </div>
 
   <!-- Article body -->
   <article class="prose-uxhawk px-6 py-10 md:px-16 md:py-14 lg:px-32 xl:px-80">
     <Content />
   </article>
+
+  <!-- Previous / next article -->
+  <nav class="mt-8 grid md:grid-cols-2" aria-label="Article navigation">
+    {
+      prev && (
+        <a
+          href={`/articles/${prev.id}/`}
+          class="group relative flex min-h-[220px] items-center justify-center overflow-hidden bg-neutral-900 md:min-h-[280px]"
+        >
+          {prev.data.heroImage && (
+            <img
+              src={prev.data.heroImage}
+              alt=""
+              loading="lazy"
+              class="absolute inset-0 h-full w-full object-cover opacity-50 transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          )}
+          <div class="relative px-6 text-center">
+            <p class="text-xs font-bold tracking-widest text-white/70 uppercase">Previous Article</p>
+            <p class="mt-2 text-xl font-bold text-white md:text-2xl">{prev.data.title}</p>
+          </div>
+        </a>
+      )
+    }
+    <a
+      href={`/articles/${next.id}/`}
+      class:list={[
+        "group relative flex min-h-[220px] items-center justify-center overflow-hidden bg-neutral-900 md:min-h-[280px]",
+        { "md:col-span-2": !prev },
+      ]}
+    >
+      {
+        next.data.heroImage && (
+          <img
+            src={next.data.heroImage}
+            alt=""
+            loading="lazy"
+            class="absolute inset-0 h-full w-full object-cover opacity-50 transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        )
+      }
+      <div class="relative px-6 text-center">
+        <p class="text-xs font-bold tracking-widest text-white/70 uppercase">Next Article</p>
+        <p class="mt-2 text-xl font-bold text-white md:text-2xl">{next.data.title}</p>
+      </div>
+    </a>
+  </nav>
 </Base>
