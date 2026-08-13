@@ -28,7 +28,7 @@ I chose this model because our two-squad structure made drift the default outcom
 
 ### Why Atomic?
 
-The library follows Brad Frost’s atomic design methodology: atoms (tokens, icons, base inputs) compose into molecules (form fields, table cells), then organisms (tables, cards, navigation), then templates. I chose it because a two-app ecosystem needs guaranteed consistency at the lowest level — if the atoms match, the apps can’t drift far.
+The library follows <a href="https://atomicdesign.bradfrost.com/chapter-2/" target="_blank" rel="noopener">Brad Frost’s atomic design methodology</a>: atoms (tokens, icons, base inputs) compose into molecules (form fields, table cells), then organisms (tables, cards, navigation), then templates. I chose it because a two-app ecosystem needs guaranteed consistency at the lowest level — if the atoms match, the apps can’t drift far.
 
 ### Adoption & Impact
 
@@ -37,3 +37,5 @@ The library follows Brad Frost’s atomic design methodology: atoms (tokens, ico
 - **Visual QA defects reduced by 30%** after adoption
 
 ### Figma designs
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 0.5rem; display: block; margin-inline: auto; width: 100%; max-width: 800px; aspect-ratio: 16 / 9; height: auto;" width="800" height="450" src="https://embed.figma.com/design/WkDW44YAWJKOHzF9mvMeaq/Atomic-design-system?node-id=13218-302&embed-host=share" allowfullscreen title="Atomic Design System — Figma file"></iframe>

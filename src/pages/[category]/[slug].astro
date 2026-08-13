@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Base from "@/layouts/Base.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { Badge } from "@/components/ui/badge";
 
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
@@ -13,12 +14,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = await render(article);
-const { title, description, date, categories, heroImage } = article.data;
-const formatted = date.toLocaleDateString("en-US", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const { title, description, categories, heroImage } = article.data;
 ---
 
 <Base
@@ -26,8 +22,8 @@ const formatted = date.toLocaleDateString("en-US", {
   description={description}
   ogImage={heroImage}
 >
-  <!-- Article hero -->
-  <section class="relative flex min-h-[320px] items-end overflow-hidden bg-neutral-900 md:min-h-[400px]">
+  <!-- Hero: fills the viewport below the sticky header (4rem mobile / 5rem desktop) -->
+  <section class="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden bg-neutral-900 md:min-h-[calc(100svh-5rem)]">
     {
       heroImage && (
         <img
@@ -38,29 +34,54 @@ const formatted = date.toLocaleDateString("en-US", {
         />
       )
     }
-    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" aria-hidden="true"></div>
-    <div class="relative mx-auto w-full max-w-4xl px-5 py-12 md:px-8">
-      {
-        categories.length > 0 && (
-          <p class="mb-3 text-xs font-bold tracking-wide text-white/70 uppercase">
-            {categories.join(" · ")}
-          </p>
-        )
-      }
-      <h1 class="max-w-3xl text-3xl font-extrabold tracking-tight text-white md:text-4xl">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/35" aria-hidden="true"></div>
+    <div class="relative mx-auto w-full max-w-6xl px-5 py-16 text-center md:px-8">
+      <h1 class="font-display mx-auto max-w-3xl text-4xl font-extrabold tracking-tight text-white md:text-5xl">
         {title}
       </h1>
-      <p class="mt-4 text-sm text-white/70">
-        By David Hawkins · <time datetime={date.toISOString()}>{formatted}</time>
-      </p>
+      {
+        categories.length > 0 && (
+          <div class="mt-6 flex flex-col items-center gap-2.5">
+            <span class="font-sans text-sm font-bold text-white/85">Categories:</span>
+            <div class="flex flex-wrap justify-center gap-2">
+              {categories.map((category) => (
+                <a
+                  href={`/blog/#${category.toLowerCase().replace(/\s+/g, "-")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${category} articles (opens in a new tab)`}
+                >
+                  <Badge className="rounded-full border-transparent bg-white font-sans text-neutral-900 hover:bg-white/85">
+                    {category}
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <path d="M15 3h6v6M10 14 21 3" />
+                    </svg>
+                  </Badge>
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
     </div>
   </section>
 
-  <div class="mx-auto max-w-4xl px-5 pt-8 md:px-8">
+  <!-- Breadcrumbs (same padding geometry as the article body below) -->
+  <div class="px-6 pt-8 md:px-16 lg:px-32 xl:px-80">
     <Breadcrumbs current={title} parent={{ label: "Articles", href: "/blog/" }} />
   </div>
 
-  <article class="prose-uxhawk mx-auto max-w-3xl px-5 py-10 md:px-8 md:py-14">
+  <!-- Article body -->
+  <article class="prose-uxhawk px-6 py-10 md:px-16 md:py-14 lg:px-32 xl:px-80">
     <Content />
   </article>
 </Base>

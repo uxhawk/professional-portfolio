@@ -2,11 +2,18 @@
 import { getCollection } from "astro:content";
 import Base from "@/layouts/Base.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import ArticleCard from "@/components/ArticleCard.astro";
+import ArticleGrid from "@/components/ArticleGrid";
 
 const articles = (await getCollection("articles")).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
+const gridArticles = articles.map((a) => ({
+  href: `/${a.data.categoryPath}/${a.id}/`,
+  title: a.data.title,
+  excerpt: a.data.description,
+  image: a.data.heroImage,
+  categories: a.data.categories,
+}));
 ---
 
 <Base
@@ -20,19 +27,6 @@ const articles = (await getCollection("articles")).sort(
     </h1>
   </div>
   <div class="mx-auto max-w-6xl px-5 py-10 md:px-8 md:pb-24">
-    <div class="grid gap-5 md:grid-cols-2">
-      {
-        articles.map((a, i) => (
-          <ArticleCard
-            href={`/${a.data.categoryPath}/${a.id}/`}
-            title={a.data.title}
-            excerpt={a.data.description}
-            image={a.data.heroImage}
-            categories={a.data.categories}
-            eager={i < 2}
-          />
-        ))
-      }
-    </div>
+    <ArticleGrid client:load articles={gridArticles} filters />
   </div>
 </Base>
