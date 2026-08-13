@@ -8,7 +8,7 @@ tags: ["UI", "UX"]
 thumbnail: "/images/2025/11/law-firm-ai-ecosystem-1.png"
 ---
 
-This is one of four Precedent case studies — Law Firm AI Ecosystem. For the AI Document Authoring, see [AI Document Authoring](/projects/ai-document-authoring/); for the onboarding flow, see [AI Ecosystem Onboarding](/projects/ai-ecosystem-onboarding/); for data review flow, see [Human-in-the-loop AI Review](/projects/human-in-the-loop-ai-review/).
+This is one of four Precedent case studies — Law Firm AI Ecosystem. For the AI Document Authoring, see <a href="/projects/ai-document-authoring/" target="_blank" rel="noopener">AI Document Authoring</a>; for the onboarding flow, see <a href="/projects/ai-ecosystem-onboarding/" target="_blank" rel="noopener">AI Ecosystem Onboarding</a>; for data review flow, see <a href="/projects/human-in-the-loop-ai-review/" target="_blank" rel="noopener">Human-in-the-loop AI Review</a>.
 
 ## Overview
 

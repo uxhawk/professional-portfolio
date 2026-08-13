@@ -1,0 +1,343 @@
+---
+/**
+ * Full-bleed, center-mode, infinitely looping image carousel for case-study bodies.
+ * The active slide is centered at up to 700px wide with a drop shadow; neighboring
+ * slides peek in from the left/right edges. Wraps seamlessly via edge clones.
+ * Clicking the active image opens a full-screen lightbox; clicking a peeking
+ * image centers it.
+ *
+ * Usage (MDX):
+ *   import Carousel from "../../components/Carousel.astro";
+ *   <Carousel images={[{ src: "/images/a.png", alt: "…" }, …]} />
+ */
+interface Props {
+  images: { src: string; alt?: string }[];
+}
+const { images } = Astro.props;
+---
+
+<section
+  class="carousel not-prose"
+  data-carousel
+  aria-roledescription="carousel"
+  aria-label={`Image gallery, ${images.length} slides`}
+>
+  <div class="track" data-carousel-track tabindex="0">
+    {
+      images.map((img, i) => (
+        <figure
+          class="slide"
+          data-carousel-slide
+          aria-roledescription="slide"
+          aria-label={`${i + 1} of ${images.length}`}
+        >
+          <img src={img.src} alt={img.alt ?? ""} loading="lazy" draggable="false" />
+        </figure>
+      ))
+    }
+  </div>
+
+  <div class="controls">
+    <button type="button" class="arrow" data-carousel-prev aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    </button>
+
+    <div class="dots" aria-label="Choose slide">
+      {
+        images.map((_, i) => (
+          <button
+            type="button"
+            data-carousel-dot
+            aria-label={`Go to slide ${i + 1}`}
+            aria-current={i === 0 ? "true" : "false"}
+          />
+        ))
+      }
+    </div>
+
+    <button type="button" class="arrow" data-carousel-next aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m9 18 6-6-6-6" />
+      </svg>
+    </button>
+  </div>
+
+  <dialog class="lightbox" data-carousel-lightbox aria-label="Full-screen image view">
+    <button type="button" class="lightbox-close" data-carousel-lightbox-close>
+      Close
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <img data-carousel-lightbox-img src="" alt="" />
+  </dialog>
+</section>
+
+<style>
+  /* Break out of the prose column and padding to span the full viewport */
+  .carousel {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-block: 2.5rem;
+  }
+
+  .track {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    /* Lets the first/last slide sit dead-center before JS adds the loop clones */
+    padding-inline: calc(50vw - min(350px, 43vw));
+    /* Breathing room so the active slide's shadow isn't clipped */
+    padding-block: 1.5rem;
+  }
+  .track::-webkit-scrollbar {
+    display: none;
+  }
+  .track:focus-visible {
+    outline: 2px solid var(--brand, currentColor);
+    outline-offset: -2px;
+  }
+
+  .slide {
+    flex: 0 0 auto;
+    width: min(700px, 86vw);
+    scroll-snap-align: center;
+    margin: 0;
+  }
+  .slide img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius, 0.5rem);
+    transition: box-shadow 300ms ease;
+  }
+  .slide.is-active img {
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.18),
+      0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: zoom-in;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .arrow {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--color-neutral-200, #e5e5e5);
+    border-radius: 9999px;
+    background: white;
+    color: var(--color-neutral-700, #404040);
+    cursor: pointer;
+    transition: background-color 150ms ease;
+  }
+  .arrow svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+  .arrow:hover {
+    background: var(--color-neutral-100, #f5f5f5);
+  }
+
+  .dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .dots button {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: none;
+    border-radius: 9999px;
+    padding: 0;
+    background: var(--color-neutral-300, #d4d4d4);
+    cursor: pointer;
+    transition: background-color 150ms ease, transform 150ms ease;
+  }
+  .dots button[aria-current="true"] {
+    background: var(--color-neutral-800, #262626);
+    transform: scale(1.25);
+  }
+
+  /* ----- Lightbox ----- */
+  .lightbox {
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 2rem;
+    border: none;
+    background: transparent;
+    place-items: center;
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+  .lightbox[open] {
+    display: grid;
+    opacity: 1;
+  }
+  @starting-style {
+    .lightbox[open] {
+      opacity: 0;
+    }
+  }
+  .lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.65);
+  }
+  .lightbox img {
+    max-width: min(1400px, 94vw);
+    max-height: 88dvh;
+    width: auto;
+    height: auto;
+    border-radius: var(--radius, 0.5rem);
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+  }
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+  .lightbox-close svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  /* Lock page scroll while the lightbox is open */
+  :global(html:has(dialog[data-carousel-lightbox][open])) {
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  function initCarousel(root: HTMLElement) {
+    const track = root.querySelector<HTMLElement>("[data-carousel-track]");
+    if (!track) return;
+    const realSlides = [...track.querySelectorAll<HTMLElement>("[data-carousel-slide]")];
+    const dots = [...root.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]")];
+    const prev = root.querySelector<HTMLButtonElement>("[data-carousel-prev]");
+    const next = root.querySelector<HTMLButtonElement>("[data-carousel-next]");
+    const lightbox = root.querySelector<HTMLDialogElement>("[data-carousel-lightbox]");
+    const lightboxImg = root.querySelector<HTMLImageElement>("[data-carousel-lightbox-img]");
+    const count = realSlides.length;
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Seamless wrap: clone the last slide onto the front and the first onto the
+    // back, so a neighbor is always visible; once scrolling settles on a clone,
+    // teleport (instant, invisible) to its real counterpart.
+    if (count > 1) {
+      const head = realSlides[count - 1].cloneNode(true) as HTMLElement;
+      const tail = realSlides[0].cloneNode(true) as HTMLElement;
+      for (const clone of [head, tail]) clone.setAttribute("aria-hidden", "true");
+      track.prepend(head);
+      track.append(tail);
+    }
+    const slides = [...track.querySelectorAll<HTMLElement>("[data-carousel-slide]")];
+
+    const center = (el: HTMLElement) => el.offsetLeft + el.offsetWidth / 2;
+    /** Slide index (incl. clones) nearest the viewport center */
+    const current = () => {
+      const target = track.scrollLeft + track.clientWidth / 2;
+      let best = 0;
+      let bestDist = Infinity;
+      slides.forEach((slide, i) => {
+        const dist = Math.abs(center(slide) - target);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = i;
+        }
+      });
+      return best;
+    };
+    /** Map track index (incl. clones) to a real image index */
+    const realIndex = (i: number) => (i - 1 + count) % count;
+    const setActive = (i: number) => {
+      slides.forEach((slide, j) => slide.classList.toggle("is-active", j === i));
+      const real = count > 1 ? realIndex(i) : i;
+      dots.forEach((dot, j) => dot.setAttribute("aria-current", j === real ? "true" : "false"));
+    };
+    const scrollToSlide = (i: number, smooth = true) => {
+      track.scrollTo({
+        left: center(slides[i]) - track.clientWidth / 2,
+        behavior: smooth && !reduceMotion ? "smooth" : "auto",
+      });
+    };
+
+    // Start on the real first slide (index 1; index 0 is the leading clone)
+    if (count > 1) scrollToSlide(1, false);
+    setActive(count > 1 ? 1 : 0);
+
+    let settleTimer: ReturnType<typeof setTimeout>;
+    track.addEventListener(
+      "scroll",
+      () => {
+        setActive(current());
+        if (count < 2) return;
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(() => {
+          const settled = current();
+          if (settled === 0) scrollToSlide(count, false); // head clone → real last
+          else if (settled === slides.length - 1) scrollToSlide(1, false); // tail clone → real first
+        }, 120);
+      },
+      { passive: true },
+    );
+
+    prev?.addEventListener("click", () => scrollToSlide(current() - 1));
+    next?.addEventListener("click", () => scrollToSlide(current() + 1));
+    dots.forEach((dot, i) => dot.addEventListener("click", () => scrollToSlide(i + 1)));
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") scrollToSlide(current() - 1);
+      if (e.key === "ArrowRight") scrollToSlide(current() + 1);
+    });
+
+    // Active image → lightbox; peeking image → center it
+    track.addEventListener("click", (e) => {
+      const slide = (e.target as HTMLElement).closest<HTMLElement>("[data-carousel-slide]");
+      if (!slide) return;
+      const i = slides.indexOf(slide);
+      if (i !== current()) {
+        scrollToSlide(i);
+        return;
+      }
+      const img = slide.querySelector<HTMLImageElement>("img");
+      if (!img || !lightbox || !lightboxImg) return;
+      lightboxImg.src = img.currentSrc || img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.showModal();
+    });
+
+    // Close on button click or on a click outside the image (dialog backdrop area);
+    // Escape closes natively.
+    lightbox?.addEventListener("click", (e) => {
+      const closeBtn = (e.target as HTMLElement).closest("[data-carousel-lightbox-close]");
+      if (closeBtn || e.target === lightbox) lightbox.close();
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach(initCarousel);
+</script>

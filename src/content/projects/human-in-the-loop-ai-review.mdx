@@ -8,7 +8,9 @@ tags: ["AI", "UX"]
 thumbnail: "/images/2026/03/human-in-the-loop.png"
 ---
 
-This is one of four Precedent case studies — the AI-review interaction model. For the system-level view, see [Law Firm AI Ecosystem](/projects/law-firm-ai-ecosystem/); for the onboarding flow, see [AI Ecosystem Onboarding](/projects/ai-ecosystem-onboarding/); for the editor’s process story, see [AI Document Authoring](/projects/ai-document-authoring/).
+import Carousel from "../../components/Carousel.astro";
+
+This is one of four Precedent case studies — the AI-review interaction model. For the system-level view, see <a href="/projects/law-firm-ai-ecosystem/" target="_blank" rel="noopener">Law Firm AI Ecosystem</a>; for the onboarding flow, see <a href="/projects/ai-ecosystem-onboarding/" target="_blank" rel="noopener">AI Ecosystem Onboarding</a>; for the editor’s process story, see <a href="/projects/ai-document-authoring/" target="_blank" rel="noopener">AI Document Authoring</a>.
 
 ## Overview
 
@@ -71,11 +73,13 @@ Before the step-by-step breakdown, here is the flow in one view. Shaded stages r
 
 Attorneys or paralegals upload medical records, bills, and supporting documentation. The system ingests, parses, and extracts structured data — treatment dates, providers, diagnoses, procedures, imaging findings, and billing information
 
-![](/images/2026/03/image-1.png)
-
-![](/images/2026/03/Digital-medicals-page.png)
-
-![](/images/2026/03/Edit-documents-form-page.png)
+<Carousel
+  images={[
+    { src: "/images/2026/03/image-1.png", alt: "Document upload and processing view" },
+    { src: "/images/2026/03/Digital-medicals-page.png", alt: "Digital medicals page with extracted treatment data" },
+    { src: "/images/2026/03/Edit-documents-form-page.png", alt: "Edit documents form" },
+  ]}
+/>
 
 ### Step 2: Flagged Treatment Review
 
@@ -88,19 +92,17 @@ This is where the human-in-the-loop model earns its value. The system automatica
 
 I designed the review interface around rapid decision-making. Attorneys see a filterable, sortable table of flagged items with contextual detail, enough information to make a judgment call without switching to the source document. This is recognition over recall applied to legal review: the interface carries the context, so the attorney’s memory doesn’t have to.
 
-![](/images/2026/03/Digital-medicals-page-3.png)
-
-![](/images/2026/03/Digital-medicals-page-7.png)
-
-![](/images/2026/03/Digital-medicals-page-1.png)
-
-![](/images/2026/03/Digital-medicals-page-2.png)
-
-![](/images/2026/03/Digital-medicals-page-4.png)
-
-![](/images/2026/03/Digital-medicals-page-5.png)
-
-![](/images/2026/03/Digital-medicals-page-6.png)
+<Carousel
+  images={[
+    { src: "/images/2026/03/Digital-medicals-page-3.png", alt: "Flagged treatment review — screen 1" },
+    { src: "/images/2026/03/Digital-medicals-page-7.png", alt: "Flagged treatment review — screen 2" },
+    { src: "/images/2026/03/Digital-medicals-page-1.png", alt: "Flagged treatment review — screen 3" },
+    { src: "/images/2026/03/Digital-medicals-page-2.png", alt: "Flagged treatment review — screen 4" },
+    { src: "/images/2026/03/Digital-medicals-page-4.png", alt: "Flagged treatment review — screen 5" },
+    { src: "/images/2026/03/Digital-medicals-page-5.png", alt: "Flagged treatment review — screen 6" },
+    { src: "/images/2026/03/Digital-medicals-page-6.png", alt: "Flagged treatment review — screen 7" },
+  ]}
+/>
 
 **Design decisions that mattered here:**
 
@@ -117,11 +119,13 @@ Using RAG against the processed medical records and resolved treatment data, the
 - **Loss of income** — a financial impact narrative tied to documented treatment dates and work restrictions
 - **Imaging findings** — summaries of diagnostic imaging (X-rays, MRIs, CT scans) and their clinical significance
 
-![](/images/2026/03/Demand-drafting-editor-1.png)
-
-![](/images/2026/03/Demand-drafting-editor-2.png)
-
-![](/images/2026/03/Demand-drafting-editor.png)
+<Carousel
+  images={[
+    { src: "/images/2026/03/Demand-drafting-editor-1.png", alt: "Demand drafting editor — narrative generation, screen 1" },
+    { src: "/images/2026/03/Demand-drafting-editor-2.png", alt: "Demand drafting editor — narrative generation, screen 2" },
+    { src: "/images/2026/03/Demand-drafting-editor.png", alt: "Demand drafting editor — narrative generation, screen 3" },
+  ]}
+/>
 
 ### Step 4: Narrative Review & Refinement
 
@@ -135,13 +139,14 @@ I designed the review experience around three modes of interaction:
 
 **Instruct and regenerate.** For narratives that need more substantial rework, attorneys can provide natural language instructions (e.g., “Emphasize the chronic nature of the lumbar injury” or “Remove references to the ER visit on 3/15”) and the system regenerates the section accordingly
 
-![](/images/2026/03/Frame-427319848.png)
-
-![](/images/2026/03/Frame-427319849.png)
-
-![](/images/2026/03/Frame-427319850.png)
-
-![](/images/2026/03/Frame-427319836.png)
+<Carousel
+  images={[
+    { src: "/images/2026/03/Frame-427319848.png", alt: "Narrative review and refinement — screen 1" },
+    { src: "/images/2026/03/Frame-427319849.png", alt: "Narrative review and refinement — screen 2" },
+    { src: "/images/2026/03/Frame-427319850.png", alt: "Narrative review and refinement — screen 3" },
+    { src: "/images/2026/03/Frame-427319836.png", alt: "Narrative review and refinement — screen 4" },
+  ]}
+/>
 
 #### **Design decisions that mattered here:**
 
@@ -154,13 +159,14 @@ For complex cases, attorneys may need to adjust the context the AI uses for gene
 
 I designed a context management interface that gives attorneys control over the RAG pipeline’s inputs without requiring them to understand the underlying technology. They work with familiar legal concepts (providers, date ranges, document types) rather than technical abstractions.
 
-![](/images/2026/03/Frame-427319959.png)
-
-![](/images/2026/03/Frame-427319845.png)
-
-![](/images/2026/03/Frame-427319846.png)
-
-![](/images/2026/03/Frame-427319835.png)
+<Carousel
+  images={[
+    { src: "/images/2026/03/Frame-427319959.png", alt: "Narrative context management — screen 1" },
+    { src: "/images/2026/03/Frame-427319845.png", alt: "Narrative context management — screen 2" },
+    { src: "/images/2026/03/Frame-427319846.png", alt: "Narrative context management — screen 3" },
+    { src: "/images/2026/03/Frame-427319835.png", alt: "Narrative context management — screen 4" },
+  ]}
+/>
 
 ## Outcomes
 

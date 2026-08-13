@@ -110,6 +110,9 @@
     }
   body {
     @apply bg-background text-body;
+    /* Full-bleed elements (e.g. the image carousel) use 100vw, which can
+       overhang by the scrollbar width on OSes with persistent scrollbars */
+    overflow-x: clip;
     }
   h1, h2, h3, h4, h5, h6 {
     @apply text-neutral-900;
@@ -122,7 +125,19 @@
     prose-headings:font-bold prose-headings:text-neutral-900
     prose-h2:text-3xl prose-h2:mt-14 prose-h3:text-2xl prose-h3:mt-10
     prose-p:text-body prose-li:text-body
-    prose-a:text-brand prose-a:no-underline hover:prose-a:underline
-    prose-img:rounded-lg prose-img:shadow-sm
+    prose-a:text-brand prose-a:no-underline prose-a:hover:underline
+    prose-img:rounded-lg prose-img:max-w-[min(700px,100%)] prose-img:block prose-img:mx-auto
     prose-strong:text-neutral-800;
+}
+
+/* Links that open in a new tab get an external-link icon */
+.prose-uxhawk a[target="_blank"]::after {
+  content: "";
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  margin-left: 0.25em;
+  vertical-align: -0.05em;
+  background-color: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E") no-repeat center / contain;
 }
