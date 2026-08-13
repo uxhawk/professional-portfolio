@@ -8,6 +8,10 @@ tags: ["AI", "UX"]
 thumbnail: "/images/2026/02/doc-editor-1.png"
 ---
 
+import Carousel from "../../components/Carousel.astro";
+import Accordion from "../../components/Accordion.astro";
+import AccordionItem from "../../components/AccordionItem.astro";
+
 This is one of four Precedent case studies — the AI Document Authoring. For the system-level view, see <a href="/projects/law-firm-ai-ecosystem/" target="_blank" rel="noopener">Law Firm AI Ecosystem</a>; for the onboarding flow, see <a href="/projects/ai-ecosystem-onboarding/" target="_blank" rel="noopener">AI Ecosystem Onboarding</a>; for data review flow, see <a href="/projects/human-in-the-loop-ai-review/" target="_blank" rel="noopener">Human-in-the-loop AI Review</a>.
 
 ## Overview
@@ -76,7 +80,11 @@ I ran moderated, think-aloud sessions with 8 legal professionals (2attorneys, 6 
 
 **3. Confidence tracked with editability, not accuracy.** The counterintuitive finding: participants didn’t trust the AI more when its output was *better* — they trusted it more when they could see how easily they could *change* it. The moment a participant successfully made their first small correction, their posture toward the entire draft shifted from skeptical audit to normal editing. That insight promoted direct editing from an escape hatch to a first-class mode, and it shaped the accept / edit / regenerate triad that defines the final product: the fastest path to trust was proving the human is always one click from control.
 
-### Introduction and Warm-Up (5 minutes)
+#### Usability Test Protocol
+
+<Accordion>
+
+<AccordionItem title="Introduction and Warm-Up" duration="5 min">
 
 *Goal: Establish rapport, explain the think-aloud protocol, and understand their baseline workflow.*
 
@@ -84,7 +92,9 @@ I ran moderated, think-aloud sessions with 8 legal professionals (2attorneys, 6 
 - How do you currently handle summarizing medical records, like imaging findings or treatment history?
 - We are going to be testing a new workspace. As you work through the tasks, please think aloud, tell me what you’re looking at, what you’re trying to do, and if anything surprises or frustrates you.
 
-### Task 1: Generating Narratives (15 minutes)
+</AccordionItem>
+
+<AccordionItem title="Task 1: Generating Narratives" duration="15 min">
 
 *Scenario: You are starting a new demand package for a client involved in a rear-end collision. You need to draft the ‘Facts of Loss’ and the initial ‘Injury Narrative’.*
 
@@ -95,7 +105,9 @@ I ran moderated, think-aloud sessions with 8 legal professionals (2attorneys, 6 
   - If you needed to expand on the client’s specific pain points in this narrative, how would you go about adjusting the AI’s draft?
   - Talk to me about how confident you feel using this generated narrative in a final demand package.
 
-### Task 2: Generating and Editing Tables (15 minutes)
+</AccordionItem>
+
+<AccordionItem title="Task 2: Generating and Editing Tables" duration="15 min">
 
 *Scenario: The narrative is looking good. Now, you need to add a structured summary of the client’s medical treatments, specific diagnoses, and MRI findings.*
 
@@ -106,7 +118,9 @@ I ran moderated, think-aloud sessions with 8 legal professionals (2attorneys, 6 
   - How intuitive is the process of modifying the columns or rows compared to the tools you currently use?
   - If you needed to reformat this medical table to highlight the total cost of treatments, how would you approach that?
 
-### Post-Task Wrap-Up and System Perception (10 minutes)
+</AccordionItem>
+
+<AccordionItem title="Post-Task Wrap-Up and System Perception" duration="10 min">
 
 *Goal: Capture overall impressions, trust levels, and perceived efficiency.*
 
@@ -115,6 +129,10 @@ I ran moderated, think-aloud sessions with 8 legal professionals (2attorneys, 6 
 - If you had a magic wand and could change one thing about how the AI generates the injury narratives, what would it be?
 - How do you feel about the balance between the AI doing the heavy lifting and the amount of manual editing you had to do?
 - In what scenarios would you hesitate to use this tool for a real case?
+
+</AccordionItem>
+
+</Accordion>
 
 #### Story Creation and Project Categorization
 
@@ -172,50 +190,31 @@ Finally, as the features approached launch, I collaborated with the sales and ma
 
 ## Final Designs
 
-![](/images/2026/02/editing_018.png)
-
-![](/images/2026/02/editing_019.png)
-
-![](/images/2026/02/editing_020.png)
-
-![](/images/2026/02/editing_021.png)
-
-![](/images/2026/02/editing_022.png)
-
-![](/images/2026/02/Demand-drafting-editor-1.png)
-
-![](/images/2026/02/Demand-drafting-editor-01.png)
-
-![](/images/2026/02/Demand-drafting-editor-2.png)
-
-![](/images/2026/02/Demand-drafting-editor-3.png)
-
-![](/images/2026/02/Demand-drafting-editor-4.png)
-
-![](/images/2026/02/Demand-drafting-editor.png)
-
-![](/images/2026/02/editing_024.png)
-
-![](/images/2026/02/editing_025.png)
-
-![](/images/2026/02/editing_026.png)
-
-![](/images/2026/02/editing_031.png)
-
-![](/images/2026/02/editing_032.png)
-
-![](/images/2026/02/Frame-427319966.png)
-
-![](/images/2026/02/editing_033.png)
-
-![](/images/2026/02/editing_034.png)
-
-![](/images/2026/02/editing_035.png)
-
-![](/images/2026/02/editing_036.png)
-
-![](/images/2026/02/Frame-427319948.png)
-
-![](/images/2026/02/Frame-427319950.png)
-
-![](/images/2026/02/Frame-427319952.png)
+<Carousel
+  images={[
+    { src: "/images/2026/02/editing_018.png", alt: "Final designs — screen 1" },
+    { src: "/images/2026/02/editing_019.png", alt: "Final designs — screen 2" },
+    { src: "/images/2026/02/editing_020.png", alt: "Final designs — screen 3" },
+    { src: "/images/2026/02/editing_021.png", alt: "Final designs — screen 4" },
+    { src: "/images/2026/02/editing_022.png", alt: "Final designs — screen 5" },
+    { src: "/images/2026/02/Demand-drafting-editor-1.png", alt: "Final designs — screen 6" },
+    { src: "/images/2026/02/Demand-drafting-editor-01.png", alt: "Final designs — screen 7" },
+    { src: "/images/2026/02/Demand-drafting-editor-2.png", alt: "Final designs — screen 8" },
+    { src: "/images/2026/02/Demand-drafting-editor-3.png", alt: "Final designs — screen 9" },
+    { src: "/images/2026/02/Demand-drafting-editor-4.png", alt: "Final designs — screen 10" },
+    { src: "/images/2026/02/Demand-drafting-editor.png", alt: "Final designs — screen 11" },
+    { src: "/images/2026/02/editing_024.png", alt: "Final designs — screen 12" },
+    { src: "/images/2026/02/editing_025.png", alt: "Final designs — screen 13" },
+    { src: "/images/2026/02/editing_026.png", alt: "Final designs — screen 14" },
+    { src: "/images/2026/02/editing_031.png", alt: "Final designs — screen 15" },
+    { src: "/images/2026/02/editing_032.png", alt: "Final designs — screen 16" },
+    { src: "/images/2026/02/Frame-427319966.png", alt: "Final designs — screen 17" },
+    { src: "/images/2026/02/editing_033.png", alt: "Final designs — screen 18" },
+    { src: "/images/2026/02/editing_034.png", alt: "Final designs — screen 19" },
+    { src: "/images/2026/02/editing_035.png", alt: "Final designs — screen 20" },
+    { src: "/images/2026/02/editing_036.png", alt: "Final designs — screen 21" },
+    { src: "/images/2026/02/Frame-427319948.png", alt: "Final designs — screen 22" },
+    { src: "/images/2026/02/Frame-427319950.png", alt: "Final designs — screen 23" },
+    { src: "/images/2026/02/Frame-427319952.png", alt: "Final designs — screen 24" },
+  ]}
+/>

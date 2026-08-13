@@ -1,0 +1,125 @@
+---
+/**
+ * One section of an Accordion. Header row shows the title on the left and an
+ * optional duration label plus rotating chevron on the right. Body content is
+ * regular markdown (slot), styled by the surrounding prose class.
+ */
+interface Props {
+  title: string;
+  duration?: string;
+}
+const { title, duration } = Astro.props;
+const panelId = "accordion-panel-" + Math.random().toString(36).slice(2, 8);
+---
+
+<section class="item" data-accordion-item>
+  <button
+    type="button"
+    class="trigger"
+    aria-expanded="false"
+    aria-controls={panelId}
+    data-accordion-trigger
+  >
+    <span class="title">{title}</span>
+    <span class="meta">
+      {duration && <span class="duration">{duration}</span>}
+      <svg
+        class="chevron"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </span>
+  </button>
+  <div class="panel" id={panelId} role="region" aria-label={title} data-accordion-panel>
+    <div class="panel-inner">
+      <div class="panel-content"><slot /></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: none;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 150ms ease;
+  }
+  .trigger:hover {
+    background: var(--color-neutral-50, #fafafa);
+  }
+  .title {
+    font-weight: 600;
+    color: var(--color-neutral-900, #171717);
+  }
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+  }
+  .duration {
+    font-size: 0.875rem;
+    color: var(--color-neutral-500, #737373);
+    white-space: nowrap;
+  }
+  .chevron {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--color-neutral-500, #737373);
+    transition: transform 250ms ease;
+  }
+  .item.open .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Animated expand/collapse via the grid-rows 0fr -> 1fr trick */
+  .panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 250ms ease;
+  }
+  .item.open .panel {
+    grid-template-rows: 1fr;
+  }
+  .panel-inner {
+    overflow: hidden;
+    min-height: 0;
+    visibility: hidden;
+    transition: visibility 250ms;
+  }
+  .item.open .panel-inner {
+    visibility: visible;
+  }
+  .panel-content {
+    padding: 0.25rem 1.25rem 1.25rem;
+  }
+  .panel-content > :global(:first-child) {
+    margin-top: 0;
+  }
+  .panel-content > :global(:last-child) {
+    margin-bottom: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel,
+    .panel-inner,
+    .chevron {
+      transition: none;
+    }
+  }
+</style>
