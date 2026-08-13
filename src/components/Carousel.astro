@@ -9,15 +9,20 @@
  * Usage (MDX):
  *   import Carousel from "../../components/Carousel.astro";
  *   <Carousel images={[{ src: "/images/a.png", alt: "…" }, …]} />
+ *
+ * fit="cover" is for very tall documentation/spec-sheet images: slides show a
+ * top-cropped 700px preview, and the lightbox scrolls the full sheet at
+ * readable width instead of squeezing it onto one screen.
  */
 interface Props {
   images: { src: string; alt?: string }[];
+  fit?: "contain" | "cover";
 }
-const { images } = Astro.props;
+const { images, fit = "contain" } = Astro.props;
 ---
 
 <section
-  class="carousel not-prose"
+  class:list={["carousel", "not-prose", { "fit-cover": fit === "cover" }]}
   data-carousel
   aria-roledescription="carousel"
   aria-label={`Image gallery, ${images.length} slides`}
@@ -37,6 +42,7 @@ const { images } = Astro.props;
     }
   </div>
 
+  {images.length > 1 && (
   <div class="controls">
     <button type="button" class="arrow" data-carousel-prev aria-label="Previous image">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -63,6 +69,7 @@ const { images } = Astro.props;
       </svg>
     </button>
   </div>
+  )}
 
   <dialog class="lightbox" data-carousel-lightbox aria-label="Full-screen image view">
     <button type="button" class="lightbox-close" data-carousel-lightbox-close>
@@ -98,6 +105,10 @@ const { images } = Astro.props;
   .track::-webkit-scrollbar {
     display: none;
   }
+  /* A lone slide has nothing to scroll to; center it via layout instead */
+  .track:has([data-carousel-slide]:only-child) {
+    justify-content: center;
+  }
   .track:focus-visible {
     outline: 2px solid var(--brand, currentColor);
     outline-offset: -2px;
@@ -128,6 +139,16 @@ const { images } = Astro.props;
       0 12px 32px rgba(0, 0, 0, 0.18),
       0 4px 12px rgba(0, 0, 0, 0.08);
     cursor: zoom-in;
+  }
+
+  /* fit="cover": fixed-width slides showing the top of tall spec sheets */
+  .fit-cover .slide {
+    width: min(700px, 86vw);
+  }
+  .fit-cover .slide img {
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
   }
 
   .controls {
@@ -235,6 +256,18 @@ const { images } = Astro.props;
     height: 1rem;
   }
 
+  /* fit="cover": the lightbox scrolls the full-height sheet at readable width */
+  .fit-cover .lightbox[open] {
+    display: block;
+    overflow-y: auto;
+    padding-block: 4.5rem 2rem;
+  }
+  .fit-cover .lightbox img {
+    max-height: none;
+    width: min(900px, 94vw);
+    margin-inline: auto;
+  }
+
   /* Lock page scroll while the lightbox is open */
   :global(html:has(dialog[data-carousel-lightbox][open])) {
     overflow: hidden;
@@ -291,8 +324,9 @@ const { images } = Astro.props;
     let interacted = false;
     const scrollToSlide = (i: number, smooth = true) => {
       if (smooth) interacted = true;
+      const slide = slides[Math.min(Math.max(i, 0), slides.length - 1)];
       track.scrollTo({
-        left: center(slides[i]) - track.clientWidth / 2,
+        left: center(slide) - track.clientWidth / 2,
         behavior: smooth && !reduceMotion ? "smooth" : "auto",
       });
     };

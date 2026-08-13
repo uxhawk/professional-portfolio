@@ -8,6 +8,8 @@ tags: ["Design Systems", "UI", "UX"]
 thumbnail: "/images/2025/12/global-design-system.png"
 ---
 
+import Carousel from "../../components/Carousel.astro";
+
 ## Overview
 
 insightsoftware grew through acquisition into a portfolio of more than 17 enterprise applications across reporting, accounting, and data & analytics. Each product had been built by a different company, on a different stack, with its own navigation conventions, terminology, and visual language. Customers who licensed multiple products had to re-learn the platform every time they switched applications.
@@ -44,7 +46,12 @@ A persistent shell that wrapped every application in the portfolio: header, prim
 
 This is what made the portfolio scannable. A user who knew where the account menu lived in one product knew where it lived in every product. The shell carried identity context, application context, and notification state across the entire portfolio.
 
-![](/images/2026/04/09_Navigation.png)
+<Carousel
+  fit="cover"
+  images={[
+    { src: "/images/2026/04/09_Navigation.png", alt: "Global application shell — navigation standards" },
+  ]}
+/>
 
 ### 2. The Application Switcher
 
@@ -52,7 +59,12 @@ A dedicated launcher surface (accessible from the persistent rail in every produ
 
 The switcher was deliberately the only “global” surface that broke into individual application chrome. Everywhere else, the user stayed inside the shell of the product they had launched. This kept orientation predictable: there was always exactly one way to leave an application and one way to enter another.
 
-![](/images/2026/04/05_Logos.png)
+<Carousel
+  fit="cover"
+  images={[
+    { src: "/images/2026/04/05_Logos.png", alt: "Application switcher — product logos and brand hierarchy" },
+  ]}
+/>
 
 ### 3. Information Architecture & Way-Finding
 
@@ -66,7 +78,12 @@ I defined the IA standards every application had to honor:
 
 These were not suggestions. They were contracts. Application teams had latitude inside their primary sections to solve their domain problems, but they could not redefine where navigation lived, how it behaved, or how state was surfaced to the user.
 
-![](/images/2026/04/08_Layout.png)
+<Carousel
+  fit="cover"
+  images={[
+    { src: "/images/2026/04/08_Layout.png", alt: "Information architecture — layout and page structure standards" },
+  ]}
+/>
 
 ### 4. Cross-Application UX Contracts
 
@@ -78,7 +95,12 @@ I codified reusable patterns for the journeys that crossed application boundarie
 - **Identity & role context** — how the avatar, account menu, role indicators, and permission states are surfaced consistently across applications.
 - **Status & state indicators** — color-coded tags and pills (Active, Pending, In progress, Complete, Error) used identically in every data table, side panel, and detail view across the portfolio.
 
-![](/images/2026/04/022_Notifications.png)
+<Carousel
+  fit="cover"
+  images={[
+    { src: "/images/2026/04/022_Notifications.png", alt: "Cross-application UX contracts — notification architecture" },
+  ]}
+/>
 
 ### 5. Workflow Context Presentation
 
@@ -89,9 +111,13 @@ Many of the applications were task-driven: users worked queues, processed record
 - **Side-panel detail views** with tabbed Overview / Files / Activity log structure used across products.
 - **Coordinated in-app and email notification patterns** so users always knew what required attention and what had changed, regardless of which application they were currently working in.
 
-![](/images/2026/04/015_Data-tables.png)
-
-![](/images/2026/04/023_Tags.png)
+<Carousel
+  fit="cover"
+  images={[
+    { src: "/images/2026/04/015_Data-tables.png", alt: "Workflow context — data tables with embedded status indicators" },
+    { src: "/images/2026/04/023_Tags.png", alt: "Workflow context — status tags and pills" },
+  ]}
+/>
 
 ### 6. The Foundation Layer
 
@@ -103,13 +129,15 @@ Underneath the platform-level work, I owned the foundational decisions every app
 - **Layout & grid** — responsive breakpoints from tablet through 1920×1080 and beyond, with documented templates for messaging, page-with-tiles, and Excel-secondary-navigation layouts.
 - **Shadows, loaders, modals, side panels, accordions, cards, tooltips, avatars, tags, controls, text fields, menus, buttons, data tables, data grids, icons** — full component inventory, every state documented.
 
-![](/images/2026/04/02_Typography-Vocabulary.png)
-
-![](/images/2026/04/03_Colors_-General.png)
-
-![](/images/2026/04/018_Buttons.png)
-
-![](/images/2026/04/017_Forms.png)
+<Carousel
+  fit="cover"
+  images={[
+    { src: "/images/2026/04/02_Typography-Vocabulary.png", alt: "Foundation layer — typography and vocabulary" },
+    { src: "/images/2026/04/03_Colors_-General.png", alt: "Foundation layer — color system" },
+    { src: "/images/2026/04/018_Buttons.png", alt: "Foundation layer — button states" },
+    { src: "/images/2026/04/017_Forms.png", alt: "Foundation layer — form fields and states" },
+  ]}
+/>
 
 ## Adoption Process
 

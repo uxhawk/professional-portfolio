@@ -8,6 +8,8 @@ tags: ["UI", "UX"]
 thumbnail: "/images/2025/11/law-firm-ai-ecosystem-1.png"
 ---
 
+import Carousel from "../../components/Carousel.astro";
+
 This is one of four Precedent case studies — Law Firm AI Ecosystem. For the AI Document Authoring, see <a href="/projects/ai-document-authoring/" target="_blank" rel="noopener">AI Document Authoring</a>; for the onboarding flow, see <a href="/projects/ai-ecosystem-onboarding/" target="_blank" rel="noopener">AI Ecosystem Onboarding</a>; for data review flow, see <a href="/projects/human-in-the-loop-ai-review/" target="_blank" rel="noopener">Human-in-the-loop AI Review</a>.
 
 ## Overview
@@ -36,27 +38,28 @@ I designed the transactional and lifecycle email system that carries users throu
 
 I mapped the full lifecycle alongside product and engineering, defined the content hierarchy (case identifiers → status → single CTA), and authored templates that templatize dynamic fields like **user**, **comments**, **reject\_reason** without compromising legibility.
 
-![emails_012](/images/2025/11/emails_012.png)
-
-![emails_011](/images/2025/11/emails_011.png)
-
-![emails_010](/images/2025/11/emails_010.png)
-
-![emails_09](/images/2025/11/emails_09.png)
-
-![emails_08](/images/2025/11/emails_08.png)
-
-![emails_07](/images/2025/11/emails_07.png)
+<Carousel
+  images={[
+    { src: "/images/2025/11/emails_012.png", alt: "Lifecycle email — template 1" },
+    { src: "/images/2025/11/emails_011.png", alt: "Lifecycle email — template 2" },
+    { src: "/images/2025/11/emails_010.png", alt: "Lifecycle email — template 3" },
+    { src: "/images/2025/11/emails_09.png", alt: "Lifecycle email — template 4" },
+    { src: "/images/2025/11/emails_08.png", alt: "Lifecycle email — template 5" },
+    { src: "/images/2025/11/emails_07.png", alt: "Lifecycle email — template 6" },
+  ]}
+/>
 
 ### 2. Sign In Flow
 
 A focused, single-purpose authentication screen anchored by the Precedent wordmark. I tuned the form for speed (username + password, show/hide toggle, forgot-password recovery) and established the gradient primary button that became the ecosystem’s signature interaction affordance.
 
-![auth_01](/images/2025/11/auth_01.png)
-
-![auth_02](/images/2025/11/auth_02.png)
-
-![auth_03](/images/2025/11/auth_03.png)
+<Carousel
+  images={[
+    { src: "/images/2025/11/auth_01.png", alt: "Sign in screen" },
+    { src: "/images/2025/11/auth_02.png", alt: "Sign in — password visibility toggle" },
+    { src: "/images/2025/11/auth_03.png", alt: "Sign in — forgot password recovery" },
+  ]}
+/>
 
 ### 3. Claim Companion — Inventory View
 
@@ -81,9 +84,13 @@ Creation is the most error-prone moment in both apps. I designed parallel but di
 
 I aligned both forms on shared section patterns (Case info, Loss details, Carrier, Case team) so a user fluent in one form feels instantly oriented in the other.
 
-![compose-demands_08](/images/2025/11/compose-demands_08.png)
-
-![create-new-request_01](/images/2025/11/create-new-request_01.png)
+<Carousel
+  fit="cover"
+  images={[
+    { src: "/images/2025/11/compose-demands_08.png", alt: "Compose Single Client Demand form" },
+    { src: "/images/2025/11/create-new-request_01.png", alt: "Create New Request form" },
+  ]}
+/>
 
 ### 6. Demand Composer — Inventory View
 
@@ -102,9 +109,12 @@ I designed a **layered review pattern** that escalates from summary → evidence
 - **Row-level review** for ICD codes: the orange warning triangles mark exactly which codes need human judgment; everything else is quietly marked “Included” so reviewers can move fast where AI is confident and slow down where it isn’t.
 - **Split-pane preview** on every medicals screen keeps the source document one glance away, so users can verify AI extractions against the original without losing context.
 
-![case-intel_01](/images/2025/11/case-intel_01.png)
-
-![case-intel_02](/images/2025/11/case-intel_02.png)
+<Carousel
+  images={[
+    { src: "/images/2025/11/case-intel_01.png", alt: "Case health dashboard with AI-derived findings" },
+    { src: "/images/2025/11/case-intel_02.png", alt: "Medicals review with split-pane document preview" },
+  ]}
+/>
 
 ### 8. Case Intelligence — RAG-Powered Generative Analyses
 
@@ -112,11 +122,13 @@ Case Intelligence is Demand Composer’s generative layer. I designed a **card-b
 
 The split-pane design keeps the evolving demand package (104 pages, PDF preview) visible on the right while the user explores AI-generated insights on the left — so the attorney can critique and revise in-context rather than toggling between screens.
 
-![exhibit-manager_01](/images/2025/11/exhibit-manager_01.png)
-
-![exhibit-manager_010](/images/2025/11/exhibit-manager_010.png)
-
-![exhibit-manager_014](/images/2025/11/exhibit-manager_014.png)
+<Carousel
+  images={[
+    { src: "/images/2025/11/exhibit-manager_01.png", alt: "Case Intelligence — analysis cards" },
+    { src: "/images/2025/11/exhibit-manager_010.png", alt: "Case Intelligence — generating state" },
+    { src: "/images/2025/11/exhibit-manager_014.png", alt: "Case Intelligence — expanded analysis with demand preview" },
+  ]}
+/>
 
 ### 9. Document Editing & Authoring Paradigms
 
@@ -129,11 +141,13 @@ Key patterns I established:
 - **@-mention menu** for injecting case data mid-sentence: typing **My firm represents @** surfaces Client, Insured, Case details, and Loss details. The same menu works in both template building and live demand editing.
 - **Dual-panel editor** with Details (friendly name, field name, AI generation prompt, custom CSS) and a publish/save split — so template authors can iterate on AI prompts, styling, and structure in one place.
 
-![mentions_06](/images/2025/11/mentions_06.png)
-
-![customers_039](/images/2025/11/customers_039.png)
-
-![customers_040](/images/2025/11/customers_040.png)
+<Carousel
+  images={[
+    { src: "/images/2025/11/mentions_06.png", alt: "Editor — @-mention menu for injecting case data" },
+    { src: "/images/2025/11/customers_039.png", alt: "Template editor — details panel" },
+    { src: "/images/2025/11/customers_040.png", alt: "Template editor — dual-panel authoring view" },
+  ]}
+/>
 
 ### 10. Exhibit Manager — Document Organization Paradigm
 
@@ -141,11 +155,13 @@ Attorneys needed to assemble the final exhibit package by grouping hundreds of u
 
 A persistent preview pane on the right renders the live demand package as the user reorganizes — so every reorder decision is immediately visible in the final artifact.
 
-![mentions_06](/images/2025/11/mentions_06.png)
-
-![customers_039](/images/2025/11/customers_039.png)
-
-![customers_040](/images/2025/11/customers_040.png)
+<Carousel
+  images={[
+    { src: "/images/2025/11/mentions_06.png", alt: "Editor — @-mention menu for injecting case data" },
+    { src: "/images/2025/11/customers_039.png", alt: "Template editor — details panel" },
+    { src: "/images/2025/11/customers_040.png", alt: "Template editor — dual-panel authoring view" },
+  ]}
+/>
 
 ### 11. Admin & Management Experiences
 
@@ -153,11 +169,13 @@ Admin surfaces serve firm administrators managing customers, users, carriers, an
 
 Customer detail pages use a consistent card grid (Customer details, Valid email domains, Demand emails, Demand creation, Demand settings, Inventory settings) with inline edit pencils, and user management uses a dense table optimized for bulk actions.
 
-![customers_027](/images/2025/11/customers_027.png)
-
-![customers_028](/images/2025/11/customers_028.png)
-
-![customers_029](/images/2025/11/customers_029.png)
+<Carousel
+  images={[
+    { src: "/images/2025/11/customers_027.png", alt: "Admin — customer detail card grid" },
+    { src: "/images/2025/11/customers_028.png", alt: "Admin — customer settings" },
+    { src: "/images/2025/11/customers_029.png", alt: "Admin — user management table" },
+  ]}
+/>
 
 ## Outcomes
 
