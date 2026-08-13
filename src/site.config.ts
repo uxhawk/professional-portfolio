@@ -10,7 +10,7 @@ export const SITE = {
    * Create a free form at https://formspree.io (deliver to uxhawk@gmail.com),
    * then replace YOUR_FORM_ID with the id from the form's endpoint URL.
    */
-  formspreeEndpoint: "https://formspree.io/f/YOUR_FORM_ID",
+  formspreeEndpoint: "https://formspree.io/f/xzepvdle",
 } as const;
 
 export const NAV = [

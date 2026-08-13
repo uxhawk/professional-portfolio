@@ -94,7 +94,7 @@ export default function MenuOverlay({ nav, linkedin }: Props) {
               <a
                 key={item.href}
                 href={item.href}
-                className={`font-display px-4 py-2 text-5xl font-extrabold tracking-tight text-white transition-all duration-300 hover:text-white/70 md:text-6xl ${
+                className={`font-display px-4 py-2 text-[2.75rem] leading-none font-extrabold tracking-tight text-white transition-all duration-300 hover:text-white/70 ${
                   open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
                 }`}
                 style={{ transitionDelay: open ? `${100 + i * 60}ms` : "0ms" }}
