@@ -5,7 +5,6 @@ import PillButton from "@/components/PillButton.astro";
 import SectionHeading from "@/components/SectionHeading.astro";
 import ArticleCard from "@/components/ArticleCard.astro";
 import ProjectGrid from "@/components/ProjectGrid";
-import { Badge } from "@/components/ui/badge";
 
 const projects = (await getCollection("projects")).sort(
   (a, b) => a.data.order - b.data.order,
@@ -27,43 +26,41 @@ const articles = (await getCollection("articles"))
 const resultRows = [
   {
     slug: "human-in-the-loop-ai-review",
-    metric: "55% faster delivery time",
-    company: "Precedent",
-    logo: "/images/companies/precedent.png",
+    metricValue: "55%",
+    metricLabel: "faster delivery time",
+    eyebrow: "Precedent · AI Legal Platform",
     image: "/images/2026/03/human-in-the-loop.png",
   },
   {
     slug: "android-app-design",
-    metric: "Shipped in under 100 days",
-    company: "GEICO",
-    logo: "/images/companies/geico.png",
+    metricValue: "100",
+    metricLabel: "days to ship",
+    eyebrow: "GEICO · Mobile UI/UX",
     image: "/images/2021/12/hero-img.png",
   },
   {
     slug: "ai-document-authoring",
-    metric: "22% fewer support tickets",
-    company: "Precedent",
-    logo: "/images/companies/precedent.png",
+    metricValue: "22%",
+    metricLabel: "fewer support tickets",
+    eyebrow: "Precedent · AI Legal Platform",
     image: "/images/2026/02/doc-editor.png",
   },
   {
     slug: "enterprise-design-system",
-    metric: "20-app ecosystem",
-    company: "insightsoftware",
-    logo: "/images/companies/insightsoftware.png",
+    metricValue: "20",
+    metricLabel: "app ecosystem",
+    eyebrow: "insightsoftware · Financial Reporting Software",
     image: "/images/2025/12/global-design-system.png",
   },
 ];
 
 const results = resultRows.map((row) => {
   const project = projects.find((p) => p.id === row.slug);
-  if (!project) throw new Error(`Proven Results references unknown project: ${row.slug}`);
+  if (!project) throw new Error(`Selected Projects references unknown project: ${row.slug}`);
   return {
     ...row,
     href: `/projects/${row.slug}/`,
     title: project.data.title,
-    subtitle: project.data.subtitle,
-    tags: project.data.tags,
   };
 });
 
@@ -102,95 +99,60 @@ const experience = [
     
       <p class="mt-2 max-w-md text-body">Principal Product Designer</p>
       <div class="mt-8">
-        <PillButton href="#proven-results" icon="down">Explore portfolio</PillButton>
+        <PillButton href="#selected-projects" icon="down">Explore portfolio</PillButton>
       </div>
     </div>
   </section>
 
-  <!-- Proven Results -->
-  <section class="scroll-mt-16 bg-white md:scroll-mt-20" id="proven-results">
+  <!-- Selected Projects -->
+  <section class="scroll-mt-16 bg-white md:scroll-mt-20" id="selected-projects">
     <div class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
-      <SectionHeading icon="badge">Proven Results</SectionHeading>
+      <SectionHeading icon="badge">Selected Projects</SectionHeading>
       <div class="flex flex-col divide-y divide-neutral-200">
         {
           results.map((r) => (
-            <div class="grid items-center gap-6 py-10 first:pt-0 last:pb-0 md:grid-cols-3 md:gap-10 md:py-12">
-              <div class="flex flex-col items-start gap-4">
-                <div class="flex items-center gap-3">
-                  <img
-                    src={r.logo}
-                    alt={`${r.company} logo`}
-                    class="size-12 rounded-lg object-contain"
-                    loading="lazy"
-                  />
-                  <span class="text-sm font-bold text-neutral-900">{r.company}</span>
-                </div>
-                <p class="flex items-start gap-2 font-bold text-neutral-900">
+            <a
+              href={r.href}
+              class="group grid items-center gap-6 py-10 first:pt-0 last:pb-0 md:grid-cols-3 md:gap-10 md:py-12"
+            >
+              <div class="flex flex-col items-start">
+                <p class="text-xs font-bold tracking-widest text-muted-foreground uppercase">
+                  {r.eyebrow}
+                </p>
+                <p class="font-display mt-5 text-5xl font-extrabold tracking-tight text-neutral-900 md:text-6xl">
+                  {r.metricValue}
+                </p>
+                <p class="mt-1 text-body">{r.metricLabel}</p>
+                <h3 class="mt-6 text-2xl font-bold text-neutral-900">{r.title}</h3>
+                <span class="mt-6 inline-flex items-center gap-2 font-bold text-brand group-hover:underline">
+                  View case study
                   <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
                     fill="none"
-                    class="mt-0.5 shrink-0 text-green-600"
+                    class="transition-transform group-hover:translate-x-0.5"
                     aria-hidden="true"
                   >
-                    <circle cx="12" cy="12" r="10" fill="currentColor" />
                     <path
-                      d="M7.5 12.5 10.5 15.5 16.5 9"
-                      stroke="white"
-                      stroke-width="2"
+                      d="M3 8h10M9 4l4 4-4 4"
+                      stroke="currentColor"
+                      stroke-width="1.8"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                     />
                   </svg>
-                  {r.metric}
-                </p>
-                <h3 class="text-2xl font-bold text-neutral-900">{r.title}</h3>
-                {r.subtitle && <p class="text-body">{r.subtitle}</p>}
-                {
-                  r.tags.length > 0 && (
-                    <div class="flex flex-wrap gap-2">
-                      {r.tags.map((tag) => (
-                        <a
-                          href={`/projects/#${tag.toLowerCase().replace(/\s+/g, "-")}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`${tag} projects (opens in a new tab)`}
-                        >
-                          <Badge
-                            variant="outline"
-                            className="rounded-full text-body hover:border-brand hover:text-brand"
-                          >
-                            {tag}
-                            <svg
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              aria-hidden="true"
-                            >
-                              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                              <path d="M15 3h6v6M10 14 21 3" />
-                            </svg>
-                          </Badge>
-                        </a>
-                      ))}
-                    </div>
-                  )
-                }
-                <PillButton href={r.href} variant="outline">View project</PillButton>
+                </span>
               </div>
-              <a href={r.href} class="group block overflow-hidden rounded-lg md:col-span-2">
+              <div class="overflow-hidden rounded-lg md:col-span-2">
                 <img
                   src={r.image}
                   alt={`${r.title} preview`}
                   loading="lazy"
                   class="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-              </a>
-            </div>
+              </div>
+            </a>
           ))
         }
       </div>
