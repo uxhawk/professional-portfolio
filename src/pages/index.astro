@@ -108,13 +108,15 @@ const experience = [
   <section class="scroll-mt-16 bg-white md:scroll-mt-20" id="selected-projects">
     <div class="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
       <SectionHeading icon="badge">Selected Projects</SectionHeading>
-      <div class="flex flex-col divide-y divide-neutral-200">
+      <div class="flex flex-col">
         {
-          results.map((r) => (
-            <a
-              href={r.href}
-              class="group grid items-center gap-6 py-10 first:pt-0 last:pb-0 md:grid-cols-3 md:gap-10 md:py-12"
-            >
+          results.map((r, i) => (
+            <>
+              {i > 0 && <hr class="my-4 border-neutral-200" />}
+              <a
+                href={r.href}
+                class="group relative -mx-5 grid items-center gap-6 rounded-xl px-5 py-8 transition-shadow duration-300 hover:z-10 hover:shadow-[0_8px_30px_rgba(0,0,0,0.14)] md:-mx-8 md:grid-cols-3 md:gap-10 md:px-8 md:py-10"
+              >
               <div class="flex flex-col items-start">
                 <p class="text-xs font-bold tracking-widest text-muted-foreground uppercase">
                   {r.eyebrow}
@@ -124,8 +126,8 @@ const experience = [
                 </p>
                 <p class="mt-1 text-body">{r.metricLabel}</p>
                 <h3 class="mt-6 text-2xl font-bold text-neutral-900">{r.title}</h3>
-                <span class="mt-6 inline-flex items-center gap-2 font-bold text-brand group-hover:underline">
-                  View case study
+                <span class="mt-4 -ml-4 inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold text-brand transition-colors group-hover:bg-brand/10">
+                  View project
                   <svg
                     width="16"
                     height="16"
@@ -152,7 +154,8 @@ const experience = [
                   class="aspect-[16/9] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               </div>
-            </a>
+              </a>
+            </>
           ))
         }
       </div>
@@ -176,7 +179,7 @@ const experience = [
       </div>
       <p class="mt-4 text-body">
         Over the last 13 years I've led end-to-end product design, architected robust design
-        systems, and driven UX strategy across complex, data-rich enterprise products.
+        systems, and driven UX strategy across complex, data-rich products.
       </p>
       <h3 class="mt-10 text-xl font-bold text-neutral-900">Certifications</h3>
       <img
