@@ -71,7 +71,8 @@ export default function MenuOverlay({ nav, linkedin }: Props) {
             open ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex h-16 items-center justify-end px-5 md:h-20 md:px-8">
+          <div className="flex h-16 items-center justify-between px-5 md:h-20 md:px-8 lg:justify-end">
+            <span className="text-sm font-bold text-white lg:hidden">David Hawkins</span>
             <button
               type="button"
               onClick={() => setOpen(false)}

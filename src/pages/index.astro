@@ -121,10 +121,12 @@ const experience = [
                 <p class="text-xs font-bold tracking-widest text-muted-foreground uppercase">
                   {r.eyebrow}
                 </p>
-                <p class="font-display mt-5 text-5xl font-extrabold tracking-tight text-neutral-900 md:text-6xl">
-                  {r.metricValue}
+                <p class="mt-5 flex items-center gap-3">
+                  <span class="font-display text-5xl font-extrabold tracking-tight text-neutral-900 md:text-6xl">
+                    {r.metricValue}
+                  </span>
+                  <span class="text-body">{r.metricLabel}</span>
                 </p>
-                <p class="mt-1 text-body">{r.metricLabel}</p>
                 <h3 class="mt-6 text-2xl font-bold text-neutral-900">{r.title}</h3>
                 <span class="mt-4 -ml-4 inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold text-brand transition-colors group-hover:bg-brand/10">
                   View project
