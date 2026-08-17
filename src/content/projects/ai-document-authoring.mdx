@@ -20,7 +20,7 @@ This project didn’t come from a roadmap. It came from three signals pointing a
 
 I was the Principal Product Designer, and I owned this project from problem discovery through launch: the research that justified it, the pitch that funded it, the design of the authoring experience, and design QA through implementation.
 
-**[PLACEHOLDER — confirm team composition and counts]** I worked with front-end and back-end engineers across sprint cycles, product managers in daily alignment, the operations team during testing, and sales and marketing at launch. “I” below means my work; “we” means what the team shipped together.
+I worked with 2 front-end engineers and 1 back-end engineer across sprint cycles, 1 product manager in daily alignment, the operations team during testing, and 2 sales engineers at launch. “I” below means my work; “we” means what the team shipped together.
 
 ![](/images/2026/02/Official-Color.png)
 
@@ -138,7 +138,9 @@ Following the usability sessions, I synthesized qualitative feedback to identify
 
 ## Flows
 
-> **[FLOW DIAGRAM PLACEHOLDER]** — *Spec: one end-to-end diagram of the authoring loop — open case → compose from template → section-level AI generation → review against source records → accept / edit / regenerate → assemble document → send. Annotate the three interesting decision zones: where generation is automated vs. human-triggered, where provenance indicators mark AI vs. human content, and where the escape hatch to direct editing sits. Use the same visual language as the Human-in-the-Loop flow diagram (shaded = automated, highlighted = human decision point).*
+The authoring loop in one view. Shaded stages run automated; highlighted stages are the deliberate human decision points — and note that AI generation runs only when the author asks, with the instruct-and-regenerate path looping reviewed content back through generation on the author’s terms.
+
+![Flow diagram of the authoring loop: open case → compose from template → AI section generation → review against sources → accept, edit, regenerate → assemble document → send to carrier — with an instruct-and-regenerate loop back into generation, and every block declaring its origin as AI, edited by human, or final.](/images/2026/08/ai-authoring-flow.png)
 
 The loop above is the product thesis in miniature: the AI does the assembly, the human is always one click from control, and every piece of generated content declares its origin.
 
@@ -231,4 +233,4 @@ Testing showed confidence tracked with editability, not accuracy — so I promot
 
 ## What I’d Do Differently
 
-**[PLACEHOLDER — verify this reflection matches reality, or replace with your own]** My usability sample skewed heavily toward paralegals — six of eight participants — because they were easier to recruit, yet attorneys were the users whose trust the product ultimately had to win. The two attorney sessions produced the study’s most consequential finding (confidence tracks editability), which suggests I under-sampled exactly the population with the most to teach me. Given another pass, I’d also test beyond the rear-end collision scenario: it’s the simplest, most template-friendly case type, and the design’s hardest questions — context management, conflicting records, disputed causation — only surface in messier cases.
+AI accelerated this project at the edges when it could have accelerated the core. I used AI agents to ideate through design layouts and to chase down bugs during QA — both genuinely useful, both peripheral. Given another pass, I’d push AI-agent-led prototyping into implementation itself: generating components directly from the app’s existing structure, theming, and interaction patterns rather than hand-building each one. The conditions were right for it — a documented pattern language, established theming, familiar interaction models — exactly the constraints that make generated components come out consistent instead of chaotic. That would have compressed the distance from validated design to staged build, and bought back more design QA cycles for the surfaces that only break in real browsers: editor states and AI interactions.
