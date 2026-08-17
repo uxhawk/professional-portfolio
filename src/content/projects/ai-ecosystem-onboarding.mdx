@@ -12,11 +12,11 @@ import Carousel from "../../components/Carousel.astro";
 
 This is one of four Precedent case studies — the adoption and growth story. For the system-level view, see <a href="/projects/law-firm-ai-ecosystem/" target="_blank" rel="noopener">Law Firm AI Ecosystem</a>; for the AI-review interaction model, see <a href="/projects/human-in-the-loop-ai-review/" target="_blank" rel="noopener">Human-in-the-Loop AI Review</a>; for the editor’s process story, see <a href="/projects/ai-document-authoring/" target="_blank" rel="noopener">AI Document Authoring</a>.
 
-## Context & Team
+Demand Composer had proven its core value — 75% of law firm demand letters were authored in it within months of launch — but every new firm still onboarded the expensive way: a customer success manager running live, one-hour training sessions, three or sometimes four per firm. The product that automated demand letters had entirely manual onboarding. If we couldn’t fix that, every new firm we signed would make the scaling problem worse, not better.
 
-Demand Composer had proven its core value — 75% of law firm demand letters were authored in it within months of launch — but every new firm still onboarded the expensive way: a customer success manager running live, one-hour training sessions, three or sometimes four per firm. The product that automated demand letters had entirely manual onboarding.
+## My Role & Team
 
-I owned this project end to end: strategy, the business case for tooling, the design of every intervention, and the measurement plan that judged them. I worked with our CSM team— whose calendars were the problem — engineering on Userflow integration, and marketing on the email sequence. As with Demand Composer itself, I didn’t wait for this to be assigned: I advocated for the budget to license Userflow, a digital adoption platform (DAP), and built the plan that justified the spend.
+I was the Principal Product Designer, and I owned this project end to end: strategy, the business case for tooling, the design of every intervention, and the measurement plan that judged them. I worked with our CSM team — whose calendars were the problem — engineering on Userflow integration, and marketing on the email sequence. As with Demand Composer itself, I didn’t wait for this to be assigned: I advocated for the budget to license Userflow, a digital adoption platform (DAP), and built the plan that justified the spend.
 
 ![](/images/2026/08/svg_vector_2026-08-07.png)
 
@@ -30,7 +30,7 @@ Two gaps made onboarding hard, and I named them in Nielsen Norman’s terms beca
 
 And operationally: human-powered onboarding doesn’t scale. Every CSM hour spent re-teaching the same five tasks was an hour not spent on retention — and the support inbox showed the same questions arriving again and again after the sessions ended.
 
-## Process
+## Research & Process
 
 ### Heuristics as strategy, not checklist
 
@@ -42,18 +42,6 @@ Rather than brainstorm features, I mapped each onboarding intervention to the us
 | Recognition over recall | Getting-started checklists | Increase engagement with product features |
 | Flexibility and efficiency of use | DAP-guided workflows | Shorter “time on desk” per demand |
 | Consistency and standards | Welcome email sequence | Replace live training sessions |
-
-### The interventions
-
-**Resource Center.** A persistent, collapsible in-app hub — the single front door to onboarding. It houses the getting-started checklist with a live progress bar, the how-to guide library, “What’s new in Composer,” a contact channel, and a product-market-fit survey.
-
-**Getting-started checklist.** Five tasks chosen to walk a new user through the product’s actual value path, not its feature list: edit an exhibit, review a case’s strengths, manage medical treatments, update imaging findings, compose an AI narrative. Completing the checklist means you’ve experienced the human-in-the-loop workflow once, end to end.
-
-**How-to guide library.** Dozens of searchable guides covering the highest-ticket-volume tasks — creating demands, sending for AI processing, editing demand details, uploading exhibits, managing medical treatments — written so support could deflect to them and CSMs could link them instead of scheduling calls.
-
-**Welcome email sequence.** A five-part educational drip (“1 of 5: Perfecting your exhibits in Demand Composer”…) designed for the inbox lawyers actually live in — built to Outlook rendering constraints, each with one unambiguous next action deep-linking back into the product. The sequence was designed to replace a full hour of live training.
-
-**PMF instrument.** Inside the Resource Center, the <a href="https://pmfsurvey.com" target="_blank" rel="noopener">Sean Ellis product-market-fit question</a> — “How would you feel if you could no longer use Composer?” — turning onboarding real estate into a continuous signal of product love.
 
 ### Measurement built in from the start
 
@@ -68,15 +56,23 @@ Because every intervention had a pre-declared metric, I could evaluate them like
   ]}
 />
 
-### Flows
+## Flows
+
+The onboarding journey in one view — from a firm’s first welcome email through in-app guidance to independent authoring. The interesting decisions live at the handoffs: where email deep-links drop users into the product, where the checklist routes them through the human-in-the-loop workflow, and where the Resource Center absorbs questions that once went to a CSM’s calendar.
 
 ![](/images/2026/08/2.png)
 
-## Key Decisions & Pivot Points
+## The Design
 
-**Buying, not building, the guidance layer.** I advocated for licensing Userflow rather than asking engineering to build checklists, tooltips, and surveys from scratch — trading budget for speed and freeing engineering for the product itself. Pitching that spend, with the measurement plan as justification, was the project’s first deliverable.
+**Resource Center.** A persistent, collapsible in-app hub — the single front door to onboarding. It houses the getting-started checklist with a live progress bar, the how-to guide library, “What’s new in Composer,” a contact channel, and a product-market-fit survey.
 
-**Reporting the null results.** Three of my five hypotheses failed to reach significance — and I presented them that way to leadership, p-values and all. Checklists didn’t significantly move feature engagement (p = 0.054). The DAP alone didn’t significantly shorten time on desk (p = 0.059). The PMF distribution didn’t significantly shift (p = 0.053). All three hovered just above the threshold — directional, promising, and honestly not proven. The alternative — rounding p = 0.054 down to a success story — would have corrupted every future measurement the team ran.
+**Getting-started checklist.** Five tasks chosen to walk a new user through the product’s actual value path, not its feature list: edit an exhibit, review a case’s strengths, manage medical treatments, update imaging findings, compose an AI narrative. Completing the checklist means you’ve experienced the human-in-the-loop workflow once, end to end.
+
+**How-to guide library.** Dozens of searchable guides covering the highest-ticket-volume tasks — creating demands, sending for AI processing, editing demand details, uploading exhibits, managing medical treatments — written so support could deflect to them and CSMs could link them instead of scheduling calls.
+
+**Welcome email sequence.** A five-part educational drip (“1 of 5: Perfecting your exhibits in Demand Composer”…) designed for the inbox lawyers actually live in — built to Outlook rendering constraints, each with one unambiguous next action deep-linking back into the product. The sequence was designed to replace a full hour of live training.
+
+**PMF instrument.** Inside the Resource Center, the <a href="https://pmfsurvey.com" target="_blank" rel="noopener">Sean Ellis product-market-fit question</a> — “How would you feel if you could no longer use Composer?” — turning onboarding real estate into a continuous signal of product love.
 
 Below: release notes and the expanded Resource Center — the one-stop shop for in-app guidance.
 
@@ -86,6 +82,16 @@ Below: release notes and the expanded Resource Center — the one-stop shop for 
     { src: "/images/2026/08/Digital-medicals-page.png", alt: "Expanded Resource Center — in-app guidance hub" },
   ]}
 />
+
+## Key Decisions & Pivot Points
+
+**Buying, not building, the guidance layer.** I advocated for licensing Userflow rather than asking engineering to build checklists, tooltips, and surveys from scratch — trading budget for speed and freeing engineering for the product itself. Pitching that spend, with the measurement plan as justification, was the project’s first deliverable.
+
+**Reporting the null results.** Three of my five hypotheses failed to reach significance — and I presented them that way to leadership, p-values and all. Checklists didn’t significantly move feature engagement (p = 0.054). The DAP alone didn’t significantly shorten time on desk (p = 0.059). The PMF distribution didn’t significantly shift (p = 0.053). All three hovered just above the threshold — directional, promising, and honestly not proven. The alternative — rounding p = 0.054 down to a success story — would have corrupted every future measurement the team ran.
+
+## Collaboration
+
+Each intervention shipped through a different partner, and I chose the working method to match. With the CSM team, I ran working sessions against their actual onboarding calendars — they knew which five questions arrived over and over, so the checklist and guide library were built from their ticket patterns, not my guesses. With engineering, the Userflow integration was scoped as a contract: I owned everything inside the DAP so their only commitment was the install and data hookup — which is what made the buy-over-build pitch credible. With marketing, I authored the email sequence to their deliverability and Outlook constraints rather than handing off ideal-world designs. The common thread: every partner’s existing workload was the design input, because the project’s whole purpose was giving capacity back.
 
 ## Outcomes
 

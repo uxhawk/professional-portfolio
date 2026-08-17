@@ -10,35 +10,50 @@ thumbnail: "/images/2025/12/global-design-system.png"
 
 import Carousel from "../../components/Carousel.astro";
 
-## Overview
+insightsoftware grew through acquisition into a portfolio of more than 17 enterprise applications across reporting, accounting, and data & analytics. Each product had been built by a different company, on a different stack, with its own navigation conventions, terminology, and visual language. Customers who licensed multiple products had to re-learn the platform every time they switched applications — and with new acquisitions arriving continuously, the fragmentation was compounding, not converging. The stakes: either the portfolio learned to feel like one platform, or every sale of a second product came with a hidden re-learning tax.
 
-insightsoftware grew through acquisition into a portfolio of more than 17 enterprise applications across reporting, accounting, and data & analytics. Each product had been built by a different company, on a different stack, with its own navigation conventions, terminology, and visual language. Customers who licensed multiple products had to re-learn the platform every time they switched applications.
-
-I led the design of a unified global experience that gave the entire portfolio a shared navigational language, a consistent way-finding model, and a governed set of cross-application UX contracts (without forcing every application team to rebuild their product from scratch). The system preserved each product’s functional identity while establishing the shell, orientation patterns, and interaction standards that made the portfolio feel like one platform.
-
-![](/images/2025/12/Graphite.png)
-
-### My Role
+## My Role & Team
 
 **Senior Product Designer for the Global Experience Platform.**
 
 I owned the design of the application shell, primary and secondary navigation, the way-finding model, and the documented UX contracts that application teams built within. As lead, I personally owned 9 of the 17 applications end-to-end and coordinated with designers on the remaining 8 to ensure system-wide consistency.
 
-I worked directly with executive product leadership to translate platform strategy into durable UX standards, partnered with each application’s PM lead through a structured adoption process, and stayed embedded with engineering through implementation, testing edge cases, non-ideal states, and role-specific scenarios.
+I worked directly with executive product leadership to translate platform strategy into durable UX standards, partnered with each application’s PM lead through a structured adoption process, and stayed embedded with engineering through implementation — testing edge cases, non-ideal states, and role-specific scenarios.
 
-### The Problem
+![](/images/2025/12/Graphite.png)
+
+## The Problem
 
 Three problems compounded across the portfolio:
 
-**Fragmentation.** Each acquired product had its own header, navigation, account menu, and notification model. Users licensing multiple products were effectively learning multiple platforms.
+**Fragmentation.** Each acquired product had its own header, navigation, account menu, and notification model. Users licensing multiple products were effectively learning multiple platforms — a direct violation of consistency and standards, the Nielsen Norman heuristic this entire system exists to serve: users should never have to wonder whether different words, situations, or actions mean the same thing.
 
-**No shared interaction contracts.** Common patterns for onboarding, notifications, form validation, status indicators, search, filters were solved differently in every product. There was no governing layer.
+**No shared interaction contracts.** Common patterns for onboarding, notifications, form validation, status indicators, search, and filters were solved differently in every product. There was no governing layer.
 
 **No path to coherence at scale.** New acquisitions kept arriving. Without a global framework, every new product would either be re-designed from scratch (expensive, slow) or shipped as-is (more fragmentation).
 
 The system needed to do two things at once: prevent fragmentation, and preserve team autonomy. Application teams needed room to solve their own domain problems without re-litigating navigation, identity, or way-finding every time.
 
-## My Design Work
+> **[PLACEHOLDER — problem evidence]** *Add a data point that made the pain concrete: e.g., support tickets tagged navigation/orientation, a customer quote from a multi-product account, or time-to-proficiency differences between single- and multi-product customers.*
+
+## Research & Process
+
+The standards weren’t designed in a vacuum — they were derived from the portfolio itself, one application at a time:
+
+1. **Audit.** Partner with the application’s PM lead to inventory existing IA, navigation, and core workflows — building, app by app, a portfolio-wide map of every navigation pattern in use.
+2. **Map.** Identify which user journeys mapped cleanly to global patterns and which would need product-specific accommodation. The contracts were shaped by what the mapping revealed: patterns that survived contact with 17 different products became standards; patterns that kept needing exceptions got redesigned.
+3. **Prototype.** Design updated navigation patterns against the structural standards, including non-ideal states and role-specific scenarios.
+4. **Validate.** Test against role-based access scenarios, multi-tenant data, and the full state matrix.
+
+Working directly with executive product leadership meant the standards carried strategic weight; working through each PM lead meant they carried domain reality. Both were necessary — a contract that only leadership endorses gets routed around, and a contract that only one team likes never becomes a contract.
+
+> **[PLACEHOLDER — research sessions]** *If you ran user-facing research here (customer interviews, navigation studies, tree tests on the IA, usability sessions on the shell), name the sessions, participants, and counts — Suzy specifically looks for what the sessions looked like.*
+
+## Flows
+
+> **[FLOW DIAGRAM PLACEHOLDER]** — *Spec: one diagram of the cross-application way-finding journey — a multi-product user entering the platform, orienting via the shared shell (primary nav → secondary nav → breadcrumbs → page heading), then switching products through the application switcher and landing already-oriented because every zone is in the same place. Annotate the moments the contracts protect: where navigation lives, where state surfaces, and where the switcher preserves context. This diagram doubles as the visual argument for the whole system.*
+
+## The Design
 
 ### 1. Foundational Styles
 
@@ -150,24 +165,48 @@ Data tables were the workhorse of the portfolio — nearly every application pre
   ]}
 />
 
-## Adoption Process
+## Key Decisions & Pivot Points
 
-The system was only valuable if application teams adopted it. I built a structured, repeatable adoption process:
+**Contracts, not guidelines.** The pivotal strategic decision was drawing a hard line between what application teams *must* honor (navigation placement, way-finding behavior, state surfacing) and what they fully own (everything inside their primary sections). A softer “recommended patterns” posture would have been easier to socialize and would have failed — acquired teams with existing roadmaps rationally deprioritize recommendations. Making the small set of structural rules non-negotiable, and everything else autonomous, is what made both halves credible.
 
-1. **Audit.** Partner with the application’s PM lead to inventory existing IA, navigation, and core workflows.
-2. **Map.** Identify which user journeys mapped cleanly to global patterns and which would need product-specific accommodation.
-3. **Prototype.** Design updated navigation patterns against the structural standards, including non-ideal states and role-specific scenarios.
-4. **Scope & prioritize.** Hand engineering a clear, sequenced backlog tied to release planning.
-5. **Implement.** Stay embedded through development, reviewing builds against spec and resolving edge cases.
-6. **Validate.** Test against role-based access scenarios, multi-tenant data, and the full state matrix.
+**Three table densities instead of one.** The table component originally specified a single density. Application teams with data-heavy domains pushed back — their users live in grids all day and a comfortable default wasted their screen. Rather than let each team fork the table (the exact drift the system existed to prevent), I absorbed the requirement into the contract: three documented density modes, one component. The lesson generalized: when a team pushes back on a standard, the standard is usually missing a variant, not an enforcement mechanism.
 
-The structured process was the reason adoption worked. Application teams were not asked to absorb a 200-page guideline document and figure it out. They were given a partner, a sequence, and a clear definition of done. Resistance dropped because the process respected their roadmap and their domain expertise.
+> **[PLACEHOLDER — honest pivot]** *Add one genuine failure or reversal: a contract that was wrong on the first pass, an application whose adoption stalled and why, or a pattern you had to walk back after implementation. Confirm or replace the density-modes story above — the pushback framing is inferred from the shipped spec, not documented history.*
+
+## Collaboration
+
+The system was only valuable if application teams adopted it, so the adoption process *was* the collaboration method — built deliberately, and repeatable:
+
+1. **Audit** existing IA, navigation, and core workflows with the application’s PM lead.
+2. **Map** which user journeys fit global patterns and which needed product-specific accommodation.
+3. **Prototype** updated navigation against the structural standards, including non-ideal states and role-specific scenarios.
+4. **Scope & prioritize** — hand engineering a clear, sequenced backlog tied to release planning.
+5. **Implement** — stay embedded through development, reviewing builds against spec and resolving edge cases.
+6. **Validate** against role-based access scenarios, multi-tenant data, and the full state matrix.
+
+I designed the process this way because of what adoption efforts usually die of: application teams were not asked to absorb a 200-page guideline document and figure it out. They were given a partner, a sequence, and a clear definition of done. Resistance dropped because the process respected their roadmap and their domain expertise — and because I stayed embedded through implementation rather than handing off at spec, the teams never faced a gap between what the standard said and what their edge cases needed.
 
 ## Outcomes
 
-- **Adopted across all 17 enterprise applications** spanning three business units (reporting, accounting, data & analytics).
-- **9 applications owned end-to-end** by me as design lead; 8 coordinated with partner designers under the same standards.
-- **28+ documented component and pattern categories** shipped in a single source-of-truth Figma library paired with engineering-ready specs.
+### Business Impact
+
+- **Adopted across all 17 enterprise applications** spanning three business units (reporting, accounting, data & analytics) — including subsequent acquisitions, which onboarded against the framework without bespoke design re-litigation.
+
+> **[PLACEHOLDER — business KPIs]** *Add 1–2 numbers with baselines: e.g., reduction in design/build time for new product onboarding, support ticket reduction for navigation issues, or multi-product customer satisfaction/retention movement.*
+
+### User Impact
+
+- Users licensing multiple products now orient instantly in any application — navigation, notifications, and state surfaces live in the same place with the same meaning, everywhere.
 - **WCAG AA accessibility baseline** with documented contrast pairings for every neutral, brand, and utility color.
+
+> **[PLACEHOLDER — user KPIs]** *Add evidence users felt the change: task success or time-on-task deltas, SUS/NPS movement, or a customer quote from a multi-product account.*
+
+### Design Impact
+
+- **28+ documented component and pattern categories** shipped in a single source-of-truth Figma library paired with engineering-ready specs.
 - **Reduced design drift** across a large, distributed product organization through governance documentation that codified interaction contracts at the pattern level.
-- **Established a repeatable adoption framework** that subsequent acquisitions and new product teams onboarded against without bespoke design re-litigation.
+- **Established a repeatable adoption framework** — the audit → map → prototype → scope → implement → validate sequence — that became the standing playbook for bringing new acquisitions into the platform.
+
+## What I’d Do Differently
+
+**[PLACEHOLDER — verify this reflection matches reality, or replace with your own]** The contracts were validated against the state matrix, but adoption was measured in applications shipped, not in user outcomes — I can say all 17 products adopted the shell, and I can’t say precisely how much faster a multi-product user orients today than before. Given another pass, I’d define the user-facing success metric (cross-application task success, orientation time on first entry) before the first audit, and benchmark two or three applications pre-adoption so the system’s impact would be a measured claim rather than a structural one.

@@ -12,31 +12,30 @@ import Accordion from "../../components/Accordion.astro";
 import AccordionItem from "../../components/AccordionItem.astro";
 import Carousel from "../../components/Carousel.astro";
 
-## Overview
+The brief had two constraints that shaped everything: deliver an Android application to the Google Play Store in under 100 days, and create a novel engagement model with opportunities to direct traffic back to the company’s primary money-making application. The outcome, up front: we shipped on day 92 of 100. On a clock that tight, every design decision had to be right the first time — or cheap to reverse.
 
-#### Project Directive
+## My Role & Team
 
-- In under 100 days, deliver an Android application to the Google Play Store
-- Create a novel engagement model with opportunities to direct traffic back to the company’s primary money making application
-
-The outcome, up front: we shipped to the Google Play Store on day 92 of 100. The team was myself as sole UX designer, 1 UI designer, 1 Android engineers, and 1 product owner — small enough that every design decision had to be right the first time, or cheap to reverse.
-
-#### My Role
+I was the sole UX designer on a four-person team: myself, 1 UI designer, 1 Android engineer, and 1 product owner. My responsibilities:
 
 - UX research
 - Usability testing
-- Guide feature direction
-- Prototype, wireframe, design task flows
+- Guiding feature direction
+- Prototyping, wireframing, and designing task flows
 
 ![](/images/2021/12/Samsung-Galaxy-S21.png)
 
-## Phase 1
+## The Problem
+
+The company’s primary app served existing customers transactionally — you opened it when something went wrong. There was no product in the portfolio that earned a place in a driver’s routine, which meant no ongoing engagement channel and no organic path for prospects and customers to deepen their relationship with the brand. The business wanted a low-risk vehicle for testing engagement models — and a deadline that made the experiment cheap: 100 days, ship to the Play Store, learn fast.
+
+> **[PLACEHOLDER — problem evidence]** *Add a data point that motivated the engagement mandate: e.g., app open frequency for the primary app, retention numbers, or the strategic goal the product owner was chartered against.*
+
+## Research & Process
 
 ### Brainstorming & Ideation
 
 I facilitated a structured brainstorming session with 6 participants across engineering, product, and marketing. The three activities were chosen deliberately: paper airplanes lowered the stakes for non-designers unaccustomed to ideation; Flip Assumptions forced the room past our first, obvious ideas; and NUF scoring gave us a defensible, numbers-based way to converge — critical on a 100-day clock, because we could not afford to relitigate the direction later.
-
-### Activities
 
 <Accordion>
   <AccordionItem title="One Handed Paper Airplanes" duration="10 Minutes">
@@ -50,15 +49,11 @@ I facilitated a structured brainstorming session with 6 participants across engi
   </AccordionItem>
 </Accordion>
 
-#### Key Discoveries
-
-Vehicle care provided the ideal opportunity to link between new and existing products in the ecosystem.
-
-## Phase 2
+**Key discovery:** Vehicle care provided the ideal opportunity to link between new and existing products in the ecosystem.
 
 ### Customer Interviews
 
-I built <a href="https://www.nngroup.com/articles/mental-models/" target="_blank" rel="noopener">mental model</a> of users attitudes about vehicle care and evaluated their top concerns as car owners.
+I built a <a href="https://www.nngroup.com/articles/mental-models/" target="_blank" rel="noopener">mental model</a> of users’ attitudes about vehicle care and evaluated their top concerns as car owners.
 
 12 users participated in semi-structured <a href="https://www.nngroup.com/articles/user-interviews/" target="_blank" rel="noopener">user interviews</a> from three distinct groups:
 
@@ -66,24 +61,22 @@ I built <a href="https://www.nngroup.com/articles/mental-models/" target="_blank
 2. Owned vehicles for two to five years
 3. Owned vehicles for more than five years
 
-#### Interview Questions
+**Interview questions:**
 
 - What stands out to you about driving off the lot with your new car?
 - What do you know now that you wish you knew before you bought your car?
 - What resources have you used to help you deal with issues that have come up with your car?
 - Have there been any situations where you’ve felt overwhelmed or underprepared?
 
-#### Interview Takeaways
+**Interview takeaways:**
 
 - Car owners across groups have a range of vehicle knowledge (high, medium, low) and varying degrees of willingness to work on their own cars.
 - Electronic manuals are more helpful to new car owners while experienced car owners feel equally comfortable using either an electronic or glove box manual.
 - People feel very attached to their vehicles across all participant groups.
 
-## Phase 3
+### Generating Personas
 
-### Generate Personas
-
-I created two personas at opposite ends of the car knowledge spectrum.
+I created two personas at opposite ends of the car knowledge spectrum — because the interviews showed knowledge level, not demographics, was the variable that changed what users needed from the product.
 
 <Carousel
   images={[
@@ -92,13 +85,13 @@ I created two personas at opposite ends of the car knowledge spectrum.
   ]}
 />
 
-## Phase 4
+## Flows
 
-### Interaction Design
+> **[FLOW DIAGRAM PLACEHOLDER]** — *Spec: one diagram of the core engagement loop — onboarding → vehicle health score → challenge selection → task completion → score update → maintenance log → (back to score). Annotate the two ecosystem link-out points where the app directs traffic to the primary product, and mark which loop stages serve Ignorant Ian (guided tasks, education) versus Lug Nut Larry (logs, stats, history). The loop is the engagement model — every feature exists to feed it.*
 
-The task flow below shows the core loop: onboarding → vehicle health score → challenge selection → task completion → score update → maintenance log. The loop is the engagement model — every feature on this list exists to feed it.
+## The Design
 
-I used insights from customer interviews to split vehicle care into a score-based model that could be updated by completing tasks and challenges. The breakdown included:
+I used insights from the customer interviews to split vehicle care into a score-based model that could be updated by completing tasks and challenges — a game loop, in service of the engagement mandate:
 
 - Vehicle usage metrics
 - An overarching “health” score
@@ -107,14 +100,12 @@ I used insights from customer interviews to split vehicle care into a score-base
 - Maintenance logs
 - Trip history
 
-## Final Designs
+Each key feature traces to the research:
 
-### Key Features
-
-- Engaging 8-bit style UI supported gamification
-- Content supported persona’s maintenance goals
-- Variety of personalization options
-- Familiar Material Design navigation patterns
+- **Engaging 8-bit style UI supported gamification** — making routine maintenance feel like progress in a game rather than chores on a list.
+- **Content supported personas’ maintenance goals** — guided challenges for Ian’s confidence gap, logs and stats for Larry’s mastery.
+- **A variety of personalization options** — serving the strong vehicle attachment every participant group expressed.
+- **Familiar Material Design navigation patterns** — novelty spent on the engagement model, not on navigation users would have to relearn.
 
 <Carousel
   images={[
@@ -133,8 +124,33 @@ I used insights from customer interviews to split vehicle care into a score-base
   ]}
 />
 
+## Key Decisions & Pivot Points
+
+**Converging by score, not by seniority.** The riskiest moment in a 100-day project is the direction decision, because reversing it later costs weeks we didn’t have. That’s why the ideation session ended in NUF scoring rather than discussion: the vehicle-care direction won on rated newness, usefulness, and feasibility — numbers the whole room produced — which meant that when scope pressure arrived mid-project, nobody could reopen the “should we even build this?” question. The method was chosen precisely to make the decision durable.
+
+**Spending novelty in one place.** The 8-bit gamified aesthetic and the Material Design navigation look like an odd couple, and the pairing was deliberate: a novel engagement model plus novel navigation would have doubled the learning burden and the design risk on a fixed clock. We spent our novelty budget on the score-and-challenge loop — the part that had to feel fresh — and kept navigation on rails users already knew.
+
+> **[PLACEHOLDER — honest pivot]** *Add one thing that had to change under pressure: a feature cut to make day 92, a usability finding that forced a redesign, or a challenge mechanic that didn’t test well. The two decisions above are reconstructions from the shipped product’s logic — confirm them, and this section needs at least one real “what went wrong first” to be credible.*
+
+## Collaboration
+
+A four-person team on a 100-day clock collapses the usual handoff structure — and we leaned into that rather than fighting it. **[PLACEHOLDER — confirm how the team actually worked]** With one Android engineer, feasibility conversations happened at the sketch stage, not at handoff: anything expensive to build got redesigned before it was ever specced. The UI designer and I split the novelty budget explicitly — I owned flows and interaction patterns, they owned the 8-bit visual identity — which let both tracks move in parallel. And the product owner ran interference on scope: the NUF-scored direction gave them the artifact they needed to keep stakeholders from adding features mid-flight.
+
 ## Outcomes
 
-- 5,000+ downloads in the four months against a target of 3,500.
-- 600 app users enrolled in the company-sponsored research program, creating a standing participant panel that cut recruiting time for future studies from weeks to days.
-- The score-based interaction pattern was adopted for account setup and roadside assistance, validating the app’s real strategic purpose: a low-risk testbed for engagement models that route drivers back to the primary product.
+### Business Impact
+
+- **5,000+ downloads in the first four months** against a target of 3,500.
+- The app validated its real strategic purpose: a low-risk testbed for engagement models that route drivers back to the primary product.
+
+### User Impact
+
+- **600 app users enrolled in the company-sponsored research program**, creating a standing participant panel that cut recruiting time for future studies from weeks to days.
+
+### Design Impact
+
+- **The score-based interaction pattern was adopted for account setup and roadside assistance** in the primary product — the engagement model outlived the app that piloted it.
+
+## What I’d Do Differently
+
+**[PLACEHOLDER — verify this reflection matches reality, or replace with your own]** Downloads measured acquisition; they didn’t measure the loop. The engagement model’s real test was whether users returned to update their health score after the first week, and we shipped without retention instrumentation granular enough to answer that per loop-stage. Given another pass, I’d define the loop’s health metrics (challenge completion rate, day-7 return to the score screen) before designing the loop itself — for an app whose stated purpose was testing an engagement model, the instrumentation was the product, and it deserved design attention equal to the screens.
