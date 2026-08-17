@@ -8,6 +8,9 @@ tags: ["Usability Testing", "UX", "UX Research"]
 thumbnail: "/images/2022/01/eye-tracking-featured.png"
 ---
 
+import Accordion from "../../components/Accordion.astro";
+import AccordionItem from "../../components/AccordionItem.astro";
+
 A US government financial website existed to help ordinary people navigate some of the highest-stakes moments of their financial lives — buying a home, dealing with debt collectors, disputing a credit report. But the agency had limited evidence about how visitors actually moved through the site: what drew their attention, what they skipped, and whether the most important content was even being seen. Self-reported feedback couldn’t answer those questions; attention had to be measured directly. That’s where this study came in — combining moderated usability testing with Tobii eye tracking to capture objective attention data alongside subjective experience.
 
 ## My Role & Team
@@ -31,7 +34,9 @@ Behind that directive sat a genuine measurement gap. Traditional usability testi
 
 ## Research & Process
 
-### Methods
+<Accordion>
+
+<AccordionItem title="Methods" duration="60-minute sessions">
 
 - Data collection via in-person moderated usability tests
 - Participants recruited through local advertisements and screened with a financial literacy survey
@@ -39,7 +44,9 @@ Behind that directive sat a genuine measurement gap. Traditional usability testi
 - [Think aloud protocols](https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/)
 - Tobii eye tracking capturing gaze data throughout task performance
 
-### Scenarios
+</AccordionItem>
+
+<AccordionItem title="Scenarios" duration="6 tasks">
 
 These tasks gave users the opportunity to interact with a variety of functions within the application without focusing on one area for too long.
 
@@ -61,7 +68,9 @@ Search through the site until you believe you’ve located the most important in
 **Q6**
 What advice does this app have about the use of money transfer apps like PayPal and Venmo?
 
-### Satisfaction Questionnaire
+</AccordionItem>
+
+<AccordionItem title="Satisfaction Questionnaire" duration="4 items">
 
 Users responded to [Likert scale](https://www.surveymonkey.com/mp/likert-scale/) questions to share their perceived difficulty ratings, overall satisfaction, and confidence during their interactions. The Nielsen Norman Group’s [guide to measuring perceived usability](https://www.nngroup.com/articles/measuring-perceived-usability/) was a great survey design resource.
 
@@ -76,6 +85,10 @@ Overall, the app was easy to use.
 
 **Q4**
 I was able to successfully accomplish what I was asked to do.
+
+</AccordionItem>
+
+</Accordion>
 
 Results indicated the site had room for improvement in terms of its perceived usability. Survey results, combined with eye tracking, suggested long, dense blocks of content were a pain point for users.
 
@@ -121,15 +134,17 @@ Results indicated the site had room for improvement in terms of its perceived us
 
 **Triangulating attention with perception.** Pairing the eye tracking with a satisfaction questionnaire was a methodological decision, not a formality: gaze data shows where attention went, but only self-report shows whether users experienced the effort as reasonable. The study’s headline finding — dense content blocks as a pain point — emerged precisely from combining the two, where fading attention (objective) met “I had to work hard” agreement (subjective).
 
-> **[PLACEHOLDER — honest pivot]** *Add one thing that had to change mid-study: e.g., a calibration or hardware issue that cost sessions, a task that had to be reworded after early participants misread it, or a recruiting/screening adjustment.*
+**Treating eye tracking as the bolster, not the base.** The honest tension in this study: its most impressive instrument was also its most dispensable. Eye tracking is a wow factor — heat maps command a room in a client readout in a way task-completion tables never will — but gaze data layered over a shaky study design is just beautifully visualized noise. So the priority order ran opposite to the glamour. We made sure the foundational usability structure — the tasks, the surveys, the interview prompts — stood as a solid study in its own right, one that would have delivered defensible findings with the eye tracker unplugged. Only then did the gaze data get layered on to bolster the results. That discipline is why the headline finding held up: the heat maps illustrated it; the fundamentals proved it.
 
 ## Collaboration
 
-> **[PLACEHOLDER — collaboration]** *Describe how you worked with the client and the research team, and why: how findings were reviewed with agency stakeholders, how the report was structured for the client’s decision-making, and any working sessions where eye tracking evidence was walked through with the site’s design/content owners.*
+The collaboration that shaped this study happened before a single participant sat down. I partnered with the client — the CFPB — to identify the research questions the study had to answer, select the survey questions, and finalize the task-based usability scenarios. We then conducted pilot tests together, confirming their research and investigation requirements were fully addressed before sessions ran at full scale. Working this way meant the client’s decision-making needs were built into the instrument itself rather than reverse-engineered from the findings later — the final readout answered questions the agency had already agreed were the right ones to ask.
 
 ## Outcomes
 
-> **[PLACEHOLDER — outcomes]** *This section needs the payoff: what did the client do with the findings? E.g., recommendations adopted (breaking up dense content blocks, restructuring “Other Categories,” elevating tags in the IA, deprioritizing FAQ pathways), any follow-up measurement, and the report’s reception. Even one concrete “the site changed X because this study showed Y” closes the loop.*
+The deliverable was an evidence base, built to outlast the study. The summative report gave the CFPB data and evidence about how real users navigated the site and read its content — so that future product managers and their internal designer could structure pages, information architecture, and content to align with user needs and expectations, and ultimately deliver on the agency’s mission of helping people through high-stakes financial decisions. Findings like fading down-page attention, tag-first navigation, and the untouched left-margin filters translated directly into that kind of structural guidance.
+
+The outcome I’m proudest of has no metric attached: this study helped bring user research into a young government agency for the first time. Establishing that evidence about user behavior — not internal assumption — should shape a public-serving website was itself the win. Every research question the agency asks after this one builds on that precedent.
 
 ## What I’d Do Differently
 

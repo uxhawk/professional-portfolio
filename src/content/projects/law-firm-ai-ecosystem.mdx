@@ -36,7 +36,7 @@ That framing decomposes into three concrete design problems:
 
 **Coherence without uniformity.** Two apps with genuinely different rhythms of work (queue-driven claim processing vs. deep-focus document authoring) still had to share one navigational grammar, or every context switch would cost the user reorientation time dozens of times a day.
 
-> **[PLACEHOLDER — problem evidence]** *Add one or two data points that made the pain concrete: e.g., support tickets about "where do I find X," time lost per app-switch, or a quote from an attorney advisor about juggling both worlds.*
+The pain underneath all three was concrete and daily. On the claim side, firms burned hours on the phone with insurance companies — setting up claims, checking claim status, confirming receipt of faxed documents. On the demand side, drafting demand letters by hand consumed even more. And the tools firms cobbled together to cope were scattered across separate applications, fragmenting case context across touchpoints. For a law firm, the best version of this work is a single solution — one place to manage your cases — and that is the ecosystem Precedent set out to build.
 
 ## Research & Process
 
@@ -46,11 +46,13 @@ The deep research for this ecosystem lives in the sibling case studies — usabi
 - **A shared Figma library as the single source of components.** Both squads consumed the same library (see <a href="/projects/atomic-design-system/" target="_blank" rel="noopener">Atomic Design System</a>), so cross-app consistency was the default output of normal work, not a review finding to fix later.
 - **Weekly cross-squad design review.** I ran the session where the two squads saw each other’s in-flight work — the mechanism that caught divergence while it was still cheap to correct.
 
-> **[PLACEHOLDER — process detail]** *If you ran any ecosystem-specific research (navigation studies, card sorts for the settings taxonomy, app-switcher usage analytics), name the sessions, who was in the room, and participant counts here.*
+One strand of research was ecosystem-specific: sessions with existing power users on how law firms actually distribute and share casework. We studied firms’ pod systems — how paralegals hand work off to attorneys, and how teams share updates with clients — and modeled the ecosystem’s workflows directly on those rhythms. The handoffs inside a pod are the seams the ecosystem had to honor: who touches a case, when, and what they need to see at the moment it lands with them.
 
 ## Flows
 
-> **[FLOW DIAGRAM PLACEHOLDER]** — *Spec: one ecosystem-level diagram tracing a case end to end across both apps: claim filed in Claim Companion → policy verified → liability workflow → handoff via Apps switcher → demand composed in Demand Composer → AI extraction → human review → demand delivered. Annotate the three decision zones: the cross-app handoff (where the Apps switcher preserves context), the human-in-the-loop review gate, and the approval/delivery loop that routes back through email notifications. Same visual language as the other Precedent flow diagrams (shaded = automated, highlighted = human decision point).*
+A case end to end, across both apps. It enters as a claim in Claim Companion — filed, policy verified, liability worked — then crosses to Demand Composer through the Apps switcher handoff, context preserved. There, case data feeds the AI extraction pipeline, everything passes through the human review gate before it ships, and the delivered demand’s status changes route back through email notifications to close the loop.
+
+![Flow diagram of a case moving end to end across the ecosystem: in Claim Companion, claim filed → policy verified → liability workflow; then the Apps switcher handoff carries context into Demand Composer, where compose demand → AI extraction → human review — the gate before anything ships — leads to demand delivered, with email notifications routing status changes, approvals, and rejections back to the inbox.](/images/2026/08/law-firm-ecosystem-flow.png)
 
 The flow is the argument for the two-app model: each app owns one rhythm of work, and the seams between them are designed surfaces — the Apps switcher, the shared status grammar, the email lifecycle — not gaps.
 
@@ -181,7 +183,26 @@ Attorneys needed to assemble the final exhibit package by grouping hundreds of u
 
 A persistent preview pane on the right renders the live demand package as the user reorganizes — so every reorder decision is immediately visible in the final artifact.
 
-> **[PLACEHOLDER — exhibit manager screenshots]** *This section previously reused the Template Editor images from section 9 (a copy-paste bug, now removed). Add 2–3 actual Exhibit Manager screens: the drag-and-drop canvas with exhibit containers, the AI auto-arrange action, and the live preview pane.*
+The sequence below walks the full arrangement journey: from a flat, ungrouped document list, through creating and naming the first exhibit container, to a complete package organized into Exhibits A–D — with the live demand preview rendering every change on the right.
+
+<Carousel
+  images={[
+    { src: "/images/2025/11/em_01.png", alt: "Exhibit Manager — flat drag-and-drop document list with type badges, AI auto-arrange in the toolbar, and the preview pane loading" },
+    { src: "/images/2025/11/em_02.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 2" },
+    { src: "/images/2025/11/em_03.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 3" },
+    { src: "/images/2025/11/em_04.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 4" },
+    { src: "/images/2025/11/em_05.png", alt: "Exhibit Manager — first exhibit container (Exhibit A) grouping documents, with the live demand package preview rendering on the right" },
+    { src: "/images/2025/11/em_06.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 6" },
+    { src: "/images/2025/11/em_07.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 7" },
+    { src: "/images/2025/11/em_08.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 8" },
+    { src: "/images/2025/11/em_09.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 9" },
+    { src: "/images/2025/11/em_010.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 10" },
+    { src: "/images/2025/11/em_011.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 11" },
+    { src: "/images/2025/11/em_012.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 12" },
+    { src: "/images/2025/11/em_013.png", alt: "Exhibit Manager — drag-and-drop arrangement, screen 13" },
+    { src: "/images/2025/11/em_014.png", alt: "Exhibit Manager — complete package grouped into Exhibits A through D with inline rename, alongside the persistent demand preview" },
+  ]}
+/>
 
 ### 11. Admin & Management Experiences
 
@@ -203,7 +224,7 @@ Customer detail pages use a consistent card grid (Customer details, Valid email 
 
 **Status color grammar as a contract.** Early on, the two squads began evolving their own status colors and labels independently — reasonable in isolation, corrosive at the ecosystem level, because a color that means “needs attention” in one app and “in progress” in the other trains users to distrust both. I froze the status grammar into a shared, governed vocabulary that neither squad could extend unilaterally. It cost the squads some local expressiveness; it bought users one language for “where is my case?” everywhere.
 
-> **[PLACEHOLDER — honest pivot]** *Add one thing that didn’t work on the first attempt at the ecosystem level — e.g., an early navigation model that tested poorly, an Apps-switcher placement that users missed, or a settings taxonomy that admins found confusing — plus what the evidence was and how the team resolved it. Every other claim on this page gets more believable once one of them is a failure.*
+**Abandoning the top navigation bar.** The early shell used a horizontal top nav — a thoroughly proven, highly usable web pattern. The feedback that killed it had nothing to do with task success: users told us it made the app feel dated. That mattered more than it might sound. This is the aesthetic-usability effect working against us — a product asking law firms to trust novel AI with their highest-stakes work can’t afford a first visual impression that reads as yesterday’s software, because “dated” quietly erodes trust before a single feature is used. The shift to the vertical left-nav pattern that now anchors both apps was easy to implement, which made it an easy call: high signal, low cost. The lesson: a pattern can pass every usability heuristic and still fail the product’s story.
 
 ## Collaboration
 
@@ -215,7 +236,12 @@ The ecosystem’s coherence was manufactured by process, and the process was cho
 
 The ecosystem compresses what used to be weeks of paralegal document review and demand drafting into days. RAG-grounded case intelligence gives attorneys negotiation leverage they didn’t have before: Agreement Matrix Lens and Carrier Evaluation Reports let them anticipate the adjuster’s playbook before the first phone call. The result is higher settlement offers, reached faster, with money landing in clients’ pockets sooner.
 
-> **[PLACEHOLDER — KPIs]** *Add 2–3 numbers with baselines and timeframes: e.g., end-to-end case cycle time before/after, demand throughput per paralegal, ARR / firm count context (the onboarding study cites $5M ARR in under two years and a 68% PMF score — reuse if appropriate). Detailed workflow metrics (9→4 days time on desk) live in the Human-in-the-Loop study.*
+The platform-level numbers:
+
+- **$5M ARR in under two years** — the commercial trajectory the ecosystem built, firm by firm, as the two-app platform replaced fragmented tooling.
+- **68% product-market-fit score** — the share of users who would be “very disappointed” to lose Composer, well clear of the 40% Sean Ellis benchmark for strong product-market fit (measured continuously in-app; see <a href="/projects/ai-ecosystem-onboarding/" target="_blank" rel="noopener">AI Ecosystem Onboarding</a>).
+- **75% of law firm demand letters authored in Demand Composer within two months of launch**, displacing manual Word workflows (see <a href="/projects/ai-document-authoring/" target="_blank" rel="noopener">AI Document Authoring</a>).
+- **Time on desk cut from 9 days to 4**, measured across 500+ cases post-launch (detailed in <a href="/projects/human-in-the-loop-ai-review/" target="_blank" rel="noopener">Human-in-the-Loop AI Review</a>).
 
 ### User Impact
 
@@ -231,4 +257,4 @@ The ecosystem compresses what used to be weeks of paralegal document review and 
 
 ## What I’d Do Differently
 
-**[PLACEHOLDER — verify this reflection matches reality, or replace with your own]** I governed the seams between the two apps well; I measured them late. The Apps switcher was the ecosystem’s most important control, but we never instrumented cross-app journeys — how often users switched, where they switched from, and what they did in the first ten seconds after landing. That data would have told us which seams were genuinely smooth and which ones users had simply learned to tolerate. Given another pass, I’d instrument the switcher from day one and let real journey data, not design-review consensus, prioritize the next round of ecosystem work.
+The ecosystem’s governance worked because humans could read it — a shared Figma library, a weekly cross-squad review, documented contracts. What I’d do differently is make that governance machine-readable too. I’d bring AI prototyping into the workflow, with the system’s rules encoded in agent-readable YAML: component structure and standards, so coded prototypes come out aligned instead of needing refactoring; accessibility standards, enforced at generation rather than caught in review; and QA and test scaffolding, generated alongside the feature itself. Governance that lives in Figma and meeting notes can steer humans; governance an agent can parse steers the prototype directly. The payoff is release cadence — features and value landing in the application faster, without reintroducing the consistency tax the system existed to eliminate.

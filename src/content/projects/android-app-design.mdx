@@ -29,7 +29,7 @@ I was the sole UX designer on a four-person team: myself, 1 UI designer, 1 Andro
 
 The company’s primary app served existing customers transactionally — you opened it when something went wrong. There was no product in the portfolio that earned a place in a driver’s routine, which meant no ongoing engagement channel and no organic path for prospects and customers to deepen their relationship with the brand. The business wanted a low-risk vehicle for testing engagement models — and a deadline that made the experiment cheap: 100 days, ship to the Play Store, learn fast.
 
-> **[PLACEHOLDER — problem evidence]** *Add a data point that motivated the engagement mandate: e.g., app open frequency for the primary app, retention numbers, or the strategic goal the product owner was chartered against.*
+The evidence was the shape of engagement itself: GEICO users logged into the app almost exclusively to pay a bill or file a claim — and otherwise didn’t touch it. Two touchpoints, both obligations, one of them tied to one of the worst days of a customer’s year. GEICO wanted a way to draw users into its ecosystem that wasn’t so transactional — more explorative, even fun — and this app was chartered as exactly that: a reason to open a GEICO product when nothing had gone wrong.
 
 ## Research & Process
 
@@ -87,7 +87,9 @@ I created two personas at opposite ends of the car knowledge spectrum — becaus
 
 ## Flows
 
-> **[FLOW DIAGRAM PLACEHOLDER]** — *Spec: one diagram of the core engagement loop — onboarding → vehicle health score → challenge selection → task completion → score update → maintenance log → (back to score). Annotate the two ecosystem link-out points where the app directs traffic to the primary product, and mark which loop stages serve Ignorant Ian (guided tasks, education) versus Lug Nut Larry (logs, stats, history). The loop is the engagement model — every feature exists to feed it.*
+The core engagement loop in one view. Onboarding drops the driver into the loop — vehicle health score → challenge selection → task completion → score update → maintenance log, and back to the score. The persona annotations mark which stages serve whom: guided challenges and education for Ignorant Ian, logs, stats, and history for Lug Nut Larry. And the highlighted link-outs are the strategic point of the whole app — the two places the loop routes drivers back into the primary product. The loop is the engagement model; every feature exists to feed it.
+
+![Flow diagram of the core engagement loop: onboarding leads into a cycle of vehicle health score → challenge selection → task completion → score update → maintenance log, and back to the score. Annotations mark guided challenges and education for Ignorant Ian, logs and stats for Lug Nut Larry, and two highlighted ecosystem link-outs from the loop to the primary app — vehicle records to your account, and roadside and service offers.](/images/2026/08/android-core-loop-flow.png)
 
 ## The Design
 
@@ -130,11 +132,11 @@ Each key feature traces to the research:
 
 **Spending novelty in one place.** The 8-bit gamified aesthetic and the Material Design navigation look like an odd couple, and the pairing was deliberate: a novel engagement model plus novel navigation would have doubled the learning burden and the design risk on a fixed clock. We spent our novelty budget on the score-and-challenge loop — the part that had to feel fresh — and kept navigation on rails users already knew.
 
-> **[PLACEHOLDER — honest pivot]** *Add one thing that had to change under pressure: a feature cut to make day 92, a usability finding that forced a redesign, or a challenge mechanic that didn’t test well. The two decisions above are reconstructions from the shipped product’s logic — confirm them, and this section needs at least one real “what went wrong first” to be credible.*
+**Cutting the maps layer.** The original concept leaned on the Google Maps API: fuel-efficient route suggestions to help drivers save gas, and directions to nearby garages when the app recommended an oil change or other maintenance. It was the feature set that connected the health score to the physical world — and we cut it, because the API was simply too costly to test and fully implement on our clock and budget. That meant shipping a vehicle-care app that couldn’t point you to a garage, which stung. But the cut was the 100-day discipline working as intended: a feature we couldn’t afford to test was a feature we couldn’t afford, and the score loop had to prove the engagement model on its own.
 
 ## Collaboration
 
-A four-person team on a 100-day clock collapses the usual handoff structure — and we leaned into that rather than fighting it. **[PLACEHOLDER — confirm how the team actually worked]** With one Android engineer, feasibility conversations happened at the sketch stage, not at handoff: anything expensive to build got redesigned before it was ever specced. The UI designer and I split the novelty budget explicitly — I owned flows and interaction patterns, they owned the 8-bit visual identity — which let both tracks move in parallel. And the product owner ran interference on scope: the NUF-scored direction gave them the artifact they needed to keep stakeholders from adding features mid-flight.
+A four-person team on a 100-day clock collapses the usual handoff structure — and we leaned into that rather than fighting it. With one Android engineer, feasibility conversations happened at the sketch stage, not at handoff: anything expensive to build got redesigned before it was ever specced. The UI designer and I split the novelty budget explicitly — I owned flows and interaction patterns, they owned the 8-bit visual identity — which let both tracks move in parallel. And the product owner ran interference on scope: the NUF-scored direction gave them the artifact they needed to keep stakeholders from adding features mid-flight.
 
 ## Outcomes
 
@@ -153,4 +155,4 @@ A four-person team on a 100-day clock collapses the usual handoff structure — 
 
 ## What I’d Do Differently
 
-**[PLACEHOLDER — verify this reflection matches reality, or replace with your own]** Downloads measured acquisition; they didn’t measure the loop. The engagement model’s real test was whether users returned to update their health score after the first week, and we shipped without retention instrumentation granular enough to answer that per loop-stage. Given another pass, I’d define the loop’s health metrics (challenge completion rate, day-7 return to the score screen) before designing the loop itself — for an app whose stated purpose was testing an engagement model, the instrumentation was the product, and it deserved design attention equal to the screens.
+I was so focused on hitting the release in under 100 days that I treated launch as the finish line — when for an engagement experiment, it was the starting gun. Cutting scope for the MVP was the right instinct, but while I was doing it, I should have been partnering more closely with the PM on what came after: a real feedback loop with users post-release, perhaps an incentive program for participating in interviews. The 600 users who enrolled in the research program proved the appetite was there. A deliberate program would have converted that appetite into longer-term engagement and a user-driven way to prioritize the feature roadmap after the initial release — instead of leaving the first version to speak for itself.

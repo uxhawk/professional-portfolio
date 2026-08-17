@@ -18,11 +18,11 @@ I was the Principal Product Designer and the sole designer across both applicati
 
 Before creating this system, Precedent’s two apps were accumulating UI debt: components rebuilt per-squad, styles drifting between Claim Companion and Demand Composer, and handoffs that leaned on redlines and memory. Every new feature paid a consistency tax — engineers rebuilding patterns that already existed, re-specifying states that had already been decided. Users paid it too: a platform whose two halves disagree on color, status, and controls trains people to distrust both.
 
-> **[PLACEHOLDER — problem evidence]** *Add a concrete pre-system data point: e.g., number of duplicate component implementations found in the audit, a sprint-time example of a rebuilt pattern, or a visual QA defect count before adoption (the 30% reduction below implies a baseline).*
+The clearest evidence sat in my own backlog: a recurring stream of “UI polish” stories I kept having to write against features front-end developers had already shipped — going in after implementation to clean up the slop. Every one of those stories was a double payment. The hours went to rework instead of design, and the release cadence slowed to absorb cleanup that a shared source of truth would have made unnecessary.
 
 ## Research & Process
 
-**Auditing the debt.** **[PLACEHOLDER — confirm audit details]** The starting point was an inventory of both codebases and Figma files: every button, form field, table, and status indicator in production, catalogued by app and by squad — making the duplication visible and giving the system a prioritized build order (highest-traffic, most-duplicated components first).
+**Auditing the debt.** The starting point was an inventory of both codebases and Figma files: every button, form field, table, and status indicator in production, catalogued by app and by squad — making the duplication visible and giving the system a prioritized build order (highest-traffic, most-duplicated components first).
 
 **Why atomic?** The library follows <a href="https://atomicdesign.bradfrost.com/chapter-2/" target="_blank" rel="noopener">Brad Frost’s atomic design methodology</a>: atoms (tokens, icons, base inputs) compose into molecules (form fields, table cells), then organisms (tables, cards, navigation), then templates. I chose it because a two-app ecosystem needs guaranteed consistency at the lowest level — if the atoms match, the apps can’t drift far.
 
@@ -30,7 +30,9 @@ Before creating this system, Precedent’s two apps were accumulating UI debt: c
 
 ## Flows
 
-> **[FLOW DIAGRAM PLACEHOLDER]** — *Spec: one diagram of the system’s governance loop — squad proposes a component via Slack → weekly UX review (accept / adapt to existing component / reject) → API agreement between design and engineering → parallel build in Figma and Storybook → design QA against spec → published to library → consumed by both apps. Annotate the two gates that keep the system healthy: the review gate that prevents duplicate components, and the API-agreement gate that prevents handoff mismatch.*
+The governance loop in one view. Any squad proposes a component via Slack; the weekly UX review accepts, adapts, or rejects it; design and engineering agree the API; the component builds in parallel — Figma and Storybook, to the same contract — and design QA checks implementation against spec before it publishes to the versioned library both apps consume. The two highlighted gates are what keep the system healthy: the review gate prevents duplicate components, and the API-agreement gate prevents handoff mismatch. The dashed return path is the point — consumption creates the next proposal, so the system grows with the product instead of forking under it.
+
+![Flow diagram of the design system governance loop: component proposed by any squad via Slack → weekly UX review (accept, adapt, or reject) → API agreement on props, variants, and states → parallel build in Figma and Storybook to the same contract → design QA comparing implementation versus spec → published to the versioned library → consumed by both apps, with a dashed return path labeled “consumption creates the next proposal.” The weekly review and API agreement are highlighted as governance gates preventing duplicate components and handoff mismatch.](/images/2026/08/atomic-governance-loop.png)
 
 ## The Design
 
@@ -49,8 +51,6 @@ Explore the library directly:
 **Designer in the codebase.** The unconventional call was spending my design hours in Storybook. The orthodox model — designer specs, engineer builds, designer reviews screenshots — was exactly the handoff structure that had produced the drift in the first place. Verifying components against spec in the code itself cost me design time every sprint and repaid it by collapsing the discrepancy loop from tickets to minutes. It also changed the conversation with engineering: system rules argued from inside the codebase carried more weight than rules argued from Figma.
 
 **Making consistency cheaper than divergence.** I chose this governance model because our two-squad structure made drift the default outcome. The system had to make consistency cheaper than divergence, or it would be routed around — that single economic test drove the lightweight Slack proposal process, the pre-agreed APIs, and the atomic structure itself.
-
-> **[PLACEHOLDER — honest pivot]** *Add one thing that failed first: a component whose API had to be redesigned after both squads used it differently, a governance rule that proved too heavy and got simplified, or a period where one squad routed around the system and what fixed it.*
 
 ## Collaboration
 
@@ -78,4 +78,4 @@ Explore the library directly:
 
 ## What I’d Do Differently
 
-**[PLACEHOLDER — verify this reflection matches reality, or replace with your own]** The system measured its health in adoption (80% of production UI) and defects (down 30%) — both proxies for the thing I actually cared about, which was speed: how much faster a squad ships a feature when every component it needs already exists. I never baselined feature cycle time before the system, so its strongest business argument stayed anecdotal. Given another pass, I’d capture per-feature build time for a quarter before launching the library, because “engineers stopped rebuilding tables” is a story, and “feature UI build time dropped N%” is a budget line.
+The system measured its health in adoption (80% of production UI) and defects (down 30%) — both proxies for the thing I actually cared about, which was speed: how much faster a squad ships a feature when every component it needs already exists. I never baselined feature cycle time before the system, so its strongest business argument stayed anecdotal. Given another pass, I’d capture per-feature build time for a quarter before launching the library, because “engineers stopped rebuilding tables” is a story, and “feature UI build time dropped N%” is a budget line.
