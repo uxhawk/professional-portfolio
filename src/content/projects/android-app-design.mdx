@@ -12,7 +12,7 @@ import Accordion from "../../components/Accordion.astro";
 import AccordionItem from "../../components/AccordionItem.astro";
 import Carousel from "../../components/Carousel.astro";
 
-The brief had two constraints that shaped everything: deliver an Android application to the Google Play Store in under 100 days, and create a novel engagement model with opportunities to direct traffic back to the company’s primary money-making application. The outcome, up front: we shipped on day 92 of 100. On a clock that tight, every design decision had to be right the first time — or cheap to reverse.
+The brief had two constraints that shaped everything: deliver an Android application to the Google Play Store in under 100 days, and create a novel engagement model with opportunities to direct traffic back to the company’s primary money-making application. The outcome, up front: we shipped on day 92 of 100. On a clock that tight, every design decision had to be right the first time, or cheap to reverse.
 
 ## My Role & Team
 
@@ -27,15 +27,15 @@ I was the sole UX designer on a four-person team: myself, 1 UI designer, 1 Andro
 
 ## The Problem
 
-The company’s primary app served existing customers transactionally — you opened it when something went wrong. There was no product in the portfolio that earned a place in a driver’s routine, which meant no ongoing engagement channel and no organic path for prospects and customers to deepen their relationship with the brand. The business wanted a low-risk vehicle for testing engagement models — and a deadline that made the experiment cheap: 100 days, ship to the Play Store, learn fast.
+The company’s primary app served existing customers transactionally: you opened it when something went wrong. There was no product in the portfolio that earned a place in a driver’s routine, which meant no ongoing engagement channel and no organic path for prospects and customers to deepen their relationship with the brand. The business wanted a low-risk vehicle for testing engagement models, and a deadline that made the experiment cheap: 100 days, ship to the Play Store, learn fast.
 
-The evidence was the shape of engagement itself: GEICO users logged into the app almost exclusively to pay a bill or file a claim — and otherwise didn’t touch it. Two touchpoints, both obligations, one of them tied to one of the worst days of a customer’s year. GEICO wanted a way to draw users into its ecosystem that wasn’t so transactional — more explorative, even fun — and this app was chartered as exactly that: a reason to open a GEICO product when nothing had gone wrong.
+The evidence was the shape of engagement itself: GEICO users logged into the app almost exclusively to pay a bill or file a claim, and otherwise didn’t touch it. Two touchpoints, both obligations, one of them tied to one of the worst days of a customer’s year. GEICO wanted a way to draw users into its ecosystem that wasn’t so transactional (more explorative, even fun), and this app was chartered as exactly that: a reason to open a GEICO product when nothing had gone wrong.
 
 ## Research & Process
 
 ### Brainstorming & Ideation
 
-I facilitated a structured brainstorming session with 6 participants across engineering, product, and marketing. The three activities were chosen deliberately: paper airplanes lowered the stakes for non-designers unaccustomed to ideation; Flip Assumptions forced the room past our first, obvious ideas; and NUF scoring gave us a defensible, numbers-based way to converge — critical on a 100-day clock, because we could not afford to relitigate the direction later.
+I facilitated a structured brainstorming session with 6 participants across engineering, product, and marketing. The three activities were chosen deliberately: paper airplanes lowered the stakes for non-designers unaccustomed to ideation; Flip Assumptions forced the room past our first, obvious ideas; and NUF scoring gave us a defensible, numbers-based way to converge, critical on a 100-day clock, because we could not afford to relitigate the direction later.
 
 <Accordion>
   <AccordionItem title="One Handed Paper Airplanes" duration="10 Minutes">
@@ -76,24 +76,24 @@ I built a <a href="https://www.nngroup.com/articles/mental-models/" target="_bla
 
 ### Generating Personas
 
-I created two personas at opposite ends of the car knowledge spectrum — because the interviews showed knowledge level, not demographics, was the variable that changed what users needed from the product.
+I created two personas at opposite ends of the car knowledge spectrum, because the interviews showed knowledge level, not demographics, was the variable that changed what users needed from the product.
 
 <Carousel
   images={[
-    { src: "/images/2021/12/ignorant-ian.png", alt: "Persona: Ignorant Ian — low car knowledge" },
-    { src: "/images/2021/12/lug-nut-larry.png", alt: "Persona: Lug Nut Larry — high car knowledge" },
+    { src: "/images/2021/12/ignorant-ian.png", alt: "Persona: Ignorant Ian, low car knowledge" },
+    { src: "/images/2021/12/lug-nut-larry.png", alt: "Persona: Lug Nut Larry, high car knowledge" },
   ]}
 />
 
 ## Flows
 
-The core engagement loop in one view. Onboarding drops the driver into the loop — vehicle health score → challenge selection → task completion → score update → maintenance log, and back to the score. The persona annotations mark which stages serve whom: guided challenges and education for Ignorant Ian, logs, stats, and history for Lug Nut Larry. And the highlighted link-outs are the strategic point of the whole app — the two places the loop routes drivers back into the primary product. The loop is the engagement model; every feature exists to feed it.
+The core engagement loop in one view. Onboarding drops the driver into the loop: vehicle health score → challenge selection → task completion → score update → maintenance log, and back to the score. The persona annotations mark which stages serve whom: guided challenges and education for Ignorant Ian, logs, stats, and history for Lug Nut Larry. And the highlighted link-outs are the strategic point of the whole app: the two places the loop routes drivers back into the primary product. The loop is the engagement model; every feature exists to feed it.
 
-![Flow diagram of the core engagement loop: onboarding leads into a cycle of vehicle health score → challenge selection → task completion → score update → maintenance log, and back to the score. Annotations mark guided challenges and education for Ignorant Ian, logs and stats for Lug Nut Larry, and two highlighted ecosystem link-outs from the loop to the primary app — vehicle records to your account, and roadside and service offers.](/images/2026/08/android-core-loop-flow.png)
+![Flow diagram of the core engagement loop: onboarding leads into a cycle of vehicle health score → challenge selection → task completion → score update → maintenance log, and back to the score. Annotations mark guided challenges and education for Ignorant Ian, logs and stats for Lug Nut Larry, and two highlighted ecosystem link-outs from the loop to the primary app: vehicle records to your account, and roadside and service offers.](/images/2026/08/android-core-loop-flow.png)
 
 ## The Design
 
-I used insights from the customer interviews to split vehicle care into a score-based model that could be updated by completing tasks and challenges — a game loop, in service of the engagement mandate:
+I used insights from the customer interviews to split vehicle care into a score-based model that could be updated by completing tasks and challenges, a game loop in service of the engagement mandate:
 
 - Vehicle usage metrics
 - An overarching “health” score
@@ -104,39 +104,39 @@ I used insights from the customer interviews to split vehicle care into a score-
 
 Each key feature traces to the research:
 
-- **Engaging 8-bit style UI supported gamification** — making routine maintenance feel like progress in a game rather than chores on a list.
-- **Content supported personas’ maintenance goals** — guided challenges for Ian’s confidence gap, logs and stats for Larry’s mastery.
-- **A variety of personalization options** — serving the strong vehicle attachment every participant group expressed.
-- **Familiar Material Design navigation patterns** — novelty spent on the engagement model, not on navigation users would have to relearn.
+- **Engaging 8-bit style UI supported gamification:** making routine maintenance feel like progress in a game rather than chores on a list.
+- **Content supported personas’ maintenance goals:** guided challenges for Ian’s confidence gap, logs and stats for Larry’s mastery.
+- **A variety of personalization options:** serving the strong vehicle attachment every participant group expressed.
+- **Familiar Material Design navigation patterns:** novelty spent on the engagement model, not on navigation users would have to relearn.
 
 <Carousel
   images={[
-    { src: "/images/2021/12/avatar-01.png", alt: "Final designs — vehicle avatar screen 1" },
-    { src: "/images/2021/12/avatar-02.png", alt: "Final designs — vehicle avatar screen 2" },
-    { src: "/images/2021/12/challenge-01.png", alt: "Final designs — challenge screen 1" },
-    { src: "/images/2021/12/challenge-02.png", alt: "Final designs — challenge screen 2" },
-    { src: "/images/2021/12/challenge-03.png", alt: "Final designs — challenge screen 3" },
-    { src: "/images/2021/12/condition.png", alt: "Final designs — condition screen" },
-    { src: "/images/2021/12/Group-2.png", alt: "Final designs — usage screen" },
-    { src: "/images/2021/12/Group-3.png", alt: "Final designs — garage screen" },
-    { src: "/images/2021/12/turorial-blur.png", alt: "Final designs — tutorial overlay" },
-    { src: "/images/2021/12/tutorial-02.png", alt: "Final designs — tutorial screen 2" },
-    { src: "/images/2021/12/tutorial-03.png", alt: "Final designs — tutorial screen 3" },
-    { src: "/images/2021/12/tutorial-04.png", alt: "Final designs — tutorial screen 4" },
+    { src: "/images/2021/12/avatar-01.png", alt: "Final designs, vehicle avatar screen 1" },
+    { src: "/images/2021/12/avatar-02.png", alt: "Final designs, vehicle avatar screen 2" },
+    { src: "/images/2021/12/challenge-01.png", alt: "Final designs, challenge screen 1" },
+    { src: "/images/2021/12/challenge-02.png", alt: "Final designs, challenge screen 2" },
+    { src: "/images/2021/12/challenge-03.png", alt: "Final designs, challenge screen 3" },
+    { src: "/images/2021/12/condition.png", alt: "Final designs, condition screen" },
+    { src: "/images/2021/12/Group-2.png", alt: "Final designs, usage screen" },
+    { src: "/images/2021/12/Group-3.png", alt: "Final designs, garage screen" },
+    { src: "/images/2021/12/turorial-blur.png", alt: "Final designs, tutorial overlay" },
+    { src: "/images/2021/12/tutorial-02.png", alt: "Final designs, tutorial screen 2" },
+    { src: "/images/2021/12/tutorial-03.png", alt: "Final designs, tutorial screen 3" },
+    { src: "/images/2021/12/tutorial-04.png", alt: "Final designs, tutorial screen 4" },
   ]}
 />
 
 ## Key Decisions & Pivot Points
 
-**Converging by score, not by seniority.** The riskiest moment in a 100-day project is the direction decision, because reversing it later costs weeks we didn’t have. That’s why the ideation session ended in NUF scoring rather than discussion: the vehicle-care direction won on rated newness, usefulness, and feasibility — numbers the whole room produced — which meant that when scope pressure arrived mid-project, nobody could reopen the “should we even build this?” question. The method was chosen precisely to make the decision durable.
+**Converging by score, not by seniority.** The riskiest moment in a 100-day project is the direction decision, because reversing it later costs weeks we didn’t have. That’s why the ideation session ended in NUF scoring rather than discussion: the vehicle-care direction won on rated newness, usefulness, and feasibility (numbers the whole room produced), which meant that when scope pressure arrived mid-project, nobody could reopen the “should we even build this?” question. The method was chosen precisely to make the decision durable.
 
-**Spending novelty in one place.** The 8-bit gamified aesthetic and the Material Design navigation look like an odd couple, and the pairing was deliberate: a novel engagement model plus novel navigation would have doubled the learning burden and the design risk on a fixed clock. We spent our novelty budget on the score-and-challenge loop — the part that had to feel fresh — and kept navigation on rails users already knew.
+**Spending novelty in one place.** The 8-bit gamified aesthetic and the Material Design navigation look like an odd couple, and the pairing was deliberate: a novel engagement model plus novel navigation would have doubled the learning burden and the design risk on a fixed clock. We spent our novelty budget on the score-and-challenge loop (the part that had to feel fresh) and kept navigation on rails users already knew.
 
-**Cutting the maps layer.** The original concept leaned on the Google Maps API: fuel-efficient route suggestions to help drivers save gas, and directions to nearby garages when the app recommended an oil change or other maintenance. It was the feature set that connected the health score to the physical world — and we cut it, because the API was simply too costly to test and fully implement on our clock and budget. That meant shipping a vehicle-care app that couldn’t point you to a garage, which stung. But the cut was the 100-day discipline working as intended: a feature we couldn’t afford to test was a feature we couldn’t afford, and the score loop had to prove the engagement model on its own.
+**Cutting the maps layer.** The original concept leaned on the Google Maps API: fuel-efficient route suggestions to help drivers save gas, and directions to nearby garages when the app recommended an oil change or other maintenance. It was the feature set that connected the health score to the physical world, and we cut it, because the API was simply too costly to test and fully implement on our clock and budget. That meant shipping a vehicle-care app that couldn’t point you to a garage, which stung. But the cut was the 100-day discipline working as intended: a feature we couldn’t afford to test was a feature we couldn’t afford, and the score loop had to prove the engagement model on its own.
 
 ## Collaboration
 
-A four-person team on a 100-day clock collapses the usual handoff structure — and we leaned into that rather than fighting it. With one Android engineer, feasibility conversations happened at the sketch stage, not at handoff: anything expensive to build got redesigned before it was ever specced. The UI designer and I split the novelty budget explicitly — I owned flows and interaction patterns, they owned the 8-bit visual identity — which let both tracks move in parallel. And the product owner ran interference on scope: the NUF-scored direction gave them the artifact they needed to keep stakeholders from adding features mid-flight.
+A four-person team on a 100-day clock collapses the usual handoff structure, and we leaned into that rather than fighting it. With one Android engineer, feasibility conversations happened at the sketch stage, not at handoff: anything expensive to build got redesigned before it was ever specced. The UI designer and I split the novelty budget explicitly (I owned flows and interaction patterns, they owned the 8-bit visual identity), which let both tracks move in parallel. And the product owner ran interference on scope: the NUF-scored direction gave them the artifact they needed to keep stakeholders from adding features mid-flight.
 
 ## Outcomes
 
@@ -151,8 +151,8 @@ A four-person team on a 100-day clock collapses the usual handoff structure — 
 
 ### Design Impact
 
-- **The score-based interaction pattern was adopted for account setup and roadside assistance** in the primary product — the engagement model outlived the app that piloted it.
+- **The score-based interaction pattern was adopted for account setup and roadside assistance** in the primary product; the engagement model outlived the app that piloted it.
 
 ## What I’d Do Differently
 
-I was so focused on hitting the release in under 100 days that I treated launch as the finish line — when for an engagement experiment, it was the starting gun. Cutting scope for the MVP was the right instinct, but while I was doing it, I should have been partnering more closely with the PM on what came after: a real feedback loop with users post-release, perhaps an incentive program for participating in interviews. The 600 users who enrolled in the research program proved the appetite was there. A deliberate program would have converted that appetite into longer-term engagement and a user-driven way to prioritize the feature roadmap after the initial release — instead of leaving the first version to speak for itself.
+I was so focused on hitting the release in under 100 days that I treated launch as the finish line, when for an engagement experiment it was the starting gun. Cutting scope for the MVP was the right instinct, but while I was doing it, I should have been partnering more closely with the PM on what came after: a real feedback loop with users post-release, perhaps an incentive program for participating in interviews. The 600 users who enrolled in the research program proved the appetite was there. A deliberate program would have converted that appetite into longer-term engagement and a user-driven way to prioritize the feature roadmap after the initial release, instead of leaving the first version to speak for itself.
