@@ -34,7 +34,7 @@ Three problems compounded across the portfolio:
 
 The system needed to do two things at once: prevent fragmentation, and preserve team autonomy. Application teams needed room to solve their own domain problems without re-litigating navigation, identity, or way-finding every time.
 
-> **[PLACEHOLDER — problem evidence]** *Add a data point that made the pain concrete: e.g., support tickets tagged navigation/orientation, a customer quote from a multi-product account, or time-to-proficiency differences between single- and multi-product customers.*
+The evidence surfaced in our own UX design reviews. Review after review, different designers were solving the same problem — helping application teams redesign UI components and sharing CSS between products — while none of those teams pulled from a shared code base. Every review was simultaneously proof of demand for a system and proof of its absence: we were hand-delivering consistency one component at a time, building UX debt into the portfolio and accelerating the very UI drift the reviews existed to catch.
 
 ## Research & Process
 
@@ -47,11 +47,11 @@ The standards weren’t designed in a vacuum — they were derived from the port
 
 Working directly with executive product leadership meant the standards carried strategic weight; working through each PM lead meant they carried domain reality. Both were necessary — a contract that only leadership endorses gets routed around, and a contract that only one team likes never becomes a contract.
 
-> **[PLACEHOLDER — research sessions]** *If you ran user-facing research here (customer interviews, navigation studies, tree tests on the IA, usability sessions on the shell), name the sessions, participants, and counts — Suzy specifically looks for what the sessions looked like.*
-
 ## Flows
 
-> **[FLOW DIAGRAM PLACEHOLDER]** — *Spec: one diagram of the cross-application way-finding journey — a multi-product user entering the platform, orienting via the shared shell (primary nav → secondary nav → breadcrumbs → page heading), then switching products through the application switcher and landing already-oriented because every zone is in the same place. Annotate the moments the contracts protect: where navigation lives, where state surfaces, and where the switcher preserves context. This diagram doubles as the visual argument for the whole system.*
+The cross-application way-finding journey in one view. A multi-product user orients in Application A through the shared shell zones — primary nav → secondary nav → breadcrumbs → page heading — then crosses to Application B through the context-preserving application switcher and lands already oriented, because every zone is exactly where it was. The annotations name the contracts at work: where navigation always lives, where state and location surface, and where context is carried across. This diagram is the visual argument for the whole system.
+
+![Flow diagram of the cross-application way-finding journey: a user enters the platform and moves through Application A’s shared shell zones — primary nav, secondary nav, breadcrumbs, page heading — then crosses through the context-preserving application switcher into Application B, where every zone sits in exactly the same place. Annotations mark the contracts: navigation always lives here, state and location surface here, context carried across.](/images/2026/08/enterprise-wayfinding-flow.png)
 
 ## The Design
 
@@ -171,7 +171,7 @@ Data tables were the workhorse of the portfolio — nearly every application pre
 
 **Three table densities instead of one.** The table component originally specified a single density. Application teams with data-heavy domains pushed back — their users live in grids all day and a comfortable default wasted their screen. Rather than let each team fork the table (the exact drift the system existed to prevent), I absorbed the requirement into the contract: three documented density modes, one component. The lesson generalized: when a team pushes back on a standard, the standard is usually missing a variant, not an enforcement mechanism.
 
-> **[PLACEHOLDER — honest pivot]** *Add one genuine failure or reversal: a contract that was wrong on the first pass, an application whose adoption stalled and why, or a pattern you had to walk back after implementation. Confirm or replace the density-modes story above — the pushback framing is inferred from the shipped spec, not documented history.*
+**The pattern that stalled: vertical navigation affordances.** The state matrix for navigation buttons — hovered, selected, focused, enabled, disabled — was the easy part. What stalled us was the behavioral variety hiding inside the portfolio’s vertical navs: some teams had calls to action living in the nav that functioned like context menus; others had items that opened sub-pages. Same rail, same visual container, fundamentally different affordances — and no way for a user to tell them apart before clicking. Shoe-horning chevrons and carets into the vertical nav to signal those differences was a creative challenge we did not take lightly, because navigation is the one surface every user of every product touches, and once implemented, the affordance language would become an enduring pattern that every future application inherited. We deliberately moved slowest exactly where a quick answer would have standardized ambiguity.
 
 ## Collaboration
 
@@ -191,15 +191,12 @@ I designed the process this way because of what adoption efforts usually die of:
 ### Business Impact
 
 - **Adopted across all 17 enterprise applications** spanning three business units (reporting, accounting, data & analytics) — including subsequent acquisitions, which onboarded against the framework without bespoke design re-litigation.
-
-> **[PLACEHOLDER — business KPIs]** *Add 1–2 numbers with baselines: e.g., reduction in design/build time for new product onboarding, support ticket reduction for navigation issues, or multi-product customer satisfaction/retention movement.*
+- **The strategic outcome was cohesion itself.** The portfolio stopped presenting as a collection of acquisitions and came together as one platform — repositioning the company to compete as an integrated platform leader rather than a bundle of point products. For a business whose growth model is acquisition, that coherence compounds: every future product inherits it on arrival.
 
 ### User Impact
 
 - Users licensing multiple products now orient instantly in any application — navigation, notifications, and state surfaces live in the same place with the same meaning, everywhere.
 - **WCAG AA accessibility baseline** with documented contrast pairings for every neutral, brand, and utility color.
-
-> **[PLACEHOLDER — user KPIs]** *Add evidence users felt the change: task success or time-on-task deltas, SUS/NPS movement, or a customer quote from a multi-product account.*
 
 ### Design Impact
 
@@ -209,4 +206,4 @@ I designed the process this way because of what adoption efforts usually die of:
 
 ## What I’d Do Differently
 
-**[PLACEHOLDER — verify this reflection matches reality, or replace with your own]** The contracts were validated against the state matrix, but adoption was measured in applications shipped, not in user outcomes — I can say all 17 products adopted the shell, and I can’t say precisely how much faster a multi-product user orients today than before. Given another pass, I’d define the user-facing success metric (cross-application task success, orientation time on first entry) before the first audit, and benchmark two or three applications pre-adoption so the system’s impact would be a measured claim rather than a structural one.
+The system’s Figma library told application teams exactly what to build; it couldn’t hand them the build itself. What I’d do differently is develop Storybook components to accompany the Figma mockups, so applications onboarding into the ecosystem could pull from a shared code base rather than pick and choose how to implement UI styles — or come back to the design team, again and again, for specs on colors and spacing. That would have been the true operational win: specs document contracts, but shared components enforce them. Still, starting with a manual process is how teams learn what the contracts actually need to be, so I was happy to begin with a Figma-based interaction model — and it’s a lesson I carried directly into my <a href="/projects/atomic-design-system/" target="_blank" rel="noopener">next design system</a>, where Storybook was the source of truth from day one.

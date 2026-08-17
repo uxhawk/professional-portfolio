@@ -92,6 +92,9 @@ const { images, fit = "contain" } = Astro.props;
 
   .track {
     display: flex;
+    /* Slides shrink-wrap their images at differing heights; center them on a
+       shared horizontal axis instead of top-aligning against the tallest */
+    align-items: center;
     gap: 1.25rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;

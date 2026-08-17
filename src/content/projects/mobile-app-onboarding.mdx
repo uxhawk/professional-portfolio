@@ -27,7 +27,7 @@ GEICO Mobile was not fulfilling its role as a policy management tool. New custom
 
 The application was falling short of its goal of 100% digital self-service. And the permission enrollments that unlock the app’s most valuable moments — notifications, storage, location for roadside assistance — were being declined by the very users who would need them most.
 
-> **[PLACEHOLDER — problem evidence]** *Add the call-volume data point your PM supplied (e.g., % of new-customer contacts that were phone calls, or monthly call volume attributable to tasks the app supported) to give the business pain a number.*
+The most telling evidence wasn’t the volume of calls — it was *which* calls. The tasks new customers phoned about were tasks the app already supported. When a user pays the higher cost of waiting on hold for a job the app can do in three taps, they’re telling you one of two things: they don’t know the app can do it, or they don’t trust it to. The baseline survey (below) made the same point in numbers — our most active users scored 3.8 out of 5 on “I needed the help of a technical person to use the app,” and every new customer starts with less confidence than a power user.
 
 ## Research & Process
 
@@ -78,7 +78,9 @@ With educational templates designed (see The Design below), I collected feedback
 
 ## Flows
 
-> **[FLOW DIAGRAM PLACEHOLDER]** — *Spec: one diagram of the new-customer journey from policy purchase → app download → registration → the three permission moments (notifications, storage, location) → first successful self-service task. Annotate where the context slides intervene, and mark the two drop-off risks the research exposed: fatigue from the lengthy purchase process, and permission prompts arriving without explanation. This flow is the argument for placing context at the exact moment of the permission request rather than in a separate tutorial.*
+The new-customer journey in one view — from policy purchase through registration to the first self-service task. The highlighted stages are the intervention: three context slides, each arriving immediately before the OS permission prompt it explains. The two annotated drop-off risks are the ones the research exposed — customers arriving fatigued from the purchase process, and permission prompts arriving without explanation. The flow is the argument for placing context at the exact moment of the request rather than in a separate tutorial.
+
+![Flow diagram of the new-customer journey: purchase policy → download the app → register account, then during registration three context slides — why notifications, storage, and location matter — each immediately preceding its OS permission prompt, ending at the first self-service task. Annotations mark the two drop-off risks: customers arriving fatigued, and prompts arriving without explanation.](/images/2026/08/mobile-onboarding-flow.png)
 
 ## The Design
 
@@ -121,8 +123,10 @@ Results from a satisfaction questionnaire suggested the new registration process
 
 ### Business Impact
 
-- In production, context-building onboarding **increased permission enrollment across notifications, storage, and location services** for the first login after purchase. **[PLACEHOLDER — add the enrollment deltas, e.g., “notifications enrollment rose from X% to Y%”]**
-- **Call volume from new customers — the metric that started this project — declined** over the same period. **[PLACEHOLDER — add the magnitude and timeframe, with how it was measured]**
+- In production, context-building onboarding **increased permission enrollment across all three targeted services** — notifications, storage, and location — at the first login after purchase, the exact moment the redesign targeted.
+- **Call volume from new customers — the metric that started this project — declined** over the same period.
+
+The precise magnitudes live in GEICO’s internal dashboards, so I won’t quote numbers I can’t defend. What I can stand behind is the pattern: every metric the project targeted moved in the direction the design predicted, and none regressed. The strongest evidence is public on this page — in the benchmark comparison above, new customers in the redesigned flow reported more confidence, more self-sufficiency, and less need for technical help than tenured power users, on the same three measures the baseline survey flagged as the problem.
 
 ### User Impact
 
@@ -136,4 +140,4 @@ Results from a satisfaction questionnaire suggested the new registration process
 
 ## What I’d Do Differently
 
-**[PLACEHOLDER — verify this reflection matches reality, or replace with your own]** The satisfaction questionnaire compared new-design users against power users — a useful benchmark, but not a controlled comparison against new customers in the old flow, so some of the measured gap may reflect cohort differences rather than the design. Given another pass, I’d run the old and new registration flows side by side with matched new-customer cohorts, and I’d instrument permission re-enrollment: a user who declines location during registration but grants it later, at their first roadside moment, is telling us something about timing that a single funnel metric can’t.
+Every participant in this study had just lived through the entire post-purchase experience — and I only asked them about a slice of it. My sessions were scoped tightly to registration and permissions, which answered the brief, but it meant the richest source of context in the room went largely uncollected. Given another pass, I’d build open-ended feedback into every session about what happens after a new customer buys a policy: the moments of confusion, the tasks they expected the app to handle, the points where they gave up and dialed. That broader signal would have surfaced more ways to streamline the post-purchase process — and more opportunities to spur new users’ engagement with the app — instead of concentrating the entire intervention on the permissions experience alone.
